@@ -11,7 +11,7 @@ type Cultivo struct {
 
 type InformacionCultivo struct {
 	Nombre             string   `json:"nombre"`
-	Color              string   `json:"color"`
+	Color              []string `json:"color"`
 	Familia            string   `json:"familia"`
 	DensidadPlantacion string   `json:"densidadplantacion"`
 	LitrosTierraMaceta int      `json:"litrostierramaceta"`
