@@ -1,6 +1,7 @@
 package entity
 
 type Cultivo struct {
+	IdCultivo int
 	InformacionCultivo
 	RequisitosCultivo
 	FechasCultivo

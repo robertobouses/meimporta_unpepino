@@ -6,7 +6,10 @@ import (
 	"os"
 
 	"github.com/gin-gonic/gin"
+	"github.com/robertobouses/meimporta_unpepino/app"
+	"github.com/robertobouses/meimporta_unpepino/http"
 	"github.com/robertobouses/meimporta_unpepino/internal"
+	"github.com/robertobouses/meimporta_unpepino/repository"
 )
 
 func main() {
@@ -30,7 +33,28 @@ func main() {
 	}
 	log.Println("la conexión se abrió correctamente")
 	defer db.Close()
+
+	var repo repository.REPOSITORY
+	repo, err = repository.NewRepository(db)
+	if err != nil {
+		panic(err)
+	}
+	var appController app.APP
+	var httpController http.HTTP
+
+	appController = app.NewAPP(repo)
+	httpController = http.NewHTTP(appController)
+
 	server := gin.Default()
+
+	server.POST("/cultivo", func(ctx *gin.Context) {
+		httpController.PostCultivo(ctx)
+	})
+
+	server.GET("/cultivo", func(ctx *gin.Context) {
+		httpController.GetCultivo(ctx)
+	})
+
 	port := ":8080"
 	log.Printf("Escuchando en el puerto%s\n", port)
 
