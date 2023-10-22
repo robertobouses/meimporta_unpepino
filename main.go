@@ -51,8 +51,8 @@ func main() {
 		httpController.PostCultivo(ctx)
 	})
 
-	server.GET("/cultivo", func(ctx *gin.Context) {
-		httpController.GetCultivo(ctx)
+	server.GET("/cultivos", func(ctx *gin.Context) {
+		httpController.GetCultivos(ctx)
 	})
 
 	port := ":8080"

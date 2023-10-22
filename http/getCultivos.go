@@ -6,12 +6,12 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func (h *Http) GetCultivo(ctx *gin.Context) {
-	cultivo, err := h.service.PrintCultivo()
+func (h *Http) GetCultivos(ctx *gin.Context) {
+	cultivos, err := h.service.PrintCultivos()
 	if err != nil {
 		ctx.JSON(nethttp.StatusBadRequest, gin.H{"error": err.Error()})
 	}
 
-	ctx.JSON(nethttp.StatusOK, cultivo)
+	ctx.JSON(nethttp.StatusOK, cultivos)
 
 }

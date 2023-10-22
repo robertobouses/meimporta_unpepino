@@ -7,7 +7,7 @@ import (
 
 type APP interface {
 	CreateCultivo(newCultivo entity.Cultivo) error
-	PrintCultivo() (entity.Cultivo, error)
+	PrintCultivos() ([]entity.Cultivo, error)
 }
 
 type Service struct {

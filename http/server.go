@@ -7,7 +7,7 @@ import (
 
 type HTTP interface {
 	PostCultivo(ctx *gin.Context)
-	GetCultivo(ctx *gin.Context)
+	GetCultivos(ctx *gin.Context)
 }
 
 type Http struct {
