@@ -10,9 +10,9 @@ SELECT
     PC.Plagas, PC.Dificultades, PC.Cuidados, PC.Miscelanea
 FROM
     meimporta_unpepino.Cultivo AS C
-    JOIN meimporta_unpepino.InformacionCultivo AS IC ON C.IdCultivo = IC.CultivoId
-    JOIN meimporta_unpepino.RequisitosCultivo AS RC ON C.IdCultivo = RC.CultivoId
-    JOIN meimporta_unpepino.FechasCultivo AS FC ON C.IdCultivo = FC.CultivoId
-    JOIN meimporta_unpepino.FrutoCultivo AS FUC ON C.IdCultivo = FUC.CultivoId
-    JOIN meimporta_unpepino.SemillaCultivo AS SC ON C.IdCultivo = SC.CultivoId
-    JOIN meimporta_unpepino.ProblemasCultivo AS PC ON C.IdCultivo = PC.CultivoId;
+    JOIN meimporta_unpepino.informacioncultivo AS IC ON C.IdCultivo = IC.CultivoId
+    JOIN meimporta_unpepino.requisitoscultivo AS RC ON C.IdCultivo = RC.CultivoId
+    JOIN meimporta_unpepino.fechascultivo AS FC ON C.IdCultivo = FC.CultivoId
+    JOIN meimporta_unpepino.frutocultivo AS FUC ON C.IdCultivo = FUC.CultivoId
+    JOIN meimporta_unpepino.semillacultivo AS SC ON C.IdCultivo = SC.CultivoId
+    JOIN meimporta_unpepino.problemascultivo AS PC ON C.IdCultivo = PC.CultivoId;

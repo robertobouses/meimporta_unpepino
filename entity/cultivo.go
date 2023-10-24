@@ -1,7 +1,8 @@
 package entity
 
 type Cultivo struct {
-	IdCultivo int
+	IdCultivo int `json:"idCultivo"`
+	//uint   gorm:"primary_key
 	InformacionCultivo
 	RequisitosCultivo
 	FechasCultivo

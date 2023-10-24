@@ -18,6 +18,7 @@ func main() {
 	fmt.Println("DB_PASS:", os.Getenv("DB_PASS"))
 	fmt.Println("DB_HOST:", os.Getenv("DB_HOST"))
 	fmt.Println("DB_PORT:", os.Getenv("DB_PORT"))
+	//fmt.Println("DB_DATABASE:", "mi1p")
 	fmt.Println("DB_DATABASE:", os.Getenv("DB_DATABASE"))
 
 	db, err := internal.NewPostgres(internal.DBConfig{
@@ -26,6 +27,7 @@ func main() {
 		Host:     os.Getenv("DB_HOST"),
 		Port:     os.Getenv("DB_PORT"),
 		Database: os.Getenv("DB_DATABASE"),
+		//Database: os.Getenv("mi1p"),
 	})
 
 	if err != nil {
