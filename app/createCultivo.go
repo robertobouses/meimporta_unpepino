@@ -1,11 +1,13 @@
 package app
 
 import (
+	"fmt"
+
 	"github.com/robertobouses/meimporta_unpepino/entity"
 )
 
 func (s *Service) CreateCultivo(newCultivo entity.Cultivo) error {
-
+	fmt.Println("CreateCultivo - IdCultivo:", newCultivo.IdCultivo)
 	// existingCultivo, err := s.repo.ExtractCultivo(newCultivo.IdCultivo)
 	// if err != nil {
 
@@ -16,6 +18,10 @@ func (s *Service) CreateCultivo(newCultivo entity.Cultivo) error {
 
 	// 	return fmt.Errorf("El registro con ID %s ya existe", newCultivo.IdCultivo)
 	// }
-
-	return s.repo.InsertCultivo(newCultivo)
+	err := s.repo.InsertCultivo(newCultivo)
+	if err != nil {
+		fmt.Println("Error en InsertCultivo:", err)
+		return err
+	}
+	return nil
 }

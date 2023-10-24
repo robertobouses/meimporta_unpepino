@@ -1,13 +1,19 @@
 package repository
 
 import (
+	"fmt"
+
 	"github.com/lib/pq"
 	"github.com/robertobouses/meimporta_unpepino/entity"
 )
 
 func (r *Repository) InsertCultivo(cultivo entity.Cultivo) error {
+	fmt.Println("InsertCultivo - IdCultivo:", cultivo.IdCultivo)
+	fmt.Printf("Valor que se pasa a la sentencia SQL: %d\n", cultivo.IdCultivo)
+
 	_, err := r.insertCultivoStmt.Exec(cultivo.IdCultivo)
 	if err != nil {
+		fmt.Println("Error en insertCultivoStmt.Exec:", err)
 		return err
 	}
 

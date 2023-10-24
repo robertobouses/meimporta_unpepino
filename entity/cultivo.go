@@ -1,8 +1,7 @@
 package entity
 
 type Cultivo struct {
-	IdCultivo int `json:"idCultivo"`
-	//uint   gorm:"primary_key
+	IdCultivo int `json:"idcultivo"`
 	InformacionCultivo
 	RequisitosCultivo
 	FechasCultivo
@@ -10,6 +9,8 @@ type Cultivo struct {
 	SemillaCultivo
 	ProblemasCultivo
 }
+
+//uint   gorm:"primary_key
 
 type InformacionCultivo struct {
 	Nombre             string   `json:"nombre"`
