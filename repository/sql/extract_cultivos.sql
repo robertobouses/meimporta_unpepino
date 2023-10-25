@@ -1,18 +1,18 @@
 --extract_cultivos.sql
 
 SELECT
-    C.IdCultivo,
-    IC.Nombre, IC.Color, IC.Familia, IC.DensidadPlantacion, IC.LitrosTierraMaceta, IC.Asociaciones,
-    RC.Agua, RC.Tierra, RC.Nutricion, RC.Salinidad, RC.PH, RC.Clima, RC.Profundidad,
-    FC.Siembra, FC.Transplante, FC.Cosecha, FC.Ciclo,
-    FUC.Produccion, FUC.Nutrientes,
-    SC.Semilla, SC.SemillasGramo, SC.VidaSemilla,
-    PC.Plagas, PC.Dificultades, PC.Cuidados, PC.Miscelanea
+    C.idcultivo,
+    IC.nombre, IC.color, IC.familia, IC.densidadplantacion, IC.litrostierramaceta, IC.asociaciones,
+    RC.agua, RC.tierra, RC.nutricion, RC.salinidad, RC.ph, RC.clima, RC.profundidad,
+    FC.siembra, FC.transplante, FC.cosecha, FC.ciclo,
+    FUC.produccion, FUC.nutrientes,
+    SC.semilla, SC.semillasGramo, SC.vidaSemilla,
+    PC.plagas, PC.dificultades, PC.cuidados, PC.miscelanea
 FROM
-    meimporta_unpepino.Cultivo AS C
-    JOIN meimporta_unpepino.informacioncultivo AS IC ON C.IdCultivo = IC.CultivoId
-    JOIN meimporta_unpepino.requisitoscultivo AS RC ON C.IdCultivo = RC.CultivoId
-    JOIN meimporta_unpepino.fechascultivo AS FC ON C.IdCultivo = FC.CultivoId
-    JOIN meimporta_unpepino.frutocultivo AS FUC ON C.IdCultivo = FUC.CultivoId
-    JOIN meimporta_unpepino.semillacultivo AS SC ON C.IdCultivo = SC.CultivoId
-    JOIN meimporta_unpepino.problemascultivo AS PC ON C.IdCultivo = PC.CultivoId;
+    meimporta_unpepino.cultivo AS C
+    JOIN meimporta_unpepino.informacioncultivo AS IC ON C.idcultivo = IC.cultivoid
+    JOIN meimporta_unpepino.requisitoscultivo AS RC ON C.idcultivo = RC.cultivoid
+    JOIN meimporta_unpepino.fechascultivo AS FC ON C.idcultivo = FC.cultivoid
+    JOIN meimporta_unpepino.frutocultivo AS FUC ON C.idcultivo = FUC.cultivoid
+    JOIN meimporta_unpepino.semillacultivo AS SC ON C.idcultivo = SC.cultivoid
+    JOIN meimporta_unpepino.problemascultivo AS PC ON C.idcultivo = PC.cultivoid;

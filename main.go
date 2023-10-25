@@ -51,6 +51,7 @@ func main() {
 
 	server.POST("/cultivo", func(ctx *gin.Context) {
 		httpController.PostCultivo(ctx)
+
 	})
 
 	server.GET("/cultivos", func(ctx *gin.Context) {

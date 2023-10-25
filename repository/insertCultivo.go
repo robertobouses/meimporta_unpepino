@@ -2,6 +2,7 @@ package repository
 
 import (
 	"fmt"
+	"log"
 
 	"github.com/lib/pq"
 	"github.com/robertobouses/meimporta_unpepino/entity"
@@ -24,8 +25,13 @@ func (r *Repository) InsertCultivo(cultivo entity.Cultivo) error {
 	// }
 
 	var cultivoID int
-
 	err = tx.Stmt(r.insertCultivoStmt).QueryRow(cultivo.Siglas).Scan(&cultivoID)
+
+	if err != nil {
+		return err
+	}
+
+	log.Println("el cultivoid tras hacer el returning", cultivoID)
 
 	if err != nil {
 		fmt.Println("Error al escanear cultivoID:", err)
