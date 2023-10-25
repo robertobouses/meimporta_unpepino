@@ -5,17 +5,11 @@ CREATE SCHEMA meimporta_unpepino;
 
 
 
-------------------------------------
--- Tabla 'cultivo'
-CREATE TABLE meimporta_unpepino.cultivo (
-    idcultivo serial PRIMARY KEY
-);
 
 CREATE TABLE meimporta_unpepino.cultivo (
-    idcultivo integer PRIMARY KEY
+    idcultivo serial PRIMARY KEY,
+    siglas text
 );
---------------------------
-
 
 
 
@@ -27,7 +21,7 @@ CREATE TABLE meimporta_unpepino.informacioncultivo (
     densidadplantacion text,
     litrostierraMaceta integer,
     asociaciones text[], 
-    cultivoid serial,
+    cultivoid integer,
     FOREIGN KEY (cultivoid) REFERENCES meimporta_unpepino.cultivo(idcultivo)
 );
 
@@ -40,7 +34,7 @@ CREATE TABLE meimporta_unpepino.Requisitoscultivo (
     ph real[],
     clima text[], 
     profundidad text,
-    cultivoid serial, 
+    cultivoid integer, 
     FOREIGN KEY (cultivoid) REFERENCES meimporta_unpepino.cultivo(idcultivo)
 );
 
@@ -50,7 +44,7 @@ CREATE TABLE meimporta_unpepino.fechascultivo (
     transplante text,
     cosecha text,
     ciclo text,
-    cultivoid serial, 
+    cultivoid integer, 
     FOREIGN KEY (cultivoid) REFERENCES meimporta_unpepino.cultivo(idcultivo)
 );
 
@@ -58,7 +52,7 @@ CREATE TABLE meimporta_unpepino.fechascultivo (
 CREATE TABLE meimporta_unpepino.frutocultivo (
     produccion text,
     nutrientes text,
-    cultivoid serial, 
+    cultivoid integer, 
     FOREIGN KEY (cultivoid) REFERENCES meimporta_unpepino.cultivo(idcultivo)
 );
 
@@ -67,7 +61,7 @@ CREATE TABLE meimporta_unpepino.semillacultivo (
     semilla text,
     semillasGramo text,
     vidaSemilla text,
-    cultivoid serial, 
+    cultivoid integer, 
     FOREIGN KEY (cultivoid) REFERENCES meimporta_unpepino.cultivo(idcultivo)
 );
 
@@ -77,6 +71,7 @@ CREATE TABLE meimporta_unpepino.problemascultivo (
     dificultades text,
     cuidados text,
     miscelanea text,
-    cultivoid serial, 
+    cultivoid integer, 
     FOREIGN KEY (cultivoid) REFERENCES meimporta_unpepino.cultivo(idcultivo)
 );
+

@@ -1,7 +1,8 @@
 package entity
 
 type Cultivo struct {
-	IdCultivo int `json:"idcultivo"`
+	IdCultivo int    `json:"idcultivo"`
+	Siglas    string `json:"siglas"`
 	InformacionCultivo
 	RequisitosCultivo
 	FechasCultivo
