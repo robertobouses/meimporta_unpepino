@@ -8,6 +8,8 @@ import (
 type APP interface {
 	CreateCultivo(newCultivo entity.Cultivo) error
 	PrintCultivos() ([]entity.Cultivo, error)
+	DeleteCultivosAll() error
+	DeleteCultivosId(id string) error
 }
 
 type Service struct {

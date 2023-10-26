@@ -8,6 +8,8 @@ import (
 type HTTP interface {
 	PostCultivo(ctx *gin.Context)
 	GetCultivos(ctx *gin.Context)
+	DeleteCultivosAll(ctx *gin.Context)
+	DeleteCultivosId(ctx *gin.Context, id string)
 }
 
 type Http struct {

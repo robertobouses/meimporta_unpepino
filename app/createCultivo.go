@@ -1,13 +1,13 @@
 package app
 
 import (
-	"fmt"
+	"log"
 
 	"github.com/robertobouses/meimporta_unpepino/entity"
 )
 
 func (s *Service) CreateCultivo(newCultivo entity.Cultivo) error {
-	fmt.Println("CreateCultivo - IdCultivo:", newCultivo.IdCultivo)
+	log.Println("CreateCultivo - IdCultivo:", newCultivo.IdCultivo)
 	// existingCultivo, err := s.repo.ExtractCultivo(newCultivo.IdCultivo)
 	// if err != nil {
 
@@ -20,7 +20,7 @@ func (s *Service) CreateCultivo(newCultivo entity.Cultivo) error {
 	// }
 	err := s.repo.InsertCultivo(newCultivo)
 	if err != nil {
-		fmt.Println("Error en InsertCultivo:", err)
+		log.Println("Error en InsertCultivo:", err)
 		return err
 	}
 	return nil

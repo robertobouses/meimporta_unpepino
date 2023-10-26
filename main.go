@@ -58,9 +58,20 @@ func main() {
 		httpController.GetCultivos(ctx)
 	})
 
+	server.DELETE("/borrartodo", func(ctx *gin.Context) {
+		httpController.DeleteCultivosAll(ctx)
+	})
+
+	server.DELETE("/borrarid/:id", func(ctx *gin.Context) {
+		id := ctx.Param("id")
+		httpController.DeleteCultivosId(ctx, id)
+	})
+
+	//delete drop table tal
+	//delete all table
+
 	port := ":8080"
 	log.Printf("Escuchando en el puerto%s\n", port)
-
 	if err := server.Run(port); err != nil {
 		log.Fatal(err)
 	}

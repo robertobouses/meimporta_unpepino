@@ -11,6 +11,8 @@ import (
 type REPOSITORY interface {
 	InsertCultivo(cultivo entity.Cultivo) error
 	ExtractCultivos() ([]entity.Cultivo, error)
+	DeleteCultivosAll() error
+	DeleteCultivosId(id int) error
 }
 
 type Repository struct {
@@ -22,6 +24,8 @@ type Repository struct {
 	insertFrutoCultivoStmt       *sql.Stmt
 	insertSemillaCultivoStmt     *sql.Stmt
 	insertProblemasCultivoStmt   *sql.Stmt
+	deleteCultivosAllStmt        *sql.Stmt
+	deleteCultivosIdStmt         *sql.Stmt
 
 	extractCultivosStmt *sql.Stmt
 }
@@ -49,6 +53,12 @@ var InsertProblemasCultivoQuery string
 
 //go:embed sql/extract_cultivos.sql
 var ExtractCultivosQuery string
+
+//go:embed sql/delete_cultivos_all.sql
+var DeleteCultivosAllQuery string
+
+//go:embed sql/delete_cultivos_id.sql
+var DeleteCultivosIdQuery string
 
 func NewRepository(db *sql.DB) (*Repository, error) {
 	insertCultivoStmt, err := db.Prepare(InsertCultivoQuery)
@@ -90,6 +100,14 @@ func NewRepository(db *sql.DB) (*Repository, error) {
 	if err != nil {
 		return nil, err
 	}
+	deleteCultivosAllStmt, err := db.Prepare(DeleteCultivosAllQuery)
+	if err != nil {
+		return nil, err
+	}
+	deleteCultivosIdStmt, err := db.Prepare(DeleteCultivosIdQuery)
+	if err != nil {
+		return nil, err
+	}
 
 	return &Repository{
 		db:                           db,
@@ -101,5 +119,7 @@ func NewRepository(db *sql.DB) (*Repository, error) {
 		insertSemillaCultivoStmt:     insertSemillaCultivoStmt,
 		insertProblemasCultivoStmt:   insertProblemasCultivoStmt,
 		extractCultivosStmt:          extractCultivosStmt,
+		deleteCultivosAllStmt:        deleteCultivosAllStmt,
+		deleteCultivosIdStmt:         deleteCultivosIdStmt,
 	}, nil
 }
