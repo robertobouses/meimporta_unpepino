@@ -5,7 +5,7 @@ import (
 
 	_ "embed"
 
-	"github.com/robertobouses/meimporta_unpepino/entity"
+	"github.com/robertobouses/meimporta_unpepino-pruebas/entity"
 )
 
 type REPOSITORY interface {

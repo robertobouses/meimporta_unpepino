@@ -3,7 +3,7 @@ package app
 import (
 	"log"
 
-	"github.com/robertobouses/meimporta_unpepino/entity"
+	"github.com/robertobouses/meimporta_unpepino-pruebas/entity"
 )
 
 func (s *Service) PrintCultivos() ([]entity.Cultivo, error) {

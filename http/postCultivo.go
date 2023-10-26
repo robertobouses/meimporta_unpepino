@@ -5,7 +5,7 @@ import (
 	nethttp "net/http"
 
 	"github.com/gin-gonic/gin"
-	"github.com/robertobouses/meimporta_unpepino/entity"
+	"github.com/robertobouses/meimporta_unpepino-pruebas/entity"
 )
 
 func (h *Http) PostCultivo(ctx *gin.Context) {

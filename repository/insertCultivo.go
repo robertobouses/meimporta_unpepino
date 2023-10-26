@@ -3,7 +3,7 @@ package repository
 import (
 	"fmt"
 
-	"github.com/robertobouses/meimporta_unpepino/entity"
+	"github.com/robertobouses/meimporta_unpepino-pruebas/entity"
 )
 
 func (r *Repository) InsertCultivo(cultivo entity.Cultivo) error {
