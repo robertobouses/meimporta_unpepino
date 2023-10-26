@@ -3,7 +3,7 @@ package app
 import (
 	"fmt"
 
-	"github.com/robertobouses/meimporta_unpepino/entity"
+	"github.com/robertobouses/meimporta_unpepino-pruebas/entity"
 )
 
 func (s *Service) CreateCultivo(newCultivo entity.Cultivo) error {

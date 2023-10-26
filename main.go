@@ -6,10 +6,10 @@ import (
 	"os"
 
 	"github.com/gin-gonic/gin"
-	"github.com/robertobouses/meimporta_unpepino/app"
-	"github.com/robertobouses/meimporta_unpepino/http"
-	"github.com/robertobouses/meimporta_unpepino/internal"
-	"github.com/robertobouses/meimporta_unpepino/repository"
+	"github.com/robertobouses/meimporta_unpepino-pruebas/app"
+	"github.com/robertobouses/meimporta_unpepino-pruebas/http"
+	"github.com/robertobouses/meimporta_unpepino-pruebas/internal"
+	"github.com/robertobouses/meimporta_unpepino-pruebas/repository"
 )
 
 func main() {
