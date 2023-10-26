@@ -1,14 +1,14 @@
 package entity
 
 type Cultivo struct {
-	IdCultivo int    `json:"idcultivo"`
-	Siglas    string `json:"siglas"`
-	InformacionCultivo
-	RequisitosCultivo
-	FechasCultivo
-	FrutoCultivo
-	SemillaCultivo
-	ProblemasCultivo
+	IdCultivo          int                `json:"idcultivo"`
+	Siglas             string             `json:"siglas"`
+	InformacionCultivo InformacionCultivo `json: "informacioncultivo"`
+	RequisitosCultivo  RequisitosCultivo  `json: "requisitoscultivo`
+	FechasCultivo      FechasCultivo      `json: "fechascultivo"`
+	FrutoCultivo       FrutoCultivo       `json: "frutocultivo"`
+	SemillaCultivo     SemillaCultivo     `json: "semillacultivo"`
+	ProblemasCultivo   ProblemasCultivo   `json: "problemascultivo"`
 }
 
 //uint   gorm:"primary_key
