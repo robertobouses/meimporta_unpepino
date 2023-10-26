@@ -1,8 +1,8 @@
 package app
 
 import (
-	"github.com/robertobouses/meimporta_unpepino-pruebas/entity"
-	"github.com/robertobouses/meimporta_unpepino-pruebas/repository"
+	"github.com/robertobouses/meimporta_unpepino/entity"
+	"github.com/robertobouses/meimporta_unpepino/repository"
 )
 
 type APP interface {

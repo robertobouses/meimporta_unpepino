@@ -2,7 +2,7 @@ package http
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/robertobouses/meimporta_unpepino-pruebas/app"
+	"github.com/robertobouses/meimporta_unpepino/app"
 )
 
 type HTTP interface {

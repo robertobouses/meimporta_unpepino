@@ -1,4 +1,4 @@
-module github.com/robertobouses/meimporta_unpepino-pruebas
+module github.com/robertobouses/meimporta_unpepino
 
 go 1.20
 

@@ -3,7 +3,7 @@ package repository
 import (
 	"log"
 
-	"github.com/robertobouses/meimporta_unpepino-pruebas/entity"
+	"github.com/robertobouses/meimporta_unpepino/entity"
 )
 
 func (r *Repository) ExtractCultivos() ([]entity.Cultivo, error) {
