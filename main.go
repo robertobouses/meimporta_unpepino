@@ -69,7 +69,7 @@ func main() {
 
 	//delete drop table tal
 	//delete all table
-
+	//una vez tengas el print de lista de cultivos puedes comprobar si existe al eliminar por id por ejemplo
 	port := ":8080"
 	log.Printf("Escuchando en el puerto%s\n", port)
 	if err := server.Run(port); err != nil {
