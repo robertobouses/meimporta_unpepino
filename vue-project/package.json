@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "start": "vite preview"
   },
   "dependencies": {
     "vue": "^3.3.4",

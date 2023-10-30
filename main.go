@@ -49,6 +49,8 @@ func main() {
 
 	server := gin.Default()
 
+	server.Use(internal.CORSMiddleware())
+
 	server.POST("/cultivo", func(ctx *gin.Context) {
 		httpController.PostCultivo(ctx)
 

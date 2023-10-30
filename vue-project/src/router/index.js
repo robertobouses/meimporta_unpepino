@@ -1,18 +1,17 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import Index from '../views/Index.vue'; // Asegúrate de importar correctamente
+import CreateCultivo from '../views/CreateCultivo.vue';
 
 const routes = [
-  // ...otras rutas
   {
-    path: '/',
-    name: 'Index',
-    component: Index
-  }
+    path: '/create-cultivo',
+    name: 'CreateCultivo',
+    component: CreateCultivo,
+  },
 ];
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
-  routes
+  routes,
 });
 
 export default router;
