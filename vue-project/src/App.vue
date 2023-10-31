@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>meimporta_unpepino</h1>
-    <router-link to="/create-cultivo">
+    <router-link to="/cultivo">
       <button>Crear Cultivo</button>
     </router-link>
     <router-view></router-view>

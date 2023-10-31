@@ -1,7 +1,11 @@
 <template>
     <div>
-      <h1>Crear Nuevo Cultivo</h1>
+      <h1>Formulario de Cultivo</h1>
       <form @submit.prevent="submitForm">
+        <div>
+          <label for="siglas">Siglas:</label>
+          <input type="text" id="siglas" v-model="cultivo.siglas" required>
+        </div>
         <label for="siglas">Siglas:</label>
         <input type="text" id="siglas" v-model="cultivo.siglas" required>
         
@@ -85,16 +89,14 @@
 
         <label for="miscelanea">Miscelanea:</label>
         <input type="text" id="miscelanea" v-model="cultivo.problemascultivo.miscelanea" required>
-
-
-        <button type="submit">Guardar Cultivo</button>
+        <button type="submit">Guardar</button>
       </form>
     </div>
   </template>
   
   <script>
-  import axios from 'axios'; 
-
+  import axios from 'axios';
+  
   export default {
     data() {
       return {
@@ -137,22 +139,38 @@
             dificultades: '',
             cuidados: '',
             miscelanea: '',
-          }
-      },
+          } },
+      };
     },
     methods: {
-    submitForm() {
-      // Aquí puedes enviar los datos del cultivo al servidor (backend)
-      axios.post('http://localhost:8080/cultivo', this.cultivo)
-        .then(response => {
-          // Maneja la respuesta del servidor, por ejemplo, muestra un mensaje de éxito.
-          console.log('Cultivo creado exitosamente');
-        })
-        .catch(error => {
-          // Maneja los errores, por ejemplo, muestra un mensaje de error.
-          console.error('Error al crear el cultivo:', error);
-        });
+      submitForm() {
+        // Aquí puedes enviar los datos del cultivo al servidor (backend)
+        // Utiliza una lógica para determinar si estás creando o editando el cultivo
+        if (this.isCreating) {
+          axios.post('http://localhost:8080/cultivo', this.cultivo)
+            .then(response => {
+              console.log('Cultivo creado exitosamente');
+            })
+            .catch(error => {
+              console.error('Error al crear el cultivo:', error);
+            });
+        } else {
+          axios.put('http://localhost:8080/cultivo/' + this.cultivo.id, this.cultivo)
+            .then(response => {
+              console.log('Cultivo editado exitosamente');
+            })
+            .catch(error => {
+              console.error('Error al editar el cultivo:', error);
+            });
+        }
+      },
     },
-  },
-};
-</script>
+    computed: {
+      // Utiliza una propiedad calculada para determinar si estás creando o editando el cultivo
+      isCreating() {
+        return this.$route.name === 'create-cultivo'; // Asegúrate de que el nombre de la ruta sea correcto
+      },
+    },
+  };
+  </script>
+  
