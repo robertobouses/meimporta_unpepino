@@ -51,12 +51,12 @@ func main() {
 
 	server.Use(internal.CORSMiddleware())
 
-	server.POST("/cultivo", func(ctx *gin.Context) {
+	server.POST("/createCultivo", func(ctx *gin.Context) {
 		httpController.PostCultivo(ctx)
 
 	})
 
-	server.GET("/cultivos", func(ctx *gin.Context) {
+	server.GET("/printCultivos", func(ctx *gin.Context) {
 		httpController.GetCultivos(ctx)
 	})
 
@@ -64,7 +64,7 @@ func main() {
 		httpController.DeleteCultivosAll(ctx)
 	})
 
-	server.DELETE("/borrarid/:id", func(ctx *gin.Context) {
+	server.DELETE("/deleteCultivo/:id", func(ctx *gin.Context) {
 		id := ctx.Param("id")
 		httpController.DeleteCultivosId(ctx, id)
 	})
