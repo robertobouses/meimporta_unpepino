@@ -1,14 +1,13 @@
 package app
 
 import (
-	"errors"
 	"log"
 	"strconv"
 )
 
 func (s *Service) DeleteCultivosId(id string) error {
 	idInt, err := strconv.Atoi(id)
-	var ErrCultivoNoExiste = errors.New("El cultivo no existe")
+	//var ErrCultivoNoExiste = errors.New("El cultivo no existe")
 
 	log.Print("el valor del id en la función de la capa app es", idInt)
 	if err != nil {
@@ -27,7 +26,7 @@ func (s *Service) DeleteCultivosId(id string) error {
 
 	err = s.repo.DeleteCultivosId(idInt)
 	if err != nil {
-		log.Print("Error:", err)
+		log.Print("Error al eliminar el cultivo:", err)
 		return err
 	}
 

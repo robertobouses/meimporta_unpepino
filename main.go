@@ -60,7 +60,7 @@ func main() {
 		httpController.GetCultivos(ctx)
 	})
 
-	server.DELETE("/borrartodo", func(ctx *gin.Context) {
+	server.DELETE("/deleteAll", func(ctx *gin.Context) {
 		httpController.DeleteCultivosAll(ctx)
 	})
 

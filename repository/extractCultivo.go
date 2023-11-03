@@ -61,6 +61,8 @@ func (r *Repository) ExtractCultivos() ([]entity.Cultivo, error) {
 			return nil, err
 		}
 
+		log.Printf("Nombre del cultivo: %s", cultivo.InformacionCultivo.Nombre) // Agrega esta línea
+
 		ph = strings.Replace(ph, "{", "", -1)
 		ph = strings.Replace(ph, "}", "", -1)
 		phValues := strings.Split(ph, ",")
