@@ -69,6 +69,10 @@ func main() {
 		httpController.DeleteCultivosId(ctx, id)
 	})
 
+	server.POST("problemsCultivo", func(ctx *gin.Context) {
+		httpController.PostProblemsCultivo(ctx)
+	})
+
 	//delete drop table tal
 	//delete all table
 	//una vez tengas el print de lista de cultivos puedes comprobar si existe al eliminar por id por ejemplo

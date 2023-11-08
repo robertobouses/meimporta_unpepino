@@ -10,6 +10,7 @@ type APP interface {
 	PrintCultivos() ([]entity.Cultivo, error)
 	DeleteCultivosAll() error
 	DeleteCultivosId(id string) error
+	SearchProblemsCultivo(nameIntro string) ([]entity.Problem, error)
 }
 
 type Service struct {
