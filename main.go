@@ -69,7 +69,7 @@ func main() {
 		httpController.DeleteCultivosId(ctx, id)
 	})
 
-	server.POST("problemsCultivo", func(ctx *gin.Context) {
+	server.POST("/problemsCultivo", func(ctx *gin.Context) {
 		httpController.PostProblemsCultivo(ctx)
 	})
 

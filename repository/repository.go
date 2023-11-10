@@ -14,6 +14,7 @@ type REPOSITORY interface {
 	DeleteCultivosAll() error
 	DeleteCultivosId(id int) error
 	CheckExistCultivoId(id int) (bool, error)
+	ExtractCultivoName(name string) (entity.Cultivo, error)
 }
 
 type Repository struct {
@@ -30,7 +31,8 @@ type Repository struct {
 
 	checkExistCultivoIdStmt *sql.Stmt
 
-	extractCultivosStmt *sql.Stmt
+	extractCultivosStmt    *sql.Stmt
+	extractCultivoNameStmt *sql.Stmt
 }
 
 //go:embed sql/insert_cultivo.sql
@@ -56,6 +58,9 @@ var InsertProblemasCultivoQuery string
 
 //go:embed sql/extract_cultivos.sql
 var ExtractCultivosQuery string
+
+//go:embed sql/extract_cultivo_name.sql
+var ExtractCultivoNameQuery string
 
 //go:embed sql/delete_cultivos_all.sql
 var DeleteCultivosAllQuery string
@@ -106,6 +111,10 @@ func NewRepository(db *sql.DB) (*Repository, error) {
 	if err != nil {
 		return nil, err
 	}
+	extractCultivoNameStmt, err := db.Prepare(ExtractCultivoNameQuery)
+	if err != nil {
+		return nil, err
+	}
 	deleteCultivosAllStmt, err := db.Prepare(DeleteCultivosAllQuery)
 	if err != nil {
 		return nil, err
@@ -129,6 +138,7 @@ func NewRepository(db *sql.DB) (*Repository, error) {
 		insertSemillaCultivoStmt:     insertSemillaCultivoStmt,
 		insertProblemasCultivoStmt:   insertProblemasCultivoStmt,
 		extractCultivosStmt:          extractCultivosStmt,
+		extractCultivoNameStmt:       extractCultivoNameStmt,
 		deleteCultivosAllStmt:        deleteCultivosAllStmt,
 		deleteCultivosIdStmt:         deleteCultivosIdStmt,
 		checkExistCultivoIdStmt:      checkExistCultivoIdStmt,

@@ -11,6 +11,7 @@ type HTTP interface {
 	DeleteCultivosAll(ctx *gin.Context)
 	DeleteCultivosId(ctx *gin.Context, id string)
 	PostProblemsCultivo(ctx *gin.Context)
+	PostCalculateCultivo(ctx *gin.Context)
 }
 
 type Http struct {
