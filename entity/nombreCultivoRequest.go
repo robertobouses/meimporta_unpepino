@@ -1,5 +1,5 @@
 package entity
 
 type NombreCultivoRequest struct {
-	Name string
+	Name string `json:"name"`
 }

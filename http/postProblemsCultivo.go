@@ -18,7 +18,7 @@ func (h *Http) PostProblemsCultivo(ctx *gin.Context) {
 
 	results, err := h.service.SearchProblemsCultivo(request.Name)
 	if err != nil {
-		ctx.JSON(nethttp.StatusBadRequest, err)
+		ctx.JSON(nethttp.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
 

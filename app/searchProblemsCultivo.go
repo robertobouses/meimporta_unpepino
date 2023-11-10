@@ -1,8 +1,14 @@
 package app
 
-import "github.com/robertobouses/meimporta_unpepino/entity"
+import (
+	"fmt"
+
+	"github.com/robertobouses/meimporta_unpepino/entity"
+)
 
 func (s *Service) SearchProblemsCultivo(nameIntro string) ([]entity.Problem, error) {
+	fmt.Println("Buscando problemas de cultivo para:", nameIntro)
+
 	cultivos, err := s.repo.ExtractCultivos()
 	if err != nil {
 		return nil, err
@@ -24,6 +30,8 @@ func (s *Service) SearchProblemsCultivo(nameIntro string) ([]entity.Problem, err
 			results = append(results, result)
 		}
 	}
+
+	fmt.Println("Resultados:", results)
 
 	return results, nil
 }
