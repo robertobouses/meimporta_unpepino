@@ -13,7 +13,7 @@ func (s *Service) CreateCalculateCultivo(newCalculate entity.CalculateRequest) (
 		return 0, err
 	}
 
-	densidad := cultivo.InformacionCultivo.DensidadPlantacion
+	densidad := cultivo.DensidadPlantacion
 	metros := newCalculate.MetrosCuadrados
 	var factor int
 

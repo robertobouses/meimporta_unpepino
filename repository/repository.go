@@ -14,7 +14,7 @@ type REPOSITORY interface {
 	DeleteCultivosAll() error
 	DeleteCultivosId(id int) error
 	CheckExistCultivoId(id int) (bool, error)
-	ExtractCultivoName(name string) (entity.Cultivo, error)
+	ExtractCultivoName(name string) (entity.CalculateResponse, error)
 }
 
 type Repository struct {
