@@ -1,6 +1,6 @@
 package entity
 
-type Problem struct {
+type ProblemResponse struct {
 	Nombre       string `json:"nombre"`
 	Plagas       string `json:"plagas"`
 	Dificultades string `json:"dificultades"`

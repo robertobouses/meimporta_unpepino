@@ -13,8 +13,12 @@ func (s *Service) CreateCalculateCultivo(newCalculate entity.CalculateRequest) (
 		return 0, err
 	}
 
+	log.Println("newCalculate en app", newCalculate)
 	densidad := cultivo.DensidadPlantacion
 	metros := newCalculate.MetrosCuadrados
+	log.Println("densidad en app", densidad)
+	log.Println("metros en app", metros)
+
 	var factor int
 
 	switch densidad {

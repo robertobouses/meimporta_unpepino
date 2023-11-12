@@ -10,7 +10,7 @@ type APP interface {
 	PrintCultivos() ([]entity.Cultivo, error)
 	DeleteCultivosAll() error
 	DeleteCultivosId(id string) error
-	SearchProblemsCultivo(nameIntro string) ([]entity.Problem, error)
+	SearchProblemsCultivo(nameIntro string) ([]entity.ProblemResponse, error)
 	CreateCalculateCultivo(newCalculate entity.CalculateRequest) (int, error)
 }
 

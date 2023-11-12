@@ -10,7 +10,11 @@ import (
 
 func (h *Http) PostCalculateCultivo(ctx *gin.Context) {
 	var newCalculate entity.CalculateRequest
+	log.Println("Cuerpo de la solicitud:", ctx.Request.Body)
 	err := ctx.BindJSON(&newCalculate)
+	log.Printf("newCalculate: %+v", newCalculate)
+
+	log.Println("newCalculate en http", newCalculate)
 
 	if err != nil {
 		ctx.JSON(nethttp.StatusBadRequest, gin.H{"error al hacer BindJSON": err.Error()})

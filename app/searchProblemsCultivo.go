@@ -6,7 +6,7 @@ import (
 	"github.com/robertobouses/meimporta_unpepino/entity"
 )
 
-func (s *Service) SearchProblemsCultivo(nameIntro string) ([]entity.Problem, error) {
+func (s *Service) SearchProblemsCultivo(nameIntro string) ([]entity.ProblemResponse, error) {
 	fmt.Println("Buscando problemas de cultivo para:", nameIntro)
 
 	cultivos, err := s.repo.ExtractCultivos()
@@ -15,12 +15,12 @@ func (s *Service) SearchProblemsCultivo(nameIntro string) ([]entity.Problem, err
 	}
 
 	threshold := 2
-	var results []entity.Problem
+	var results []entity.ProblemResponse
 
 	for _, cultivo := range cultivos {
 		distance := LevenshteinDistance(nameIntro, cultivo.InformacionCultivo.Nombre)
 		if distance <= threshold {
-			result := entity.Problem{
+			result := entity.ProblemResponse{
 				Nombre:       cultivo.InformacionCultivo.Nombre,
 				Plagas:       cultivo.ProblemasCultivo.Plagas,
 				Dificultades: cultivo.ProblemasCultivo.Dificultades,
