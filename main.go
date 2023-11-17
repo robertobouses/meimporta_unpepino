@@ -77,6 +77,10 @@ func main() {
 		httpController.PostCalculateCultivo(ctx)
 	})
 
+	server.POST("/searchCultivo", func(ctx *gin.Context) {
+		httpController.PostSearchCultivo(ctx)
+	})
+	//calendario cultivo segun mes y espacio tierra
 	//delete drop table tal
 	//delete all table
 	//una vez tengas el print de lista de cultivos puedes comprobar si existe al eliminar por id por ejemplo

@@ -12,6 +12,7 @@ type APP interface {
 	DeleteCultivosId(id string) error
 	SearchProblemsCultivo(nameIntro string) ([]entity.ProblemResponse, error)
 	CreateCalculateCultivo(newCalculate entity.CalculateRequest) (int, error)
+	SearchCultivo(request entity.SearchRequest) ([]entity.Cultivo, error)
 }
 
 type Service struct {
