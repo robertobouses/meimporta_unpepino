@@ -22,11 +22,11 @@ func main() {
 	fmt.Println("DB_DATABASE:", os.Getenv("DB_DATABASE"))
 
 	db, err := internal.NewPostgres(internal.DBConfig{
-		User:     os.Getenv("DB_USER"),
-		Pass:     os.Getenv("DB_PASS"),
-		Host:     os.Getenv("DB_HOST"),
-		Port:     os.Getenv("DB_PORT"),
-		Database: os.Getenv("DB_DATABASE"),
+		User:     "postgres",
+		Pass:     "mysecretpassword",
+		Host:     "localhost",
+		Port:     "5432",
+		Database: "mi1p",
 		//Database: os.Getenv("mi1p"),
 	})
 
