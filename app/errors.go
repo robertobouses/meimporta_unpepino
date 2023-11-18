@@ -2,4 +2,4 @@ package app
 
 import "errors"
 
-var ErrCultivoNoExiste = errors.New("El cultivo no existe")
+var ErrCropNoExiste = errors.New("El crop no existe")

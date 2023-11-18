@@ -1,6 +1,6 @@
 package entity
 
 type CalculateResponse struct {
-	Nombre             string `json:"nombre"`
+	Name               string `json:"name"`
 	DensidadPlantacion string `json:"densidadplantacion"`
 }

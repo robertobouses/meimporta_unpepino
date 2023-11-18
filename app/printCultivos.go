@@ -6,12 +6,12 @@ import (
 	"github.com/robertobouses/meimporta_unpepino/entity"
 )
 
-func (s *Service) PrintCultivos() ([]entity.Cultivo, error) {
+func (s *Service) PrintCrops() ([]entity.Crop, error) {
 
-	cultivos, err := s.repo.ExtractCultivos()
+	crops, err := s.repo.ExtractCrops()
 	if err != nil {
-		log.Println("Error al extraer cultivo", err)
-		return []entity.Cultivo{}, err
+		log.Println("Error al extraer crop", err)
+		return []entity.Crop{}, err
 	}
-	return cultivos, nil
+	return crops, nil
 }

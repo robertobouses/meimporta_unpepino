@@ -1,1 +1,1 @@
-SELECT COUNT(*) FROM meimporta_unpepino.cultivo WHERE idcultivo = $1
+SELECT COUNT(*) FROM meimporta_unpepino.crop WHERE idcrop = $1

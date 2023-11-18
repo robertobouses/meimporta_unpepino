@@ -1,15 +1,15 @@
 <template>
-  <div class="cultivos-container">
-    <div v-if="cultivos.length > 0">
-      <h2 class="cultivos-title">Cultivos</h2>
-      <ul class="cultivos-list">
-        <li v-for="cultivo in cultivos" :key="cultivo.idcultivo" class="cultivo-item">
-          <p class="cultivo-nombre">{{ formatNombre(cultivo.informacioncultivo?.nombre) }}</p>
+  <div class="crops-container">
+    <div v-if="crops.length > 0">
+      <h2 class="crops-title">Crops</h2>
+      <ul class="crops-list">
+        <li v-for="crop in crops" :key="crop.idcrop" class="crop-item">
+          <p class="crop-name">{{ formatName(crop.cropinformation ?.name) }}</p>
         </li>
       </ul>
     </div>
     <div v-else>
-      <p class="loading-message">Cargando cultivos...</p>
+      <p class="loading-message">Cargando crops...</p>
     </div>
   </div>
 </template>
@@ -21,30 +21,30 @@ import { apiUrl } from '@/path-to-config/config.js';
 export default {
   data() {
     return {
-      cultivos: [],
+      crops: [],
     };
   },
   created() {
     console.log('created se ejecutó');
-    axios.get(`${apiUrl}/printCultivos`)
+    axios.get(`${apiUrl}/printCrops`)
       .then(response => {
         console.log('Respuesta de Axios:', response);
-        this.cultivos = response.data;
-        console.log('Cultivos actualizados:', this.cultivos);
+        this.crops = response.data;
+        console.log('Crops actualizados:', this.crops);
       })
       .catch(error => {
-        console.error('Error al obtener los cultivos:', error);
+        console.error('Error al obtener los crops:', error);
       });
   },
   methods: {
-    formatNombre(nombre) {
-      return nombre ? nombre.charAt(0).toUpperCase() + nombre.slice(1).toLowerCase() : 'Nombre no disponible';
+    formatName(name) {
+      return name ? name.charAt(0).toUpperCase() + name.slice(1).toLowerCase() : 'Name no disponible';
     },
   },
 };
 </script>
 <style scoped>
-.cultivos-container {
+.crops-container {
   max-width: 600px;
   margin: 0 auto;
   padding: 20px;
@@ -53,22 +53,22 @@ export default {
   border-radius: 5px;
 }
 
-.cultivos-title {
+.crops-title {
   font-size: 24px;
   color: #333;
   margin-bottom: 20px;
 }
 
-.cultivos-list {
+.crops-list {
   list-style: none;
   padding: 0;
 }
 
-.cultivo-item {
+.crop-item {
   margin-bottom: 10px;
 }
 
-.cultivo-nombre {
+.crop-name {
   font-size: 16px;
   color: #555;
 }

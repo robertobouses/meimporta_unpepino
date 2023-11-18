@@ -51,39 +51,39 @@ func main() {
 
 	server.Use(internal.CORSMiddleware())
 
-	server.POST("/createCultivo", func(ctx *gin.Context) {
-		httpController.PostCultivo(ctx)
+	server.POST("/createCrop", func(ctx *gin.Context) {
+		httpController.PostCrop(ctx)
 
 	})
 
-	server.GET("/printCultivos", func(ctx *gin.Context) {
-		httpController.GetCultivos(ctx)
+	server.GET("/printCrops", func(ctx *gin.Context) {
+		httpController.GetCrops(ctx)
 	})
 
-	server.DELETE("/deleteAllCultivos", func(ctx *gin.Context) {
-		httpController.DeleteCultivosAll(ctx)
+	server.DELETE("/deleteAllCrops", func(ctx *gin.Context) {
+		httpController.DeleteCropsAll(ctx)
 	})
 
-	server.DELETE("/deleteCultivo/:id", func(ctx *gin.Context) {
+	server.DELETE("/deleteCrop/:id", func(ctx *gin.Context) {
 		id := ctx.Param("id")
-		httpController.DeleteCultivosId(ctx, id)
+		httpController.DeleteCropsId(ctx, id)
 	})
 
-	server.POST("/problemsCultivo", func(ctx *gin.Context) {
-		httpController.PostProblemsCultivo(ctx)
+	server.POST("/problemsCrop", func(ctx *gin.Context) {
+		httpController.PostProblemsCrop(ctx)
 	})
 
-	server.POST("/calculateCultivo", func(ctx *gin.Context) {
-		httpController.PostCalculateCultivo(ctx)
+	server.POST("/calculateCrop", func(ctx *gin.Context) {
+		httpController.PostCalculateCrop(ctx)
 	})
 
-	server.POST("/searchCultivo", func(ctx *gin.Context) {
-		httpController.PostSearchCultivo(ctx)
+	server.POST("/searchCrop", func(ctx *gin.Context) {
+		httpController.PostSearchCrop(ctx)
 	})
-	//calendario cultivo segun mes y espacio tierra
+	//calendario crop segun mes y espacio soil
 	//delete drop table tal
 	//delete all table
-	//una vez tengas el print de lista de cultivos puedes comprobar si existe al eliminar por id por ejemplo
+	//una vez tengas el print de lista de crops puedes comprobar si existe al eliminar por id por ejemplo
 	port := ":8080"
 	log.Printf("Escuchando en el puerto%s\n", port)
 	if err := server.Run(port); err != nil {

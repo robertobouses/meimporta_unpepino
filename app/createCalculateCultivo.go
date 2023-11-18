@@ -7,14 +7,14 @@ import (
 	"github.com/robertobouses/meimporta_unpepino/entity"
 )
 
-func (s *Service) CreateCalculateCultivo(newCalculate entity.CalculateRequest) (int, error) {
-	cultivo, err := s.repo.ExtractCultivoName(newCalculate.Nombre)
+func (s *Service) CreateCalculateCrop(newCalculate entity.CalculateRequest) (int, error) {
+	crop, err := s.repo.ExtractCropName(newCalculate.Name)
 	if err != nil {
 		return 0, err
 	}
 
 	log.Println("newCalculate en app", newCalculate)
-	densidad := cultivo.DensidadPlantacion
+	densidad := crop.DensidadPlantacion
 	metros := newCalculate.MetrosCuadrados
 	log.Println("densidad en app", densidad)
 	log.Println("metros en app", metros)

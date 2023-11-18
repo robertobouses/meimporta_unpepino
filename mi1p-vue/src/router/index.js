@@ -2,15 +2,15 @@ import { createRouter, createWebHistory } from 'vue-router'
 
 import HomeView from '../views/HomeView.vue'
 import AboutView from '../views/AboutView.vue';
-import CreateCultivo from '../views/CreateCultivo.vue';
-import PrintCultivos from '../views/PrintCultivos.vue';
-import DeleteCultivo from '../views/DeleteCultivo.vue';
-import DeleteAllCultivos from '../views/DeleteAllCultivos.vue';
-import SearchCultivo from '../views/SearchCultivo.vue';
-import CalculateCultivo from '../views/CalculateCultivo.vue';
-import DefineCultivo from '../views/DefineCultivo.vue';
-import ProblemsCultivo from '../views/ProblemsCultivo.vue';
-import ReadCultivo from '../views/ReadCultivo.vue';
+import CreateCrop from '../views/CreateCrop.vue';
+import PrintCrops from '../views/PrintCrops.vue';
+import DeleteCrop from '../views/DeleteCrop.vue';
+import DeleteAllCrops from '../views/DeleteAllCrops.vue';
+import SearchCrop from '../views/SearchCrop.vue';
+import CalculateCrop from '../views/CalculateCrop.vue';
+import DefineCrop from '../views/DefineCrop.vue';
+import ProblemsCrop from '../views/ProblemsCrop.vue';
+import ReadCrop from '../views/ReadCrop.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -26,50 +26,50 @@ const router = createRouter({
       component: AboutView
     },
     {
-      path: '/createCultivo',
-      name: 'createcultivo',
-      component: CreateCultivo
+      path: '/createCrop',
+      name: 'createcrop',
+      component: CreateCrop
     },
     {
-      path: '/printCultivos',
-      name: 'printcultivos',
-      component: PrintCultivos
+      path: '/printCrops',
+      name: 'printcrops',
+      component: PrintCrops
     },
     {
-      path: '/deleteCultivo',
-      name: 'deletecultivo',
-      component: DeleteCultivo
+      path: '/deleteCrop',
+      name: 'deletecrop',
+      component: DeleteCrop
     },
     {
-      path: '/deleteAllCultivos',
-      name: 'deleteallcultivos',
-      component: DeleteAllCultivos
+      path: '/deleteAllCrops',
+      name: 'deleteallcrops',
+      component: DeleteAllCrops
     },
 
     {
-      path: '/searchCultivo',
-      name: 'searchcultivo',
-      component: SearchCultivo
+      path: '/searchCrop',
+      name: 'searchcrop',
+      component: SearchCrop
     },
     {
-      path: '/calculateCultivo',
-      name: 'calculatecultivo',
-      component: CalculateCultivo
+      path: '/calculateCrop',
+      name: 'calculatecrop',
+      component: CalculateCrop
     },
     {
-      path: '/defineCultivo',
-      name: 'definecultivo',
-      component: DefineCultivo
+      path: '/defineCrop',
+      name: 'definecrop',
+      component: DefineCrop
     },
     {
-      path: '/problemsCultivo',
-      name: 'problemscultivo',
-      component: ProblemsCultivo
+      path: '/problemsCrop',
+      name: 'problemscrop',
+      component: ProblemsCrop
     },
     {
-      path: '/readCultivo',
-      name: 'readcultivo',
-      component: ReadCultivo
+      path: '/readCrop',
+      name: 'readcrop',
+      component: ReadCrop
     }
   ]
 })

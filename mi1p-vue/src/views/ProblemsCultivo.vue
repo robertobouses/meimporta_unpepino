@@ -1,14 +1,14 @@
 <template>
   <div>
-    <h2>Problemas de los cultivos</h2>
+    <h2>Problemas de los crops</h2>
     <div>
-      <input v-model="busqueda" placeholder="Nombre del cultivo">
-      <button @click="buscarCultivo">Buscar</button>
+      <input v-model="busqueda" placeholder="Name del crop">
+      <button @click="buscarCrop">Buscar</button>
     </div>
 
-    <div v-if="cultivosFiltrados.length > 0">
-      <p v-for="(cultivo, index) in cultivosFiltrados" :key="index">
-        {{ Object.entries(cultivo).map(([key, value]) => `${key}: ${value}`).join(', ') }}
+    <div v-if="cropsFiltrados.length > 0">
+      <p v-for="(crop, index) in cropsFiltrados" :key="index">
+        {{ Object.entries(crop).map(([key, value]) => `${key}: ${value}`).join(', ') }}
       </p>
     </div>
 
@@ -25,16 +25,16 @@ export default {
   data() {
     return {
       busqueda: "",
-      cultivosFiltrados: [],
+      cropsFiltrados: [],
     };
   },
   methods: {
-    async buscarCultivo() {
+    async buscarCrop() {
       console.log("Iniciando búsqueda...");
       console.log("Búsqueda actual:", this.busqueda);
 
       try {
-        const response = await axios.post('http://localhost:8080/problemsCultivo', {
+        const response = await axios.post(`${apiUrl}/problemsCrop`, {
           name: this.busqueda,
         });
 
@@ -43,11 +43,11 @@ export default {
         const resultados = response.data;
 
         if (Array.isArray(resultados) && resultados.length > 0) {
-          this.cultivosFiltrados = resultados;
-          console.log("Cultivos después del filtro:", JSON.stringify(this.cultivosFiltrados));
+          this.cropsFiltrados = resultados;
+          console.log("Crops después del filtro:", JSON.stringify(this.cropsFiltrados));
         } else {
           console.log("No se encontraron resultados para la búsqueda.");
-          this.cultivosFiltrados = [];
+          this.cropsFiltrados = [];
         }
       } catch (error) {
         console.error('Error al obtener datos del servidor:', error);
@@ -55,7 +55,7 @@ export default {
     },
   },
   mounted() {
-    console.log("Componente montado. Cultivos:", this.cultivosFiltrados);
+    console.log("Componente montado. Crops:", this.cropsFiltrados);
   },
 };
 </script>

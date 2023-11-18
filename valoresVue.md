@@ -1,93 +1,93 @@
 <template>
     <div>
-      <h1>Crear Nuevo Cultivo</h1>
+      <h1>Crear Nuevo Crop</h1>
       <form @submit.prevent="submitForm">
-        <label for="siglas">Siglas:</label>
-        <input type="text" id="siglas" v-model="cultivo.siglas" required>
+        <label for="abbreviation">Abbreviation:</label>
+        <input type="text" id="abbreviation" v-model="crop.abbreviation" required>
         
-        <label for="nombre">Nombre:</label>
-        <input type="text" id="nombre" v-model="cultivo.informacioncultivo.nombre" required>
+        <label for="name">Name:</label>
+        <input type="text" id="name" v-model="crop.cropinformation .name" required>
         
         <label for="color">Color:</label>
-        <input type="text" id="color" v-model="cultivo.informacioncultivo.color" required>
+        <input type="text" id="color" v-model="crop.cropinformation .color" required>
         
-        <label for="familia">Familia:</label>
-        <input type="text" id="familia" v-model="cultivo.informacioncultivo.familia" required>
+        <label for="family">Family:</label>
+        <input type="text" id="family" v-model="crop.cropinformation .family" required>
         
         <label for="densidadplantacion">Densidad de Plantación:</label>
-        <input type="text" id="densidadplantacion" v-model="cultivo.informacioncultivo.densidadplantacion" required>
+        <input type="text" id="densidadplantacion" v-model="crop.cropinformation .densidadplantacion" required>
         
-        <label for="litrostierramaceta">Litros de Tierra por Maceta:</label>
-        <input type="number" id="litrostierramaceta" v-model="cultivo.informacioncultivo.litrostierramaceta" required>
+        <label for="literspottingsoil  ">Litros de Soil por Maceta:</label>
+        <input type="number" id="literspottingsoil  " v-model="crop.cropinformation .literspottingsoil  " required>
         
-        <label for="asociaciones">Asociaciones:</label>
-        <input type="text" id="asociaciones" v-model="cultivo.informacioncultivo.asociaciones" required>
+        <label for="associations       ">Associations       :</label>
+        <input type="text" id="associations       " v-model="crop.cropinformation .associations       " required>
         
-        <label for="agua">Agua:</label>
-        <input type="text" id="agua" v-model="cultivo.requisitoscultivo.agua" required>
+        <label for="water">Water:</label>
+        <input type="text" id="water" v-model="crop.croprequirements .water" required>
         
-        <label for="tierra">Tierra:</label>
-        <input type="text" id="tierra" v-model="cultivo.requisitoscultivo.tierra" required>
+        <label for="soil">Soil:</label>
+        <input type="text" id="soil" v-model="crop.croprequirements .soil" required>
         
-        <label for="nutricion">Nutrición:</label>
-        <input type="text" id="nutricion" v-model="cultivo.requisitoscultivo.nutricion" required>
+        <label for="nutrition">Nutrición:</label>
+        <input type="text" id="nutrition" v-model="crop.croprequirements .nutrition" required>
        
-        <label for="salinidad">Salinidad:</label>
-        <input type="text" id="salinidad" v-model="cultivo.requisitoscultivo.salinidad" required>
+        <label for="salinity">Salinity:</label>
+        <input type="text" id="salinity" v-model="crop.croprequirements .salinity" required>
        
         <label for="ph">Ph:</label>
-        <input type="number" id="ph" v-model="cultivo.requisitoscultivo.ph" required>
+        <input type="number" id="ph" v-model="crop.croprequirements .ph" required>
        
         <label for="clima">Clima:</label>
-        <input type="text" id="clima" v-model="cultivo.requisitoscultivo.clima" required>
+        <input type="text" id="clima" v-model="crop.croprequirements .clima" required>
        
 
         <label for="profundidad">Profundidad:</label>
-        <input type="text" id="profundidad" v-model="cultivo.requisitoscultivo.profundidad" required>
+        <input type="text" id="profundidad" v-model="crop.croprequirements .profundidad" required>
        
-        <label for="siembra">Siembra:</label>
-        <input type="text" id="siembra" v-model="cultivo.fechascultivo.siembra" required>
+        <label for="planting     ">Planting     :</label>
+        <input type="text" id="planting     " v-model="crop.cropdates.planting     " required>
        
-        <label for="transplante">Transplante:</label>
-        <input type="transplante" id="transplante" v-model="cultivo.fechascultivo.transplante" required>
+        <label for="transplant   ">Transplant   :</label>
+        <input type="transplant   " id="transplant   " v-model="crop.cropdates.transplant   " required>
       
 
-        <label for="cosecha">Cosecha:</label>
-        <input type="text" id="cosecha" v-model="cultivo.fechascultivo.cosecha" required>
+        <label for="harvest      ">Harvest      :</label>
+        <input type="text" id="harvest      " v-model="crop.cropdates.harvest      " required>
       
-        <label for="ciclo">Ciclo:</label>
-        <input type="text" id="ciclo" v-model="cultivo.fechascultivo.ciclo" required>
+        <label for="cycle        ">Cycle        :</label>
+        <input type="text" id="cycle        " v-model="crop.cropdates.cycle        " required>
       
-        <label for="produccion">Produccion:</label>
-        <input type="text" id="produccion" v-model="cultivo.frutocultivo.produccion" required>
+        <label for="production">Production:</label>
+        <input type="text" id="production" v-model="crop.cropfruit.production" required>
       
-        <label for="nutrientes">Nutrientes:</label>
-        <input type="text" id="nutrientes" v-model="cultivo.frutocultivo.nutrientes" required>
+        <label for="nutrients  ">Nutrients  :</label>
+        <input type="text" id="nutrients  " v-model="crop.cropfruit.nutrients  " required>
       
-        <label for="semilla">Semilla:</label>
-        <input type="text" id="semilla" v-model="cultivo.semillacultivo.semilla" required>
+        <label for="seed">Seed:</label>
+        <input type="text" id="seed" v-model="crop.cropseed.seed" required>
        
-        <label for="semillasgramo">SemillasGramo:</label>
-        <input type="text" id="semillagramo" v-model="cultivo.semillacultivo.semillasgramo" required>
+        <label for="seedspergram  ">SeedsPerGram  :</label>
+        <input type="text" id="seedgramo" v-model="crop.cropseed.seedspergram  " required>
         
 
-        <label for="vidasemilla">VidaSemilla:</label>
-        <input type="text" id="vidasemilla" v-model="cultivo.semillacultivo.vidasemilla" required>
+        <label for="seedlifespan">SeedLifespan:</label>
+        <input type="text" id="seedlifespan" v-model="crop.cropseed.seedlifespan" required>
         
-        <label for="plagas">Plagas:</label>
-        <input type="text" id="plagas" v-model="cultivo.problemascultivo.plagas" required>
+        <label for="pests       ">Pests       :</label>
+        <input type="text" id="pests       " v-model="crop.cropissues.pests       " required>
 
-        <label for="dificultades">Dificultades:</label>
-        <input type="text" id="dificultades" v-model="cultivo.problemascultivo.dificultades" required>
+        <label for="difficulties ">Difficulties :</label>
+        <input type="text" id="difficulties " v-model="crop.cropissues.difficulties " required>
 
-        <label for="cuidados">Cuidados:</label>
-        <input type="text" id="cuidados" v-model="cultivo.problemascultivo.cuidados" required>
+        <label for="care">Care:</label>
+        <input type="text" id="care" v-model="crop.cropissues.care" required>
 
-        <label for="miscelanea">Miscelanea:</label>
-        <input type="text" id="miscelanea" v-model="cultivo.problemascultivo.miscelanea" required>
+        <label for="miscellaneous">Miscellaneous:</label>
+        <input type="text" id="miscellaneous" v-model="crop.cropissues.miscellaneous" required>
 
 
-        <button type="submit">Guardar Cultivo</button>
+        <button type="submit">Guardar Crop</button>
       </form>
     </div>
   </template>
@@ -98,59 +98,59 @@
   export default {
     data() {
       return {
-        cultivo: {
-          siglas: '',
-          informacioncultivo: {
-            nombre: '',
+        crop: {
+          abbreviation: '',
+          cropinformation : {
+            name: '',
             color: '',
-            familia: '',
+            family: '',
             densidadplantacion: '',
-            litrostierramaceta: 0,
-            asociaciones: [],
+            literspottingsoil  : 0,
+            associations       : [],
               },
-          requisitoscultivo: {
-            agua: '',
-            tierra: '',
-            nutricion: '',
-            salinidad: '',
+          croprequirements : {
+            water: '',
+            soil: '',
+            nutrition: '',
+            salinity: '',
             ph: 0,
             clima: [],
             profundidad: '',
                 },
-          fechascultivo: {
-            siembra: '',
-            transplante: '',
-            cosecha: '',
-            ciclo: '',
+          cropdates: {
+            planting     : '',
+            transplant   : '',
+            harvest      : '',
+            cycle        : '',
                },
-          frutocultivo: {
-            produccion: '',
-            nutrientes: '',
+          cropfruit: {
+            production: '',
+            nutrients  : '',
             },
-          semillacultivo: {
-            semilla: '',
-            semillasgramo: '',
-            vidasemilla: '',
+          cropseed: {
+            seed: '',
+            seedspergram  : '',
+            seedlifespan: '',
               },
-          problemascultivo: {
-            plagas: '',
-            dificultades: '',
-            cuidados: '',
-            miscelanea: '',
+          cropissues: {
+            pests       : '',
+            difficulties : '',
+            care: '',
+            miscellaneous: '',
           }
       },
     },
     methods: {
     submitForm() {
-      // Aquí puedes enviar los datos del cultivo al servidor (backend)
-      axios.post('http://localhost:8080/cultivo', this.cultivo)
+      // Aquí puedes enviar los datos del crop al servidor (backend)
+      axios.post('http://localhost:8080/crop', this.crop)
         .then(response => {
           // Maneja la respuesta del servidor, por ejemplo, muestra un mensaje de éxito.
-          console.log('Cultivo creado exitosamente');
+          console.log('Crop creado exitosamente');
         })
         .catch(error => {
           // Maneja los errores, por ejemplo, muestra un mensaje de error.
-          console.error('Error al crear el cultivo:', error);
+          console.error('Error al crear el crop:', error);
         });
     },
   },

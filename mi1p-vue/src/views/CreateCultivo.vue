@@ -1,92 +1,92 @@
 <template>
   <div>
-    <h1>Crear Nuevo Cultivo</h1>
+    <h1>Crear Nuevo Crop</h1>
     <form @submit.prevent="submitForm">
-      <label for="siglas">Siglas:</label>
-      <input type="text" id="siglas" v-model="cultivo.siglas" required>
+      <label for="abbreviation">Abbreviation:</label>
+      <input type="text" id="abbreviation" v-model="crop.abbreviation" required>
 
-      <label for="nombre">Nombre:</label>
-      <input type="text" id="nombre" v-model="cultivo.informacioncultivo.nombre" required>
+      <label for="name">Name:</label>
+      <input type="text" id="name" v-model="crop.cropinformation .name" required>
 
       <label for="color">Color (separados por comas):</label>
-      <input type="text" id="color" v-model="cultivo.informacioncultivo.color">
+      <input type="text" id="color" v-model="crop.cropinformation .color">
 
-      <label for="familia">Familia:</label>
-      <input type="text" id="familia" v-model="cultivo.informacioncultivo.familia" required>
+      <label for="family">Family:</label>
+      <input type="text" id="family" v-model="crop.cropinformation .family" required>
 
       <label for="densidadplantacion">Densidad de Plantación:</label>
-      <input type="text" id="densidadplantacion" v-model="cultivo.informacioncultivo.densidadplantacion">
+      <input type="text" id="densidadplantacion" v-model="crop.cropinformation .densidadplantacion">
 
-      <label for="litrostierramaceta">Litros de Tierra por Maceta:</label>
-      <input type="number" id="litrostierramaceta" v-model="cultivo.informacioncultivo.litrostierramaceta">
+      <label for="literspottingsoil  ">Litros de Soil por Maceta:</label>
+      <input type="number" id="literspottingsoil  " v-model="crop.cropinformation .literspottingsoil  ">
 
-      <label for="asociaciones">Asociaciones (separadas por comas):</label>
-      <input type="text" id="asociaciones" v-model="cultivo.informacioncultivo.asociaciones">
+      <label for="associations       ">Associations        (separadas por comas):</label>
+      <input type="text" id="associations       " v-model="crop.cropinformation .associations       ">
 
-      <label for="agua">Agua:</label>
-      <input type="text" id="agua" v-model="cultivo.requisitoscultivo.agua">
+      <label for="water">Water:</label>
+      <input type="text" id="water" v-model="crop.croprequirements .water">
 
-      <label for="tierra">Tierra:</label>
-      <input type="text" id="tierra" v-model="cultivo.requisitoscultivo.tierra">
+      <label for="soil">Soil:</label>
+      <input type="text" id="soil" v-model="crop.croprequirements .soil">
 
-      <label for="nutricion">Nutrición:</label>
-      <input type="text" id="nutricion" v-model="cultivo.requisitoscultivo.nutricion">
+      <label for="nutrition">Nutrición:</label>
+      <input type="text" id="nutrition" v-model="crop.croprequirements .nutrition">
 
-      <label for="salinidad">Salinidad:</label>
-      <input type="text" id="salinidad" v-model="cultivo.requisitoscultivo.salinidad">
+      <label for="salinity">Salinity:</label>
+      <input type="text" id="salinity" v-model="crop.croprequirements .salinity">
 
       <label for="ph">pH (separados por comas):</label>
-      <input type="number" id="ph" v-model="cultivo.requisitoscultivo.ph">
+      <input type="number" id="ph" v-model="crop.croprequirements .ph">
       <!-- step="0.01" -->
 
       <label for="clima">Clima (separados por comas):</label>
-      <input type="text" id="clima" v-model="cultivo.requisitoscultivo.clima">
+      <input type="text" id="clima" v-model="crop.croprequirements .clima">
 
       <label for="profundidad">Profundidad:</label>
-      <input type="text" id="profundidad" v-model="cultivo.requisitoscultivo.profundidad">
+      <input type="text" id="profundidad" v-model="crop.croprequirements .profundidad">
 
-      <label for="siembra">Siembra:</label>
-      <input type="text" id="siembra" v-model="cultivo.fechascultivo.siembra">
+      <label for="planting     ">Planting     :</label>
+      <input type="text" id="planting     " v-model="crop.cropdates.planting     ">
 
-      <label for="transplante">Transplante:</label>
-      <input type="text" id="transplante" v-model="cultivo.fechascultivo.transplante">
+      <label for="transplant   ">Transplant   :</label>
+      <input type="text" id="transplant   " v-model="crop.cropdates.transplant   ">
 
-      <label for="cosecha">Cosecha:</label>
-      <input type="text" id="cosecha" v-model="cultivo.fechascultivo.cosecha">
+      <label for="harvest      ">Harvest      :</label>
+      <input type="text" id="harvest      " v-model="crop.cropdates.harvest      ">
 
-      <label for="ciclo">Ciclo:</label>
-      <input type="text" id="ciclo" v-model="cultivo.fechascultivo.ciclo">
+      <label for="cycle        ">Cycle        :</label>
+      <input type="text" id="cycle        " v-model="crop.cropdates.cycle        ">
 
-      <label for="produccion">Produccion:</label>
-      <input type="text" id="produccion" v-model="cultivo.frutocultivo.produccion">
+      <label for="production">Production:</label>
+      <input type="text" id="production" v-model="crop.cropfruit.production">
 
-      <label for="nutrientes">Nutrientes:</label>
-      <input type="text" id="nutrientes" v-model="cultivo.frutocultivo.nutrientes">
+      <label for="nutrients  ">Nutrients  :</label>
+      <input type="text" id="nutrients  " v-model="crop.cropfruit.nutrients  ">
 
-      <label for="semilla">Semilla:</label>
-      <input type="text" id="semilla" v-model="cultivo.semillacultivo.semilla">
+      <label for="seed">Seed:</label>
+      <input type="text" id="seed" v-model="crop.cropseed.seed">
 
-      <label for="semillasgramo">SemillasGramo:</label>
-      <input type="text" id="semillasgramo" v-model="cultivo.semillacultivo.semillasgramo">
+      <label for="seedspergram  ">SeedsPerGram  :</label>
+      <input type="text" id="seedspergram  " v-model="crop.cropseed.seedspergram  ">
 
-      <label for="vidasemilla">VidaSemilla:</label>
-      <input type="text" id="vidasemilla" v-model="cultivo.semillacultivo.vidasemilla">
+      <label for="seedlifespan">SeedLifespan:</label>
+      <input type="text" id="seedlifespan" v-model="crop.cropseed.seedlifespan">
 
-      <label for="plagas">Plagas:</label>
-      <input type="text" id="plagas" v-model="cultivo.problemascultivo.plagas">
+      <label for="pests       ">Pests       :</label>
+      <input type="text" id="pests       " v-model="crop.cropissues.pests       ">
 
-      <label for="dificultades">Dificultades:</label>
-      <input type="text" id="dificultades" v-model="cultivo.problemascultivo.dificultades">
+      <label for="difficulties ">Difficulties :</label>
+      <input type="text" id="difficulties " v-model="crop.cropissues.difficulties ">
 
-      <label for="cuidados">Cuidados:</label>
-      <input type="text" id="cuidados" v-model="cultivo.problemascultivo.cuidados">
+      <label for="care">Care:</label>
+      <input type="text" id="care" v-model="crop.cropissues.care">
 
-      <label for="miscelanea">Miscelanea:</label>
-      <input type="text" id="miscelanea" v-model="cultivo.problemascultivo.miscelanea">
+      <label for="miscellaneous">Miscellaneous:</label>
+      <input type="text" id="miscellaneous" v-model="crop.cropissues.miscellaneous">
 
       <button type="button" @click="debugData">Depurar Datos</button>
 
-      <button type="submit">Guardar Cultivo</button>
+      <button type="submit">Guardar Crop</button>
     </form>
   </div>
 </template>
@@ -97,45 +97,45 @@ import axios from 'axios';
 export default {
   data() {
     return {
-      cultivo: {
-        siglas: '',
-        informacioncultivo: {
-          nombre: '',
+      crop: {
+        abbreviation: '',
+        cropinformation : {
+          name: '',
           color: [],
-          familia: '',
+          family: '',
           densidadplantacion: '',
-          litrostierramaceta: 0,
-          asociaciones: [],
+          literspottingsoil  : 0,
+          associations       : [],
         },
-        requisitoscultivo: {
-          agua: '',
-          tierra: '',
-          nutricion: '',
-          salinidad: '',
+        croprequirements : {
+          water: '',
+          soil: '',
+          nutrition: '',
+          salinity: '',
           ph: [],
           clima: [],
           profundidad: '',
         },
-        fechascultivo: {
-          siembra: '',
-          transplante: '',
-          cosecha: '',
-          ciclo: '',
+        cropdates: {
+          planting     : '',
+          transplant   : '',
+          harvest      : '',
+          cycle        : '',
         },
-        frutocultivo: {
-          produccion: '',
-          nutrientes: '',
+        cropfruit: {
+          production: '',
+          nutrients  : '',
         },
-        semillacultivo: {
-          semilla: '',
-          semillasgramo: '',
-          vidasemilla: '',
+        cropseed: {
+          seed: '',
+          seedspergram  : '',
+          seedlifespan: '',
         },
-        problemascultivo: {
-          plagas: '',
-          dificultades: '',
-          cuidados: '',
-          miscelanea: '',
+        cropissues: {
+          pests       : '',
+          difficulties : '',
+          care: '',
+          miscellaneous: '',
         },
       }, mensaje: 'aaaaaaaaaaaaabbbb',
     };
@@ -143,79 +143,79 @@ export default {
   methods: {
     debugData() {
       console.log('Depurar Datos');
-      console.log('Cultivo:', this.cultivo);
-      console.log('Cultivo JSON:', JSON.stringify(this.cultivo));
+      console.log('Crop:', this.crop);
+      console.log('Crop JSON:', JSON.stringify(this.crop));
     },
     async submitForm() {
       try {
         console.log('Submit Form Called');
-        console.log('Cultivo:', this.cultivo);
+        console.log('Crop:', this.crop);
 
 
 // // Procesamiento del color
-// if (typeof this.cultivo.informacioncultivo.color === 'string' && this.cultivo.informacioncultivo.color.trim() !== '') {
-//   this.cultivo.informacioncultivo.color = this.cultivo.informacioncultivo.color.split(',').map(color => color.trim());
+// if (typeof this.crop.cropinformation .color === 'string' && this.crop.cropinformation .color.trim() !== '') {
+//   this.crop.cropinformation .color = this.crop.cropinformation .color.split(',').map(color => color.trim());
 // } else {
 //   // Set it to an empty array if it's an empty string
-//   this.cultivo.informacioncultivo.color = [];
+//   this.crop.cropinformation .color = [];
 // }
 
-// // Procesamiento de asociaciones
-// if (typeof this.cultivo.informacioncultivo.asociaciones === 'string' && this.cultivo.informacioncultivo.asociaciones.trim() !== '') {
-//   this.cultivo.informacioncultivo.asociaciones = this.cultivo.informacioncultivo.asociaciones.split(',').map(asociacion => asociacion.trim());
+// // Procesamiento de associations       
+// if (typeof this.crop.cropinformation .associations        === 'string' && this.crop.cropinformation .associations       .trim() !== '') {
+//   this.crop.cropinformation .associations        = this.crop.cropinformation .associations       .split(',').map(asociacion => asociacion.trim());
 // } else {
 //   // Set it to an empty array if it's an empty string
-//   this.cultivo.informacioncultivo.asociaciones = [];
+//   this.crop.cropinformation .associations        = [];
 // }
 
 // // Asegurarse de que ph sea un array
-// if (!Array.isArray(this.cultivo.requisitoscultivo.ph)) {
-//   this.cultivo.requisitoscultivo.ph = [this.cultivo.requisitoscultivo.ph];
+// if (!Array.isArray(this.crop.croprequirements .ph)) {
+//   this.crop.croprequirements .ph = [this.crop.croprequirements .ph];
 // }
 
 // // Convertir ph a números si es un array
-// if (Array.isArray(this.cultivo.requisitoscultivo.ph)) {
-//   this.cultivo.requisitoscultivo.ph = this.cultivo.requisitoscultivo.ph.map(item => parseFloat(item));
+// if (Array.isArray(this.crop.croprequirements .ph)) {
+//   this.crop.croprequirements .ph = this.crop.croprequirements .ph.map(item => parseFloat(item));
 // }
 
 // // Procesamiento de clima
-// if (this.cultivo.requisitoscultivo.clima) {
-//   console.log("this.cultivo.requisitoscultivo.clima",  this.cultivo.requisitoscultivo.clima)
-//   this.cultivo.requisitoscultivo.clima = this.cultivo.requisitoscultivo.clima.split(',').map(clima => clima.trim());
+// if (this.crop.croprequirements .clima) {
+//   console.log("this.crop.croprequirements .clima",  this.crop.croprequirements .clima)
+//   this.crop.croprequirements .clima = this.crop.croprequirements .clima.split(',').map(clima => clima.trim());
 // }
 
 
         // // Procesamiento del color
-        // if (this.cultivo.informacioncultivo.color) {
-        //   this.cultivo.informacioncultivo.color = this.cultivo.informacioncultivo.color.split(',').map(color => color.trim());
+        // if (this.crop.cropinformation .color) {
+        //   this.crop.cropinformation .color = this.crop.cropinformation .color.split(',').map(color => color.trim());
         // }
 
-        // // Procesamiento de asociaciones
-        // if (this.cultivo.informacioncultivo.asociaciones) {
-        //   this.cultivo.informacioncultivo.asociaciones = this.cultivo.informacioncultivo.asociaciones.split(',').map(asociacion => asociacion.trim());
+        // // Procesamiento de associations       
+        // if (this.crop.cropinformation .associations       ) {
+        //   this.crop.cropinformation .associations        = this.crop.cropinformation .associations       .split(',').map(asociacion => asociacion.trim());
         // }
 
         // // Asegurarse de que ph sea un array
-        // if (!Array.isArray(this.cultivo.requisitoscultivo.ph)) {
-        //   this.cultivo.requisitoscultivo.ph = [this.cultivo.requisitoscultivo.ph];
+        // if (!Array.isArray(this.crop.croprequirements .ph)) {
+        //   this.crop.croprequirements .ph = [this.crop.croprequirements .ph];
         // }
 
         // // Convertir ph a números si es un array
-        // if (Array.isArray(this.cultivo.requisitoscultivo.ph)) {
-        //   this.cultivo.requisitoscultivo.ph = this.cultivo.requisitoscultivo.ph.map(item => parseFloat(item));
+        // if (Array.isArray(this.crop.croprequirements .ph)) {
+        //   this.crop.croprequirements .ph = this.crop.croprequirements .ph.map(item => parseFloat(item));
         // }
 
-        console.log('Cultivo antes de enviar:', JSON.stringify(this.cultivo));
+        console.log('Crop antes de enviar:', JSON.stringify(this.crop));
 
         // Enviar datos a la API
-        const response = await axios.post('http://localhost:8080/createCultivo', this.cultivo);
+        const response = await axios.post(`${apiUrl}/createCrop`, this.crop);
         console.log('Respuesta del servidor:', response);
 
-        this.mensaje = 'Cultivo creado exitosamente';
+        this.mensaje = 'Crop creado exitosamente';
       } catch (error) {
-        console.error('Error al crear el cultivo:', error);
+        console.error('Error al crear el crop:', error);
 
-        this.mensaje = 'Error al crear el cultivo';
+        this.mensaje = 'Error al crear el crop';
 
         // Manejar errores de respuesta
         if (error.response) {

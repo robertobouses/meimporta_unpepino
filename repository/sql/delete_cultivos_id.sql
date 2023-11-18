@@ -1,1 +1,0 @@
-DELETE FROM meimporta_unpepino.cultivo WHERE idcultivo = $1;

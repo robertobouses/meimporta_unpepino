@@ -1,10 +1,10 @@
 <template>
   <div>
-    <h1>Calculadora de planta necesaria para tu cultivo</h1>
+    <h1>Calculadora de planta necesaria para tu crop</h1>
 
     <div>
-      <label for="cultivoNombre">Nombre del cultivo:</label>
-      <input type="text" id="cultivoNombre" v-model="nombreCultivo" />
+      <label for="cropName">Name del crop:</label>
+      <input type="text" id="cropName" v-model="nameCrop" />
     </div>
 
     <div>
@@ -12,7 +12,7 @@
       <input type="number" id="metrosCuadrados" v-model="metrosCuadrados" />
     </div>
 
-    <button @click="calcularCultivo">Calcular</button>
+    <button @click="calcularCrop">Calcular</button>
 
     <div v-if="resultado">
       <p>{{ resultado.frase }}</p>
@@ -24,25 +24,25 @@
 import axios from 'axios';
 
 export default {
-  name: 'CalculateCultivo',
+  name: 'CalculateCrop',
   data() {
     return {
-      nombreCultivo: '',
+      nameCrop: '',
       metrosCuadrados: 0,
       resultado: null,
     };
   },
   methods: {
-    calcularCultivo() {
+    calcularCrop() {
       
-      axios.post('http://localhost:8080/calculateCultivo', {
-        nombre: this.nombreCultivo,
+      axios.post(`${apiUrl}/calculateCrop`, {
+        name: this.nameCrop,
         metros: this.metrosCuadrados,
       })
         .then(response => {
           
           const result = response.data.result;
-          const frase = `Va a necesitar ${result} plantas de ${this.nombreCultivo} para plantar sus ${this.metrosCuadrados} metros cuadrados.`;
+          const frase = `Va a necesitar ${result} plantas de ${this.nameCrop} para plantar sus ${this.metrosCuadrados} metros cuadrados.`;
 
          
           this.resultado = { frase };

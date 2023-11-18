@@ -1,9 +1,9 @@
 package entity
 
 type ProblemResponse struct {
-	Nombre       string `json:"nombre"`
-	Plagas       string `json:"plagas"`
-	Dificultades string `json:"dificultades"`
-	Cuidados     string `json:"cuidados"`
-	Miscelanea   string `json:"miscelanea"`
+	Name          string `json:"name"`
+	Pests         string `json:"pests       "`
+	Difficulties  string `json:"difficulties "`
+	Care          string `json:"care"`
+	Miscellaneous string `json:"miscellaneous"`
 }

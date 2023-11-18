@@ -1,41 +1,41 @@
 {
-    "InformacionCultivo": {
-      "Nombre": "Pimiento",
+    "CropInformation ": {
+      "Name": "Pimiento",
       "Color": ["Verde", "Rojo", "Amarillo"],
-      "Familia": "Solanáceas",
+      "Family": "Solanáceas",
       "DensidadPlantacion": "2-4 plantas por metro",
-      "LitrosTierraMaceta": 10,
-      "Asociaciones": ["Umberífelas", "Liliáceas"]
+      "LitersPottingSoil  ": 10,
+      "Associations       ": ["Umberífelas", "Liliáceas"]
     },
-    "RequisitosCultivo": {
-      "Agua": "Alta",
-      "Tierra": "Magra",
-      "Nutricion": "Alta",
-      "Salinidad": "Sensible",
+    "CropRequirements ": {
+      "Water": "Alta",
+      "Soil": "Magra",
+      "Nutrition": "Alta",
+      "Salinity": "Sensible",
       "Ph": [5.5, 6.5],
       "Clima": ["Templado", "Tropical"],
       "Profundidad": "Suelos profundos"
     },
-    "FechasCultivo": {
-      "Siembra": "Desde febrero",
-      "Transplante": "Desde marzo",
-      "Cosecha": "Desde mayo",
-      "Ciclo": "Anual"
+    "CropDates": {
+      "Planting     ": "Desde febrero",
+      "Transplant   ": "Desde marzo",
+      "Harvest      ": "Desde mayo",
+      "Cycle        ": "Anual"
     },
-    "FrutoCultivo": {
-      "Produccion": "5kg por metro",
-      "Nutrientes": "Potasio"
+    "CropFruit": {
+      "Production": "5kg por metro",
+      "Nutrients  ": "Potasio"
     },
-    "SemillaCultivo": {
-      "Semilla": "",
-      "SemillasGramo": "200",
-      "VidaSemilla": "5 años"
+    "CropSeed": {
+      "Seed": "",
+      "SeedsPerGram  ": "200",
+      "SeedLifespan": "5 años"
     },
-    "ProblemasCultivo": {
-      "Plagas": "Áfidos, orugas",
-      "Dificultades": "",
-      "Cuidados": "Aporcado, tutorado",
-      "Miscelanea": "Fruto de tipo baya hueca del que existen muchas variedades, multitud de formas, tamaños, colores, punjencia..."
+    "CropIssues": {
+      "Pests       ": "Áfidos, orugas",
+      "Difficulties ": "",
+      "Care": "Aporcado, tutorado",
+      "Miscellaneous": "Fruit de tipo baya hueca del que existen muchas variedades, multitud de formas, tamaños, colores, punjencia..."
     }
   }
   

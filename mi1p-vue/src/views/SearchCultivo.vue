@@ -1,10 +1,10 @@
 <template>
   <div>
-    <h1>Búsqueda avanzada de cultivos</h1>
-    <h4>Utiliza el criterio que quieras para buscar los cultivos apropiados:</h4>
+    <h1>Búsqueda avanzada de crops</h1>
+    <h4>Utiliza el criterio que quieras para buscar los crops apropiados:</h4>
     <div>
-      <label for="cultivoNombre">Nombre del cultivo:</label>
-      <input type="text" id="cultivoNombre" v-model="nombreCultivo" />
+      <label for="cropName">Name del crop:</label>
+      <input type="text" id="cropName" v-model="nameCrop" />
     </div>
 
     <div>
@@ -20,38 +20,38 @@
 
     
     <div>
-      <label for="agua">Agua:</label>
-      <input type="text" id="agua" v-model="agua" />
+      <label for="water">Water:</label>
+      <input type="text" id="water" v-model="water" />
     </div>
 
     <div>
-      <label for="tierra">Tierra:</label>
-      <input type="text" id="tierra" v-model="tierra" />
+      <label for="soil">Soil:</label>
+      <input type="text" id="soil" v-model="soil" />
     </div>
     <div>
-      <label for="nutricion">Nutricion:</label>
-      <input type="text" id="nutricion" v-model="nutricion" />
+      <label for="nutrition">Nutrition:</label>
+      <input type="text" id="nutrition" v-model="nutrition" />
     </div>
     <div>
-      <label for="salinidad">Salinidad:</label>
-      <input type="text" id="salinidad" v-model="salinidad" />
+      <label for="salinity">Salinity:</label>
+      <input type="text" id="salinity" v-model="salinity" />
     </div>
 
     <div>
-      <label for="ciclo">Ciclo:</label>
-      <input type="text" id="ciclo" v-model="ciclo" />
+      <label for="cycle        ">Cycle        :</label>
+      <input type="text" id="cycle        " v-model="cycle        " />
     </div>
 
 
 
 
-    <button @click="buscarCultivo">Buscar</button>
+    <button @click="buscarCrop">Buscar</button>
 
     <div v-if="resultados.length > 0">
       <h2>Resultados de la búsqueda:</h2>
       <ul>
-        <li v-for="cultivo in resultados" :key="cultivo.IdCultivo">
-          {{ cultivo.InformacionCultivo.Nombre }} - {{ cultivo.InformacionCultivo.Familia }}
+        <li v-for="crop in resultados" :key="crop.IdCrop">
+          {{ crop.CropInformation .Name }} - {{ crop.CropInformation .Family }}
         </li>
       </ul>
     </div>
@@ -65,19 +65,19 @@
 export default {
   data() {
     return {
-      nombreCultivo: "",
+      nameCrop: "",
       // Agrega más propiedades según tus necesidades
       resultados: [],
     };
   },
   methods: {
-    buscarCultivo() {
-      // Realiza la solicitud al backend para buscar cultivos
+    buscarCrop() {
+      // Realiza la solicitud al backend para buscar crops
       // Aquí puedes utilizar la biblioteca axios o la función fetch
       // Ajusta la URL según la configuración de tu servidor
-      const url = "http://localhost:8080/searchCultivo";
+      const url = "`${apiUrl}/searchCrop`;
       const data = {
-        Nombre: this.nombreCultivo,
+        Name: this.nameCrop,
         // Agrega más campos según tus necesidades
       };
 
@@ -95,7 +95,7 @@ export default {
           this.resultados = data;
         })
         .catch((error) => {
-          console.error("Error al buscar cultivo:", error);
+          console.error("Error al buscar crop:", error);
         });
     },
   },

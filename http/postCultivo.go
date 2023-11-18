@@ -8,30 +8,30 @@ import (
 	"github.com/robertobouses/meimporta_unpepino/entity"
 )
 
-func (h *Http) PostCultivo(ctx *gin.Context) {
-	var newCultivo entity.Cultivo
-	err := ctx.BindJSON(&newCultivo)
-	fmt.Print("cultivo en PostCultivo", newCultivo)
-	fmt.Print("Id cultivo en PostCultivo", newCultivo.IdCultivo)
+func (h *Http) PostCrop(ctx *gin.Context) {
+	var newCrop entity.Crop
+	err := ctx.BindJSON(&newCrop)
+	fmt.Print("crop en PostCrop", newCrop)
+	fmt.Print("Id crop en PostCrop", newCrop.IdCrop)
 
 	if err != nil {
 		ctx.JSON(nethttp.StatusBadRequest, gin.H{"error al hacer BindJSON": err.Error()})
 		return
 	}
 
-	fmt.Printf("Valores de newCultivo: %+v\n", newCultivo)
+	fmt.Printf("Valores de newCrop: %+v\n", newCrop)
 
-	err = h.service.CreateCultivo(newCultivo)
-	fmt.Print("cultivo en PostCultivo2", newCultivo)
-	fmt.Print("Id cultivo en PostCultivo2", newCultivo.IdCultivo)
+	err = h.service.CreateCrop(newCrop)
+	fmt.Print("crop en PostCrop2", newCrop)
+	fmt.Print("Id crop en PostCrop2", newCrop.IdCrop)
 	if err != nil {
 		ctx.JSON(nethttp.StatusInternalServerError, gin.H{"error al llamar desde http la app": err.Error()})
 		return
 	}
 
-	//cultivoID := newCultivo.IdCultivo
-	ctx.JSON(nethttp.StatusOK, gin.H{"idcultivo": newCultivo.IdCultivo})
-	ctx.JSON(nethttp.StatusOK, newCultivo)
-	fmt.Printf("Cultivo insertado con ID: %d\n", newCultivo.IdCultivo)
-	ctx.JSON(nethttp.StatusOK, gin.H{"mensaje": "Cultivo insertado correctamente"})
+	//cropID := newCrop.IdCrop
+	ctx.JSON(nethttp.StatusOK, gin.H{"idcrop": newCrop.IdCrop})
+	ctx.JSON(nethttp.StatusOK, newCrop)
+	fmt.Printf("Crop insertado con ID: %d\n", newCrop.IdCrop)
+	ctx.JSON(nethttp.StatusOK, gin.H{"mensaje": "Crop insertado correctamente"})
 }

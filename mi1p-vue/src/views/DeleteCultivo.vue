@@ -1,9 +1,9 @@
 <template>
-  <div class="delete-cultivo-container">
-    <h1 class="delete-cultivo-title">Eliminar Cultivo</h1>
-    <label for="cultivoId" class="label">ID del Cultivo:</label>
-    <input type="number" id="cultivoId" v-model="cultivoId" class="input" required>
-    <button @click="eliminarCultivo" class="delete-button">Eliminar Cultivo</button>
+  <div class="delete-crop-container">
+    <h1 class="delete-crop-title">Eliminar Crop</h1>
+    <label for="cropId" class="label">ID del Crop:</label>
+    <input type="number" id="cropId" v-model="cropId" class="input" required>
+    <button @click="eliminarCrop" class="delete-button">Eliminar Crop</button>
   </div>
 </template>
 
@@ -16,35 +16,35 @@ import { apiUrl } from '@/path-to-config/config.js';
 export default {
   data() {
     return {
-      cultivoId: '', 
+      cropId: '', 
     };
   },
   methods: {
-    eliminarCultivo() {
-      if (!this.cultivoId) {
+    eliminarCrop() {
+      if (!this.cropId) {
         Swal.fire({
           icon: 'error',
           title: 'Oops...',
-          text: 'Por favor, ingrese un ID de cultivo válido.',
+          text: 'Por favor, ingrese un ID de crop válido.',
         });
         return;
       }
       axios
-        .delete(`${apiUrl}/deleteCultivo/${this.cultivoId}`)
+        .delete(`${apiUrl}/deleteCrop/${this.cropId}`)
         .then(response => {
           if (response.status === 200 || response.status === 204) {
             // Success message
             Swal.fire({
               icon: 'success',
               title: 'Éxito',
-              text: 'Cultivo eliminado con éxito.',
+              text: 'Crop eliminado con éxito.',
             });
           } else {
             // Error message
             Swal.fire({
               icon: 'error',
               title: 'Error',
-              text: 'No se pudo eliminar el cultivo. Verifique el ID.',
+              text: 'No se pudo eliminar el crop. Verifique el ID.',
             });
           }
         })
@@ -53,7 +53,7 @@ export default {
           Swal.fire({
             icon: 'error',
             title: 'Error',
-            text: `Error al eliminar el cultivo: ${error}`,
+            text: `Error al eliminar el crop: ${error}`,
           });
         });
     },
@@ -62,7 +62,7 @@ export default {
 </script>
 
 <style scoped>
-.delete-cultivo-container {
+.delete-crop-container {
   max-width: 400px;
   margin: 0 auto;
   padding: 20px;
@@ -71,7 +71,7 @@ export default {
   border-radius: 5px;
 }
 
-.delete-cultivo-title {
+.delete-crop-title {
   font-size: 24px;
   color: #333;
   margin-bottom: 20px;

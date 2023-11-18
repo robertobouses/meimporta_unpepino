@@ -1,55 +1,55 @@
 package entity
 
-type Cultivo struct {
-	IdCultivo          int                `json:"idcultivo"`
-	Siglas             string             `json:"siglas"`
-	InformacionCultivo InformacionCultivo `json:"informacioncultivo"`
-	RequisitosCultivo  RequisitosCultivo  `json:"requisitoscultivo"`
-	FechasCultivo      FechasCultivo      `json:"fechascultivo"`
-	FrutoCultivo       FrutoCultivo       `json:"frutocultivo"`
-	SemillaCultivo     SemillaCultivo     `json:"semillacultivo"`
-	ProblemasCultivo   ProblemasCultivo   `json:"problemascultivo"`
+type Crop struct {
+	IdCrop           int              `json:"idcrop"`
+	Abbreviation     string           `json:"abbreviation"`
+	CropInformation  CropInformation  `json:"cropinformation "`
+	CropRequirements CropRequirements `json:"croprequirements "`
+	CropDates        CropDates        `json:"cropdates"`
+	CropFruit        CropFruit        `json:"cropfruit"`
+	CropSeed         CropSeed         `json:"cropseed"`
+	CropIssues       CropIssues       `json:"cropissues"`
 }
 
 //uint   gorm:"primary_key
 
-type InformacionCultivo struct {
-	Nombre             string   `json:"nombre"`
+type CropInformation struct {
+	Name               string   `json:"name"`
 	Color              []string `json:"color"`
-	Familia            string   `json:"familia"`
+	Family             string   `json:"family"`
 	DensidadPlantacion string   `json:"densidadplantacion"`
-	LitrosTierraMaceta int      `json:"litrostierramaceta"`
-	Asociaciones       []string `json:"asociaciones"`
+	LitersPottingSoil  int      `json:"literspottingsoil  "`
+	Associations       []string `json:"associations       "`
 }
-type RequisitosCultivo struct {
-	Agua        string    `json:"agua"`
-	Tierra      string    `json:"tierra"`
-	Nutricion   string    `json:"nutricion"`
-	Salinidad   string    `json:"salinidad"`
+type CropRequirements struct {
+	Water       string    `json:"water"`
+	Soil        string    `json:"soil"`
+	Nutrition   string    `json:"nutrition"`
+	Salinity    string    `json:"salinity"`
 	Ph          []float64 `json:"ph"`
 	Clima       []string  `json:"clima"`
 	Profundidad string    `json:"profuncidad"`
 }
-type FechasCultivo struct {
-	Siembra     string `json:"siembra"`
-	Transplante string `json:"trasplante"`
-	Cosecha     string `json:"cosecha"`
-	Ciclo       string `json:"ciclo"`
+type CropDates struct {
+	Planting   string `json:"planting     "`
+	Transplant string `json:"trasplante"`
+	Harvest    string `json:"harvest      "`
+	Cycle      string `json:"cycle        "`
 }
-type FrutoCultivo struct {
-	Produccion string `json:"produccion"`
-	Nutrientes string `json:"nutrientes"`
-}
-
-type SemillaCultivo struct {
-	Semilla       string `json:"semilla"`
-	SemillasGramo string `json:"semillasgramo"`
-	VidaSemilla   string `json:"vidasemilla"`
+type CropFruit struct {
+	Production string `json:"production"`
+	Nutrients  string `json:"nutrients  "`
 }
 
-type ProblemasCultivo struct {
-	Plagas       string `json:"plagas"`
-	Dificultades string `json:"dificultades"`
-	Cuidados     string `json:"cuidados"`
-	Miscelanea   string `json:"miscelanea"`
+type CropSeed struct {
+	Seed         string `json:"seed"`
+	SeedsPerGram string `json:"seedspergram  "`
+	SeedLifespan string `json:"seedlifespan"`
+}
+
+type CropIssues struct {
+	Pests         string `json:"pests       "`
+	Difficulties  string `json:"difficulties "`
+	Care          string `json:"care"`
+	Miscellaneous string `json:"miscellaneous"`
 }

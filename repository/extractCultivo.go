@@ -9,59 +9,59 @@ import (
 	"github.com/robertobouses/meimporta_unpepino/entity"
 )
 
-func (r *Repository) ExtractCultivos() ([]entity.Cultivo, error) {
-	rows, err := r.db.Query(ExtractCultivosQuery)
+func (r *Repository) ExtractCrops() ([]entity.Crop, error) {
+	rows, err := r.db.Query(ExtractCropsQuery)
 	if err != nil {
 		log.Printf("Error al ejecutar la consulta SQL: %v", err)
-		return []entity.Cultivo{}, err
+		return []entity.Crop{}, err
 	}
 	defer rows.Close()
 
-	var cultivos []entity.Cultivo
+	var crops []entity.Crop
 
 	for rows.Next() {
-		var cultivo entity.Cultivo
+		var crop entity.Crop
 		var ph string
-		var requisitos entity.RequisitosCultivo
+		var requirements entity.CropRequirements 
 		var clima string
 		var colorBytes []byte
 		var colorSlice []string
-		var asociacionesCSV string
+		var associations       CSV string
 
 		if err := rows.Scan(
-			&cultivo.IdCultivo,
-			&cultivo.InformacionCultivo.Nombre,
+			&crop.IdCrop,
+			&crop.CropInformation .Name,
 			&colorBytes,
-			&cultivo.InformacionCultivo.Familia,
-			&cultivo.InformacionCultivo.DensidadPlantacion,
-			&cultivo.InformacionCultivo.LitrosTierraMaceta,
-			&asociacionesCSV,
-			&cultivo.RequisitosCultivo.Agua,
-			&cultivo.RequisitosCultivo.Tierra,
-			&cultivo.RequisitosCultivo.Nutricion,
-			&cultivo.RequisitosCultivo.Salinidad,
+			&crop.CropInformation .Family,
+			&crop.CropInformation .DensidadPlantacion,
+			&crop.CropInformation .LitersPottingSoil  ,
+			&associations       CSV,
+			&crop.CropRequirements .Water,
+			&crop.CropRequirements .Soil,
+			&crop.CropRequirements .Nutrition,
+			&crop.CropRequirements .Salinity,
 			&ph,
 			&clima,
-			&cultivo.RequisitosCultivo.Profundidad,
-			&cultivo.FechasCultivo.Siembra,
-			&cultivo.FechasCultivo.Transplante,
-			&cultivo.FechasCultivo.Cosecha,
-			&cultivo.FechasCultivo.Ciclo,
-			&cultivo.FrutoCultivo.Produccion,
-			&cultivo.FrutoCultivo.Nutrientes,
-			&cultivo.SemillaCultivo.Semilla,
-			&cultivo.SemillaCultivo.SemillasGramo,
-			&cultivo.SemillaCultivo.VidaSemilla,
-			&cultivo.ProblemasCultivo.Plagas,
-			&cultivo.ProblemasCultivo.Dificultades,
-			&cultivo.ProblemasCultivo.Cuidados,
-			&cultivo.ProblemasCultivo.Miscelanea,
+			&crop.CropRequirements .Profundidad,
+			&crop.CropDates.Planting     ,
+			&crop.CropDates.Transplant   ,
+			&crop.CropDates.Harvest      ,
+			&crop.CropDates.Cycle        ,
+			&crop.CropFruit.Production,
+			&crop.CropFruit.Nutrients  ,
+			&crop.CropSeed.Seed,
+			&crop.CropSeed.SeedsPerGram  ,
+			&crop.CropSeed.SeedLifespan,
+			&crop.CropIssues.Pests       ,
+			&crop.CropIssues.Difficulties ,
+			&crop.CropIssues.Care,
+			&crop.CropIssues.Miscellaneous,
 		); err != nil {
 			log.Printf("Error al escanear filas: %v", err)
 			return nil, err
 		}
 
-		log.Printf("Nombre del cultivo: %s", cultivo.InformacionCultivo.Nombre) // Agrega esta línea
+		log.Printf("Name del crop: %s", crop.CropInformation .Name) // Agrega esta línea
 
 		ph = strings.Replace(ph, "{", "", -1)
 		ph = strings.Replace(ph, "}", "", -1)
@@ -76,26 +76,26 @@ func (r *Repository) ExtractCultivos() ([]entity.Cultivo, error) {
 			phFloats[i] = phFloat
 		}
 
-		requisitos.Ph = phFloats
+		requirements.Ph = phFloats
 
-		requisitos.Clima = []string{clima}
+		requirements.Clima = []string{clima}
 
 		err = json.Unmarshal(colorBytes, &colorSlice)
 		if err != nil {
 
 		}
 
-		cultivo.InformacionCultivo.Color = colorSlice
-		cultivo.InformacionCultivo.Asociaciones = strings.Split(asociacionesCSV, ",")
+		crop.CropInformation .Color = colorSlice
+		crop.CropInformation .Associations        = strings.Split(associations       CSV, ",")
 
-		cultivo.RequisitosCultivo = requisitos
+		crop.CropRequirements  = requirements
 
-		cultivos = append(cultivos, cultivo)
+		crops = append(crops, crop)
 	}
 	if err := rows.Err(); err != nil {
 		log.Printf("Error al recorrer filas: %v", err)
 		return nil, err
 	}
 
-	return cultivos, nil
+	return crops, nil
 }

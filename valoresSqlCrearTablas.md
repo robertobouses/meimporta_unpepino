@@ -6,86 +6,86 @@ CREATE SCHEMA meimporta_unpepino;
 
 
 
-CREATE TABLE meimporta_unpepino.cultivo (
-    idcultivo serial PRIMARY KEY,
-    siglas text
+CREATE TABLE meimporta_unpepino.crop (
+    idcrop serial PRIMARY KEY,
+    abbreviation text
 );
 
 -------------------------------------------------------
 
--- Tabla 'informacioncultivo'
-CREATE TABLE meimporta_unpepino.informacioncultivo (
-    nombre text,
+-- Tabla 'cropinformation '
+CREATE TABLE meimporta_unpepino.cropinformation  (
+    name text,
     color text[],
-    familia text,
+    family text,
     densidadplantacion text,
-    litrostierramaceta integer,
-    asociaciones text[]
-    cultivoid integer,
-    FOREIGN KEY (cultivoid) REFERENCES meimporta_unpepino.cultivo(idcultivo) ON DELETE CASCADE
+    literspottingsoil   integer,
+    associations        text[]
+    cropid integer,
+    FOREIGN KEY (cropid) REFERENCES meimporta_unpepino.crop(idcrop) ON DELETE CASCADE
 );
 
-CREATE TABLE meimporta_unpepino.informacioncultivo (
-    nombre text,
+CREATE TABLE meimporta_unpepino.cropinformation  (
+    name text,
     color text[],
-    familia text,
+    family text,
     densidadplantacion text,
-    litrostierramaceta integer,
-    asociaciones text[],
-    cultivoid integer REFERENCES meimporta_unpepino.cultivo(idcultivo) ON DELETE CASCADE
+    literspottingsoil   integer,
+    associations        text[],
+    cropid integer REFERENCES meimporta_unpepino.crop(idcrop) ON DELETE CASCADE
 );
 
 
 
 --------------------------------------------------------
 
--- Tabla 'Requisitoscultivo'
-CREATE TABLE meimporta_unpepino.Requisitoscultivo (
-    agua text,
-    tierra text,
-    nutricion text,
-    salinidad text,
+-- Tabla 'CropRequirements '
+CREATE TABLE meimporta_unpepino.CropRequirements  (
+    water text,
+    soil text,
+    nutrition text,
+    salinity text,
     ph real[],
     clima text[], 
     profundidad text,
-    cultivoid integer, 
-    FOREIGN KEY (cultivoid) REFERENCES meimporta_unpepino.cultivo(idcultivo) ON DELETE CASCADE
+    cropid integer, 
+    FOREIGN KEY (cropid) REFERENCES meimporta_unpepino.crop(idcrop) ON DELETE CASCADE
 );
 
--- Tabla 'fechascultivo'
-CREATE TABLE meimporta_unpepino.fechascultivo (
-    siembra text,
-    transplante text,
-    cosecha text,
-    ciclo text,
-    cultivoid integer, 
-    FOREIGN KEY (cultivoid) REFERENCES meimporta_unpepino.cultivo(idcultivo) ON DELETE CASCADE
+-- Tabla 'cropdates'
+CREATE TABLE meimporta_unpepino.cropdates (
+    planting      text,
+    transplant    text,
+    harvest       text,
+    cycle         text,
+    cropid integer, 
+    FOREIGN KEY (cropid) REFERENCES meimporta_unpepino.crop(idcrop) ON DELETE CASCADE
 );
 
--- Tabla 'frutocultivo'
-CREATE TABLE meimporta_unpepino.frutocultivo (
-    produccion text,
-    nutrientes text,
-    cultivoid integer, 
-    FOREIGN KEY (cultivoid) REFERENCES meimporta_unpepino.cultivo(idcultivo) ON DELETE CASCADE
+-- Tabla 'cropfruit'
+CREATE TABLE meimporta_unpepino.cropfruit (
+    production text,
+    nutrients   text,
+    cropid integer, 
+    FOREIGN KEY (cropid) REFERENCES meimporta_unpepino.crop(idcrop) ON DELETE CASCADE
 );
 
--- Tabla 'semillacultivo'
-CREATE TABLE meimporta_unpepino.semillacultivo (
-    semilla text,
-    semillasGramo text,
-    vidaSemilla text,
-    cultivoid integer, 
-    FOREIGN KEY (cultivoid) REFERENCES meimporta_unpepino.cultivo(idcultivo) ON DELETE CASCADE
+-- Tabla 'cropseed'
+CREATE TABLE meimporta_unpepino.cropseed (
+    seedtext,
+    seedsPerGram   text,
+    seedLifespantext,
+    cropid integer, 
+    FOREIGN KEY (cropid) REFERENCES meimporta_unpepino.crop(idcrop) ON DELETE CASCADE
 );
 
--- Tabla 'problemascultivo'
-CREATE TABLE meimporta_unpepino.problemascultivo (
-    plagas text,
-    dificultades text,
-    cuidados text,
-    miscelanea text,
-    cultivoid integer, 
-    FOREIGN KEY (cultivoid) REFERENCES meimporta_unpepino.cultivo(idcultivo) ON DELETE CASCADE
+-- Tabla 'cropissues'
+CREATE TABLE meimporta_unpepino.cropissues (
+    pests        text,
+    difficulties  text,
+    care text,
+    miscellaneous text,
+    cropid integer, 
+    FOREIGN KEY (cropid) REFERENCES meimporta_unpepino.crop(idcrop) ON DELETE CASCADE
 );
 

@@ -2,8 +2,8 @@
 import WelcomeItem from './WelcomeItem.vue'
 import BusquedasIcon from './icons/IconBusquedas.vue'
 import CalculadorIcon from './icons/IconCalculador.vue'
-import DefineTuCultivoIcon from './icons/IconDefineTuCultivo.vue'
-import PlagasIcon from './icons/IconPlagas.vue'
+import DefineTuCropIcon from './icons/IconDefineTuCrop.vue'
+import Pests       Icon from './icons/IconPests       .vue'
 import LecturasIcon from './icons/IconLecturas.vue'
 import 'bootstrap-icons/font/bootstrap-icons.css';
 </script>
@@ -15,7 +15,7 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
     </template>
     <template #heading>Búsquedas</template>
 
-    Encuentra la información sobre tu cultivo, o filtra y encuentra el cultivo que ni sospechabas necesitar, nuestros filtros y algoritmos trabajan para ti!
+    Encuentra la información sobre tu crop, o filtra y encuentra el crop que ni sospechabas necesitar, nuestros filtros y algoritmos trabajan para ti!
     
   </WelcomeItem>
 
@@ -25,27 +25,27 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
     </template>
     <template #heading>Calculador de plantas</template>
 
-    Consigue saber las plantas que necesitas para tu cultivo, o los metros que necesitas para tus plantines, obtén la distancia de plantación...
+    Consigue saber las plantas que necesitas para tu crop, o los metros que necesitas para tus plantines, obtén la distancia de plantación...
    
   </WelcomeItem>
 
   <WelcomeItem>
     <template #icon>
-      <DefineTuCultivoIcon />
+      <DefineTuCropIcon />
     </template>
-    <template #heading>Define tu propio cultivo</template>
+    <template #heading>Define tu propio crop</template>
 
-    Un espacio muy tuyo, introduce los datos de tu plantación y tendrás en la palma de tu mano el diario de cultivo que necesitas. No te olvidarás de regar más, sabrás cuándo plantar, cuánto fertilizar exactamente y tendrás hasta predicciones de cuantos frutos vas a obtener. Todo adaptado a tu cultivo real.
+    Un espacio muy tuyo, introduce los datos de tu plantación y tendrás en la palma de tu mano el diario de crop que necesitas. No te olvidarás de regar más, sabrás cuándo plantar, cuánto fertilizar exactamente y tendrás hasta predicciones de cuantos fruits vas a obtener. Todo adaptado a tu crop real.
     
   </WelcomeItem>
 
   <WelcomeItem>
     <template #icon>
-      <PlagasIcon />
+      <Pests       Icon />
     </template>
-    <template #heading>Plagas y problemas</template>
+    <template #heading>Pests        y problemas</template>
 
-    Porque nada es perfecto, los imprevistos y la naturaleza son hermanos, la mejor arma la sabiduría, conoce todo tipo de plagas que pueden afectar a tu cultivo, aprende también sobre otros problemas meteorológicos, hongos, de nutrición e incluso físicos. Cuidamos de tus plantas.
+    Porque nada es perfecto, los imprevistos y la naturaleza son hermanos, la mejor arma la sabiduría, conoce todo tipo de pests        que pueden afectar a tu crop, aprende también sobre otros problemas meteorológicos, hongos, de nutrición e incluso físicos. Cuidamos de tus plantas.
     
   </WelcomeItem>
 
@@ -55,6 +55,6 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
     </template>
     <template #heading>Lecturas</template>
 
-    Si eres curioso, aún tenemos más, lee curiosidades, sobre modos de cultivo, un poco de historia y sobre todo sobre agricultura.
+    Si eres curioso, aún tenemos más, lee curiosidades, sobre modos de crop, un poco de historia y sobre todo sobre agricultura.
    </WelcomeItem>
 </template>

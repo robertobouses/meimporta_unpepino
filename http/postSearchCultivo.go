@@ -7,16 +7,16 @@ import (
 	"github.com/robertobouses/meimporta_unpepino/entity"
 )
 
-func (h *Http) PostSearchCultivo(ctx *gin.Context) {
+func (h *Http) PostSearchCrop(ctx *gin.Context) {
 	var request entity.SearchRequest
 
 	err := ctx.ShouldBindJSON(&request)
 	if err != nil {
-		ctx.JSON(nethttp.StatusBadRequest, gin.H{"error ShouldBindJSON PostProblemsCultivo": err.Error()})
+		ctx.JSON(nethttp.StatusBadRequest, gin.H{"error ShouldBindJSON PostProblemsCrop": err.Error()})
 		return
 	}
 
-	results, err := h.service.SearchCultivo(request)
+	results, err := h.service.SearchCrop(request)
 	if err != nil {
 		ctx.JSON(nethttp.StatusBadRequest, gin.H{"error": err.Error()})
 		return

@@ -1,5 +1,5 @@
 package entity
 
-type NombreCultivoRequest struct {
+type NameCropRequest struct {
 	Name string `json:"name"`
 }

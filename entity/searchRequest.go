@@ -1,12 +1,12 @@
 package entity
 
 type SearchRequest struct {
-	Nombre             string   `json:"nombre"`
+	Name               string   `json:"name"`
 	Color              []string `json:"color"`
 	DensidadPlantacion string   `json:"densidadplantacion"`
-	Agua               string   `json:"agua"`
-	Tierra             string   `json:"tierra"`
-	Nutricion          string   `json:"nutricion"`
-	Salinidad          string   `json:"salinidad"`
-	Ciclo              string   `json:"ciclo"`
+	Water              string   `json:"water"`
+	Soil               string   `json:"soil"`
+	Nutrition          string   `json:"nutrition"`
+	Salinity           string   `json:"salinity"`
+	Cycle              string   `json:"cycle        "`
 }

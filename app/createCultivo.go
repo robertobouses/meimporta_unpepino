@@ -6,21 +6,21 @@ import (
 	"github.com/robertobouses/meimporta_unpepino/entity"
 )
 
-func (s *Service) CreateCultivo(newCultivo entity.Cultivo) error {
-	log.Println("CreateCultivo - IdCultivo:", newCultivo.IdCultivo)
-	// existingCultivo, err := s.repo.ExtractCultivo(newCultivo.IdCultivo)
+func (s *Service) CreateCrop(newCrop entity.Crop) error {
+	log.Println("CreateCrop - IdCrop:", newCrop.IdCrop)
+	// existingCrop, err := s.repo.ExtractCrop(newCrop.IdCrop)
 	// if err != nil {
 
 	// 	return err
 	// }
 
-	// if existingCultivo.Id != "" {
+	// if existingCrop.Id != "" {
 
-	// 	return fmt.Errorf("El registro con ID %s ya existe", newCultivo.IdCultivo)
+	// 	return fmt.Errorf("El registro con ID %s ya existe", newCrop.IdCrop)
 	// }
-	err := s.repo.InsertCultivo(newCultivo)
+	err := s.repo.InsertCrop(newCrop)
 	if err != nil {
-		log.Println("Error en InsertCultivo:", err)
+		log.Println("Error en InsertCrop:", err)
 		return err
 	}
 	return nil

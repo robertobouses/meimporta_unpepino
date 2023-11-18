@@ -1,6 +1,6 @@
 package entity
 
 type CalculateRequest struct {
-	Nombre          string `json:"nombre"`
+	Name            string `json:"name"`
 	MetrosCuadrados int    `json:"metros"`
 }

@@ -1,0 +1,1 @@
+DELETE FROM meimporta_unpepino.crop WHERE idcrop = $1;

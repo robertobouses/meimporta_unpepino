@@ -8,15 +8,15 @@ import (
 	"github.com/robertobouses/meimporta_unpepino/entity"
 )
 
-func (h *Http) PostProblemsCultivo(ctx *gin.Context) {
-	var request entity.NombreCultivoRequest
+func (h *Http) PostProblemsCrop(ctx *gin.Context) {
+	var request entity.NameCropRequest
 	err := ctx.ShouldBindJSON(&request)
 	if err != nil {
-		ctx.JSON(nethttp.StatusBadRequest, gin.H{"error ShouldBindJSON PostProblemsCultivo": err.Error()})
+		ctx.JSON(nethttp.StatusBadRequest, gin.H{"error ShouldBindJSON PostProblemsCrop": err.Error()})
 		return
 	}
 
-	results, err := h.service.SearchProblemsCultivo(request.Name)
+	results, err := h.service.SearchProblemsCrop(request.Name)
 	if err != nil {
 		ctx.JSON(nethttp.StatusBadRequest, gin.H{"error": err.Error()})
 		return
@@ -29,8 +29,8 @@ func (h *Http) PostProblemsCultivo(ctx *gin.Context) {
 
 	response := "Resultados:\n"
 	for _, result := range results {
-		response += fmt.Sprintf("Cultivo: %s\nPlagas: %s\nDificultades: %s\nCuidados: %s\nMiscelanea: %s\n\n",
-			result.Nombre, result.Plagas, result.Dificultades, result.Cuidados, result.Miscelanea)
+		response += fmt.Sprintf("Crop: %s\nPests       : %s\nDifficulties : %s\nCare: %s\nMiscellaneous: %s\n\n",
+			result.Name, result.Pests, result.Difficulties, result.Care, result.Miscellaneous)
 	}
 
 	ctx.JSON(nethttp.StatusOK, response)

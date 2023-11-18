@@ -9,147 +9,147 @@ import (
 )
 
 type REPOSITORY interface {
-	InsertCultivo(cultivo entity.Cultivo) error
-	ExtractCultivos() ([]entity.Cultivo, error)
-	DeleteCultivosAll() error
-	DeleteCultivosId(id int) error
-	CheckExistCultivoId(id int) (bool, error)
-	ExtractCultivoName(name string) (entity.CalculateResponse, error)
-	ExtractSearchCultivo(request entity.SearchRequest) ([]entity.Cultivo, error)
+	InsertCrop(crop entity.Crop) error
+	ExtractCrops() ([]entity.Crop, error)
+	DeleteCropsAll() error
+	DeleteCropsId(id int) error
+	CheckExistCropId(id int) (bool, error)
+	ExtractCropName(name string) (entity.CalculateResponse, error)
+	ExtractSearchCrop(request entity.SearchRequest) ([]entity.Crop, error)
 }
 
 type Repository struct {
-	db                           *sql.DB
-	insertCultivoStmt            *sql.Stmt
-	insertInformacionCultivoStmt *sql.Stmt
-	insertRequisitosCultivoStmt  *sql.Stmt
-	insertFechasCultivoStmt      *sql.Stmt
-	insertFrutoCultivoStmt       *sql.Stmt
-	insertSemillaCultivoStmt     *sql.Stmt
-	insertProblemasCultivoStmt   *sql.Stmt
-	deleteCultivosAllStmt        *sql.Stmt
-	deleteCultivosIdStmt         *sql.Stmt
+	db                         *sql.DB
+	insertCropStmt             *sql.Stmt
+	insertCropInformation Stmt  *sql.Stmt
+	insertCropRequirements Stmt *sql.Stmt
+	insertCropDatesStmt        *sql.Stmt
+	insertCropFruitStmt        *sql.Stmt
+	insertCropSeedStmt         *sql.Stmt
+	insertCropIssuesStmt    *sql.Stmt
+	deleteCropsAllStmt         *sql.Stmt
+	deleteCropsIdStmt          *sql.Stmt
 
-	checkExistCultivoIdStmt *sql.Stmt
+	checkExistCropIdStmt *sql.Stmt
 
-	extractCultivosStmt      *sql.Stmt
-	extractCultivoNameStmt   *sql.Stmt
-	extractSearchCultivoStmt *sql.Stmt
+	extractCropsStmt      *sql.Stmt
+	extractCropNameStmt   *sql.Stmt
+	extractSearchCropStmt *sql.Stmt
 }
 
-//go:embed sql/insert_cultivo.sql
-var InsertCultivoQuery string
+//go:embed sql/insert_crop.sql
+var InsertCropQuery string
 
-//go:embed sql/insert_informacion_cultivo.sql
-var InsertInformacionCultivoQuery string
+//go:embed sql/insert_crop_information.sql
+var InsertCropInformation Query string
 
-//go:embed sql/insert_requisitos_cultivo.sql
-var InsertRequisitosCultivoQuery string
+//go:embed sql/insert_crop_requirements.sql
+var InsertCropRequirements Query string
 
-//go:embed sql/insert_fechas_cultivo.sql
-var InsertFechasCultivoQuery string
+//go:embed sql/insert_crop_dates.sql
+var InsertCropDatesQuery string
 
-//go:embed sql/insert_fruto_cultivo.sql
-var InsertFrutoCultivoQuery string
+//go:embed sql/insert_crop_fruit.sql
+var InsertCropFruitQuery string
 
-//go:embed sql/insert_semilla_cultivo.sql
-var InsertSemillaCultivoQuery string
+//go:embed sql/insert_crop_seed.sql
+var InsertCropSeedQuery string
 
-//go:embed sql/insert_problemas_cultivo.sql
-var InsertProblemasCultivoQuery string
+//go:embed sql/insert_crop_problemas.sql
+var InsertCropIssuesQuery string
 
-//go:embed sql/extract_cultivos.sql
-var ExtractCultivosQuery string
+//go:embed sql/extract_crops.sql
+var ExtractCropsQuery string
 
-//go:embed sql/extract_cultivo_name.sql
-var ExtractCultivoNameQuery string
+//go:embed sql/extract_crop_name.sql
+var ExtractCropNameQuery string
 
-//go:embed sql/delete_cultivos_all.sql
-var DeleteCultivosAllQuery string
+//go:embed sql/delete_crops_all.sql
+var DeleteCropsAllQuery string
 
-//go:embed sql/check_exist_cultivo_id.sql
-var CheckExistCultivoIdQuery string
+//go:embed sql/check_exist_crop_id.sql
+var CheckExistCropIdQuery string
 
-//go:embed sql/delete_cultivos_id.sql
-var DeleteCultivosIdQuery string
+//go:embed sql/delete_crops_id.sql
+var DeleteCropsIdQuery string
 
-//go:embed sql/extract_search_cultivos.sql
-var ExtractSearchCultivosQuery string
+//go:embed sql/extract_crops_search.sql
+var ExtractSearchCropsQuery string
 
 func NewRepository(db *sql.DB) (*Repository, error) {
-	insertCultivoStmt, err := db.Prepare(InsertCultivoQuery)
+	insertCropStmt, err := db.Prepare(InsertCropQuery)
 	if err != nil {
 		return nil, err
 	}
 
-	insertInformacionCultivoStmt, err := db.Prepare(InsertInformacionCultivoQuery)
+	insertCropInformation Stmt, err := db.Prepare(InsertCropInformation Query)
 	if err != nil {
 		return nil, err
 	}
 
-	insertRequisitosCultivoStmt, err := db.Prepare(InsertRequisitosCultivoQuery)
+	insertCropRequirements Stmt, err := db.Prepare(InsertCropRequirements Query)
 	if err != nil {
 		return nil, err
 	}
 
-	insertFechasCultivoStmt, err := db.Prepare(InsertFechasCultivoQuery)
+	insertCropDatesStmt, err := db.Prepare(InsertCropDatesQuery)
 	if err != nil {
 		return nil, err
 	}
 
-	insertFrutoCultivoStmt, err := db.Prepare(InsertFrutoCultivoQuery)
+	insertCropFruitStmt, err := db.Prepare(InsertCropFruitQuery)
 	if err != nil {
 		return nil, err
 	}
 
-	insertSemillaCultivoStmt, err := db.Prepare(InsertSemillaCultivoQuery)
+	insertCropSeedStmt, err := db.Prepare(InsertCropSeedQuery)
 	if err != nil {
 		return nil, err
 	}
 
-	insertProblemasCultivoStmt, err := db.Prepare(InsertProblemasCultivoQuery)
+	insertCropIssuesStmt, err := db.Prepare(InsertCropIssuesQuery)
 	if err != nil {
 		return nil, err
 	}
 
-	extractCultivosStmt, err := db.Prepare(ExtractCultivosQuery)
+	extractCropsStmt, err := db.Prepare(ExtractCropsQuery)
 	if err != nil {
 		return nil, err
 	}
-	extractCultivoNameStmt, err := db.Prepare(ExtractCultivoNameQuery)
+	extractCropNameStmt, err := db.Prepare(ExtractCropNameQuery)
 	if err != nil {
 		return nil, err
 	}
-	deleteCultivosAllStmt, err := db.Prepare(DeleteCultivosAllQuery)
+	deleteCropsAllStmt, err := db.Prepare(DeleteCropsAllQuery)
 	if err != nil {
 		return nil, err
 	}
-	deleteCultivosIdStmt, err := db.Prepare(DeleteCultivosIdQuery)
+	deleteCropsIdStmt, err := db.Prepare(DeleteCropsIdQuery)
 	if err != nil {
 		return nil, err
 	}
-	checkExistCultivoIdStmt, err := db.Prepare(CheckExistCultivoIdQuery)
+	checkExistCropIdStmt, err := db.Prepare(CheckExistCropIdQuery)
 	if err != nil {
 		return nil, err
 	}
-	extractSearchCultivoStmt, err := db.Prepare(ExtractSearchCultivosQuery)
+	extractSearchCropStmt, err := db.Prepare(ExtractSearchCropsQuery)
 	if err != nil {
 		return nil, err
 	}
 	return &Repository{
-		db:                           db,
-		insertCultivoStmt:            insertCultivoStmt,
-		insertInformacionCultivoStmt: insertInformacionCultivoStmt,
-		insertRequisitosCultivoStmt:  insertRequisitosCultivoStmt,
-		insertFechasCultivoStmt:      insertFechasCultivoStmt,
-		insertFrutoCultivoStmt:       insertFrutoCultivoStmt,
-		insertSemillaCultivoStmt:     insertSemillaCultivoStmt,
-		insertProblemasCultivoStmt:   insertProblemasCultivoStmt,
-		extractCultivosStmt:          extractCultivosStmt,
-		extractCultivoNameStmt:       extractCultivoNameStmt,
-		deleteCultivosAllStmt:        deleteCultivosAllStmt,
-		deleteCultivosIdStmt:         deleteCultivosIdStmt,
-		checkExistCultivoIdStmt:      checkExistCultivoIdStmt,
-		extractSearchCultivoStmt:     extractSearchCultivoStmt,
+		db:                         db,
+		insertCropStmt:             insertCropStmt,
+		insertCropInformation Stmt:  insertCropInformation Stmt,
+		insertCropRequirements Stmt: insertCropRequirements Stmt,
+		insertCropDatesStmt:        insertCropDatesStmt,
+		insertCropFruitStmt:        insertCropFruitStmt,
+		insertCropSeedStmt:         insertCropSeedStmt,
+		insertCropIssuesStmt:    insertCropIssuesStmt,
+		extractCropsStmt:           extractCropsStmt,
+		extractCropNameStmt:        extractCropNameStmt,
+		deleteCropsAllStmt:         deleteCropsAllStmt,
+		deleteCropsIdStmt:          deleteCropsIdStmt,
+		checkExistCropIdStmt:       checkExistCropIdStmt,
+		extractSearchCropStmt:      extractSearchCropStmt,
 	}, nil
 }

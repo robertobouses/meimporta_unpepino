@@ -11,7 +11,7 @@
 import axios from 'axios';
 
 export default {
-  name: 'ReadCultivo',
+  name: 'ReadCrop',
   data() {
     return {
       lecturas: [], // Aquí almacenarás las lecturas

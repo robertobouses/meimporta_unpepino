@@ -1,8 +1,8 @@
 package repository
 
-func (r *Repository) CheckExistCultivoId(id int) (bool, error) {
+func (r *Repository) CheckExistCropId(id int) (bool, error) {
 	var count int
-	err := r.db.QueryRow(CheckExistCultivoIdQuery, id).Scan(&count)
+	err := r.db.QueryRow(CheckExistCropIdQuery, id).Scan(&count)
 	if err != nil {
 		return false, err
 	}

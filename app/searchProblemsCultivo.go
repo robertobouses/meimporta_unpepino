@@ -6,10 +6,10 @@ import (
 	"github.com/robertobouses/meimporta_unpepino/entity"
 )
 
-func (s *Service) SearchProblemsCultivo(nameIntro string) ([]entity.ProblemResponse, error) {
-	fmt.Println("Buscando problemas de cultivo para:", nameIntro)
+func (s *Service) SearchProblemsCrop(nameIntro string) ([]entity.ProblemResponse, error) {
+	fmt.Println("Buscando problemas de crop para:", nameIntro)
 
-	cultivos, err := s.repo.ExtractCultivos()
+	crops, err := s.repo.ExtractCrops()
 	if err != nil {
 		return nil, err
 	}
@@ -17,15 +17,15 @@ func (s *Service) SearchProblemsCultivo(nameIntro string) ([]entity.ProblemRespo
 	threshold := 2
 	var results []entity.ProblemResponse
 
-	for _, cultivo := range cultivos {
-		distance := LevenshteinDistance(nameIntro, cultivo.InformacionCultivo.Nombre)
+	for _, crop := range crops {
+		distance := LevenshteinDistance(nameIntro, crop.CropInformation.Name)
 		if distance <= threshold {
 			result := entity.ProblemResponse{
-				Nombre:       cultivo.InformacionCultivo.Nombre,
-				Plagas:       cultivo.ProblemasCultivo.Plagas,
-				Dificultades: cultivo.ProblemasCultivo.Dificultades,
-				Cuidados:     cultivo.ProblemasCultivo.Cuidados,
-				Miscelanea:   cultivo.ProblemasCultivo.Miscelanea,
+				Name:          crop.CropInformation.Name,
+				Pests:         crop.CropIssues.Pests,
+				Difficulties:  crop.CropIssues.Difficulties,
+				Care:          crop.CropIssues.Care,
+				Miscellaneous: crop.CropIssues.Miscellaneous,
 			}
 			results = append(results, result)
 		}

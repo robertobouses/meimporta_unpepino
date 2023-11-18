@@ -5,9 +5,9 @@ import (
 	"strconv"
 )
 
-func (s *Service) DeleteCultivosId(id string) error {
+func (s *Service) DeleteCropsId(id string) error {
 	idInt, err := strconv.Atoi(id)
-	//var ErrCultivoNoExiste = errors.New("El cultivo no existe")
+	//var ErrCropNoExiste = errors.New("El crop no existe")
 
 	log.Print("el valor del id en la función de la capa app es", idInt)
 	if err != nil {
@@ -15,18 +15,18 @@ func (s *Service) DeleteCultivosId(id string) error {
 		return err
 	}
 
-	exists, err := s.repo.CheckExistCultivoId(idInt)
+	exists, err := s.repo.CheckExistCropId(idInt)
 	if err != nil {
 		return err
 	}
 
 	if !exists {
-		return ErrCultivoNoExiste
+		return ErrCropNoExiste
 	}
 
-	err = s.repo.DeleteCultivosId(idInt)
+	err = s.repo.DeleteCropsId(idInt)
 	if err != nil {
-		log.Print("Error al eliminar el cultivo:", err)
+		log.Print("Error al eliminar el crop:", err)
 		return err
 	}
 

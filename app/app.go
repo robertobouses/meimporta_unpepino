@@ -6,13 +6,13 @@ import (
 )
 
 type APP interface {
-	CreateCultivo(newCultivo entity.Cultivo) error
-	PrintCultivos() ([]entity.Cultivo, error)
-	DeleteCultivosAll() error
-	DeleteCultivosId(id string) error
-	SearchProblemsCultivo(nameIntro string) ([]entity.ProblemResponse, error)
-	CreateCalculateCultivo(newCalculate entity.CalculateRequest) (int, error)
-	SearchCultivo(request entity.SearchRequest) ([]entity.Cultivo, error)
+	CreateCrop(newCrop entity.Crop) error
+	PrintCrops() ([]entity.Crop, error)
+	DeleteCropsAll() error
+	DeleteCropsId(id string) error
+	SearchProblemsCrop(nameIntro string) ([]entity.ProblemResponse, error)
+	CreateCalculateCrop(newCalculate entity.CalculateRequest) (int, error)
+	SearchCrop(request entity.SearchRequest) ([]entity.Crop, error)
 }
 
 type Service struct {

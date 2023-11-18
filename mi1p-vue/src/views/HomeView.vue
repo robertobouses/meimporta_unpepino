@@ -9,7 +9,7 @@ import TheWelcome from '../components/TheWelcome.vue'
 </script>
 
 <style scoped>
-.cultivos-container {
+.crops-container {
   max-width: 600px;
   margin: 0 auto;
   padding: 20px;
@@ -18,22 +18,22 @@ import TheWelcome from '../components/TheWelcome.vue'
   border-radius: 5px;
 }
 
-.cultivos-title {
+.crops-title {
   font-size: 24px;
   color: #333;
   margin-bottom: 20px;
 }
 
-.cultivos-list {
+.crops-list {
   list-style: none;
   padding: 0;
 }
 
-.cultivo-item {
+.crop-item {
   margin-bottom: 10px;
 }
 
-.cultivo-nombre {
+.crop-name {
   font-size: 16px;
   color: #555;
 }

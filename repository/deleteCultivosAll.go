@@ -2,8 +2,8 @@ package repository
 
 import "strings"
 
-func (r *Repository) DeleteCultivosAll() error {
-	queries := strings.Split(DeleteCultivosAllQuery, ";")
+func (r *Repository) DeleteCropsAll() error {
+	queries := strings.Split(DeleteCropsAllQuery, ";")
 
 	for _, query := range queries {
 		trimmedQuery := strings.TrimSpace(query)
@@ -20,8 +20,8 @@ func (r *Repository) DeleteCultivosAll() error {
 	return nil
 }
 
-// func (r *Repository) DeleteCultivosAll() error {
-// 	queries := strings.Split(DeleteCultivosAllQuery, "\n")
+// func (r *Repository) DeleteCropsAll() error {
+// 	queries := strings.Split(DeleteCropsAllQuery, "\n")
 
 // 	for _, query := range queries {
 // 		trimmedQuery := strings.TrimSpace(query)
@@ -38,8 +38,8 @@ func (r *Repository) DeleteCultivosAll() error {
 // 	return nil
 // }
 
-// func (r *Repository) DeleteCultivosAll() error {
-// 	queries := strings.Split(DeleteCultivosAllQuery, "\n")
+// func (r *Repository) DeleteCropsAll() error {
+// 	queries := strings.Split(DeleteCropsAllQuery, "\n")
 
 // 	for _, query := range queries {
 // 		if strings.TrimSpace(query) != "" {

@@ -1,10 +1,10 @@
 <template>
   <div>
-    <div class="delete-cultivo-container">
-      <h1 class="delete-cultivo-title">Eliminar todos los Cultivos</h1>
+    <div class="delete-crop-container">
+      <h1 class="delete-crop-title">Eliminar todos los Crops</h1>
     </div>
-    <button @click="confirmEliminarCultivos" class="delete-button">Eliminar todos los Cultivos</button>
-    <div v-if="isLoading" class="loading-message">Eliminando cultivos...</div>
+    <button @click="confirmEliminarCrops" class="delete-button">Eliminar todos los Crops</button>
+    <div v-if="isLoading" class="loading-message">Eliminando crops...</div>
   </div>
 </template>
 
@@ -19,25 +19,25 @@ export default {
     };
   },
   methods: {
-    confirmEliminarCultivos() {
-      if (confirm('¿Estás seguro de que deseas eliminar todos los cultivos?')) {
-        this.eliminarAllCultivos();
+    confirmEliminarCrops() {
+      if (confirm('¿Estás seguro de que deseas eliminar todos los crops?')) {
+        this.eliminarAllCrops();
       }
     },
-    eliminarAllCultivos() {
+    eliminarAllCrops() {
       this.isLoading = true;
 
       axios
-        .delete(`${apiUrl}/deleteAllCultivos`)
+        .delete(`${apiUrl}/deleteAllCrops`)
         .then(response => {
           if (response.status === 200 || response.status === 204) {
-            alert('Cultivos eliminados con éxito.');
+            alert('Crops eliminados con éxito.');
           } else {
-            alert('No se pudieron eliminar los cultivos.');
+            alert('No se pudieron eliminar los crops.');
           }
         })
         .catch(error => {
-          alert('Error al eliminar los cultivos:', error);
+          alert('Error al eliminar los crops:', error);
         })
         .finally(() => {
           this.isLoading = false;
@@ -48,7 +48,7 @@ export default {
 </script>
 
 <style scoped>
-.delete-cultivo-container {
+.delete-crop-container {
   max-width: 400px;
   margin: 0 auto;
   padding: 20px;
@@ -59,7 +59,7 @@ export default {
 }
 
 
-.delete-cultivo-title {
+.delete-crop-title {
   font-size: 24px;
   color: #333;
   margin-bottom: 20px;

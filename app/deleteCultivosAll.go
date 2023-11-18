@@ -2,8 +2,8 @@ package app
 
 import "log"
 
-func (s *Service) DeleteCultivosAll() error {
-	err := s.repo.DeleteCultivosAll()
+func (s *Service) DeleteCropsAll() error {
+	err := s.repo.DeleteCropsAll()
 	if err != nil {
 		log.Print("Error", err)
 		return err
