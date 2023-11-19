@@ -8,7 +8,7 @@ import (
 	"github.com/robertobouses/meimporta_unpepino/entity"
 )
 
-func (h *Http) PostCrop(ctx *gin.Context) {
+func (h *Http) PostCrops(ctx *gin.Context) {
 	var newCrop entity.Crop
 	err := ctx.BindJSON(&newCrop)
 	fmt.Print("crop en PostCrop", newCrop)
@@ -21,7 +21,7 @@ func (h *Http) PostCrop(ctx *gin.Context) {
 
 	fmt.Printf("Valores de newCrop: %+v\n", newCrop)
 
-	err = h.service.CreateCrop(newCrop)
+	err = h.service.CreateCrops(newCrop)
 	fmt.Print("crop en PostCrop2", newCrop)
 	fmt.Print("Id crop en PostCrop2", newCrop.IdCrop)
 	if err != nil {

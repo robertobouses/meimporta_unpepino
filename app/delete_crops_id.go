@@ -15,7 +15,7 @@ func (s *Service) DeleteCropsId(id string) error {
 		return err
 	}
 
-	exists, err := s.repo.CheckExistCropId(idInt)
+	exists, err := s.repo.CheckExistCropsId(idInt)
 	if err != nil {
 		return err
 	}

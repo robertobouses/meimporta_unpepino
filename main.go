@@ -18,7 +18,6 @@ func main() {
 	fmt.Println("DB_PASS:", os.Getenv("DB_PASS"))
 	fmt.Println("DB_HOST:", os.Getenv("DB_HOST"))
 	fmt.Println("DB_PORT:", os.Getenv("DB_PORT"))
-	//fmt.Println("DB_DATABASE:", "mi1p")
 	fmt.Println("DB_DATABASE:", os.Getenv("DB_DATABASE"))
 
 	db, err := internal.NewPostgres(internal.DBConfig{
@@ -27,7 +26,6 @@ func main() {
 		Host:     "localhost",
 		Port:     "5432",
 		Database: "mi1p",
-		//Database: os.Getenv("mi1p"),
 	})
 
 	if err != nil {
@@ -51,34 +49,34 @@ func main() {
 
 	server.Use(internal.CORSMiddleware())
 
-	server.POST("/createCrop", func(ctx *gin.Context) {
-		httpController.PostCrop(ctx)
+	server.POST("/crops", func(ctx *gin.Context) {
+		httpController.PostCrops(ctx)
 
 	})
 
-	server.GET("/printCrops", func(ctx *gin.Context) {
+	server.GET("/crops", func(ctx *gin.Context) {
 		httpController.GetCrops(ctx)
 	})
 
-	server.DELETE("/deleteAllCrops", func(ctx *gin.Context) {
+	server.DELETE("/crops/all", func(ctx *gin.Context) {
 		httpController.DeleteCropsAll(ctx)
 	})
 
-	server.DELETE("/deleteCrop/:id", func(ctx *gin.Context) {
+	server.DELETE("/crops/:id", func(ctx *gin.Context) {
 		id := ctx.Param("id")
 		httpController.DeleteCropsId(ctx, id)
 	})
 
-	server.POST("/problemsCrop", func(ctx *gin.Context) {
-		httpController.PostProblemsCrop(ctx)
+	server.GET("/crops/issues", func(ctx *gin.Context) {
+		httpController.GetCropsIssues(ctx)
 	})
 
-	server.POST("/calculateCrop", func(ctx *gin.Context) {
-		httpController.PostCalculateCrop(ctx)
+	server.GET("/crops/calculate", func(ctx *gin.Context) {
+		httpController.GetCropsCalculate(ctx)
 	})
 
-	server.POST("/searchCrop", func(ctx *gin.Context) {
-		httpController.PostSearchCrop(ctx)
+	server.GET("/crops/search", func(ctx *gin.Context) {
+		httpController.GetCropsSearch(ctx)
 	})
 	//calendario crop segun mes y espacio soil
 	//delete drop table tal

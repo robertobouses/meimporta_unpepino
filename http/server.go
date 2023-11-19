@@ -6,13 +6,13 @@ import (
 )
 
 type HTTP interface {
-	PostCrop(ctx *gin.Context)
+	PostCrops(ctx *gin.Context)
 	GetCrops(ctx *gin.Context)
 	DeleteCropsAll(ctx *gin.Context)
 	DeleteCropsId(ctx *gin.Context, id string)
-	PostProblemsCrop(ctx *gin.Context)
-	PostCalculateCrop(ctx *gin.Context)
-	PostSearchCrop(ctx *gin.Context)
+	GetCropsIssues(ctx *gin.Context)
+	GetCropsCalculate(ctx *gin.Context)
+	GetCropsSearch(ctx *gin.Context)
 }
 
 type Http struct {

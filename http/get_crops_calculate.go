@@ -8,7 +8,7 @@ import (
 	"github.com/robertobouses/meimporta_unpepino/entity"
 )
 
-func (h *Http) PostCalculateCrop(ctx *gin.Context) {
+func (h *Http) GetCropsCalculate(ctx *gin.Context) {
 	var newCalculate entity.CalculateRequest
 	log.Println("Cuerpo de la solicitud:", ctx.Request.Body)
 	err := ctx.BindJSON(&newCalculate)
@@ -21,7 +21,7 @@ func (h *Http) PostCalculateCrop(ctx *gin.Context) {
 		return
 	}
 
-	result, err := h.service.CreateCalculateCrop(newCalculate)
+	result, err := h.service.ProcessCropsCalculate(newCalculate)
 	log.Println("resultado en http", result)
 	if err != nil {
 		ctx.JSON(nethttp.StatusInternalServerError, gin.H{"error al llamar desde http la app": err.Error()})

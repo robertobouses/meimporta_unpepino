@@ -8,7 +8,7 @@ import (
 	"github.com/robertobouses/meimporta_unpepino/entity"
 )
 
-func (h *Http) PostProblemsCrop(ctx *gin.Context) {
+func (h *Http) GetCropsIssues(ctx *gin.Context) {
 	var request entity.NameCropRequest
 	err := ctx.ShouldBindJSON(&request)
 	if err != nil {
@@ -16,7 +16,7 @@ func (h *Http) PostProblemsCrop(ctx *gin.Context) {
 		return
 	}
 
-	results, err := h.service.SearchProblemsCrop(request.Name)
+	results, err := h.service.ProcessCropsIssues(request.Name)
 	if err != nil {
 		ctx.JSON(nethttp.StatusBadRequest, gin.H{"error": err.Error()})
 		return

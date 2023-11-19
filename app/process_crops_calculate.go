@@ -7,8 +7,8 @@ import (
 	"github.com/robertobouses/meimporta_unpepino/entity"
 )
 
-func (s *Service) CreateCalculateCrop(newCalculate entity.CalculateRequest) (int, error) {
-	crop, err := s.repo.ExtractCropName(newCalculate.Name)
+func (s *Service) ProcessCropsCalculate(newCalculate entity.CalculateRequest) (int, error) {
+	crop, err := s.repo.ExtractCropsName(newCalculate.Name)
 	if err != nil {
 		return 0, err
 	}

@@ -6,7 +6,7 @@ import (
 	"github.com/robertobouses/meimporta_unpepino/entity"
 )
 
-func (s *Service) SearchProblemsCrop(nameIntro string) ([]entity.ProblemResponse, error) {
+func (s *Service) ProcessCropsIssues(nameIntro string) ([]entity.ProblemResponse, error) {
 	fmt.Println("Buscando problemas de crop para:", nameIntro)
 
 	crops, err := s.repo.ExtractCrops()

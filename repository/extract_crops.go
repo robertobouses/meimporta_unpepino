@@ -22,38 +22,38 @@ func (r *Repository) ExtractCrops() ([]entity.Crop, error) {
 	for rows.Next() {
 		var crop entity.Crop
 		var ph string
-		var requirements entity.CropRequirements 
+		var requirements entity.CropRequirements
 		var clima string
 		var colorBytes []byte
 		var colorSlice []string
-		var associations       CSV string
+		var associationsCSV string
 
 		if err := rows.Scan(
 			&crop.IdCrop,
-			&crop.CropInformation .Name,
+			&crop.CropInformation.Name,
 			&colorBytes,
-			&crop.CropInformation .Family,
-			&crop.CropInformation .DensidadPlantacion,
-			&crop.CropInformation .LitersPottingSoil  ,
-			&associations       CSV,
-			&crop.CropRequirements .Water,
-			&crop.CropRequirements .Soil,
-			&crop.CropRequirements .Nutrition,
-			&crop.CropRequirements .Salinity,
+			&crop.CropInformation.Family,
+			&crop.CropInformation.DensidadPlantacion,
+			&crop.CropInformation.LitersPottingSoil,
+			&associationsCSV,
+			&crop.CropRequirements.Water,
+			&crop.CropRequirements.Soil,
+			&crop.CropRequirements.Nutrition,
+			&crop.CropRequirements.Salinity,
 			&ph,
 			&clima,
-			&crop.CropRequirements .Profundidad,
-			&crop.CropDates.Planting     ,
-			&crop.CropDates.Transplant   ,
-			&crop.CropDates.Harvest      ,
-			&crop.CropDates.Cycle        ,
+			&crop.CropRequirements.Profundidad,
+			&crop.CropDates.Planting,
+			&crop.CropDates.Transplant,
+			&crop.CropDates.Harvest,
+			&crop.CropDates.Cycle,
 			&crop.CropFruit.Production,
-			&crop.CropFruit.Nutrients  ,
+			&crop.CropFruit.Nutrients,
 			&crop.CropSeed.Seed,
-			&crop.CropSeed.SeedsPerGram  ,
+			&crop.CropSeed.SeedsPerGram,
 			&crop.CropSeed.SeedLifespan,
-			&crop.CropIssues.Pests       ,
-			&crop.CropIssues.Difficulties ,
+			&crop.CropIssues.Pests,
+			&crop.CropIssues.Difficulties,
 			&crop.CropIssues.Care,
 			&crop.CropIssues.Miscellaneous,
 		); err != nil {
@@ -61,7 +61,7 @@ func (r *Repository) ExtractCrops() ([]entity.Crop, error) {
 			return nil, err
 		}
 
-		log.Printf("Name del crop: %s", crop.CropInformation .Name) // Agrega esta línea
+		log.Printf("Name del crop: %s", crop.CropInformation.Name) // Agrega esta línea
 
 		ph = strings.Replace(ph, "{", "", -1)
 		ph = strings.Replace(ph, "}", "", -1)
@@ -85,10 +85,10 @@ func (r *Repository) ExtractCrops() ([]entity.Crop, error) {
 
 		}
 
-		crop.CropInformation .Color = colorSlice
-		crop.CropInformation .Associations        = strings.Split(associations       CSV, ",")
+		crop.CropInformation.Color = colorSlice
+		crop.CropInformation.Associations = strings.Split(associationsCSV, ",")
 
-		crop.CropRequirements  = requirements
+		crop.CropRequirements = requirements
 
 		crops = append(crops, crop)
 	}

@@ -6,13 +6,13 @@ import (
 )
 
 type APP interface {
-	CreateCrop(newCrop entity.Crop) error
+	CreateCrops(newCrop entity.Crop) error
 	PrintCrops() ([]entity.Crop, error)
 	DeleteCropsAll() error
 	DeleteCropsId(id string) error
-	SearchProblemsCrop(nameIntro string) ([]entity.ProblemResponse, error)
-	CreateCalculateCrop(newCalculate entity.CalculateRequest) (int, error)
-	SearchCrop(request entity.SearchRequest) ([]entity.Crop, error)
+	ProcessCropsIssues(nameIntro string) ([]entity.ProblemResponse, error)
+	ProcessCropsCalculate(newCalculate entity.CalculateRequest) (int, error)
+	ProcessCropsSearch(request entity.SearchRequest) ([]entity.Crop, error)
 }
 
 type Service struct {

@@ -8,13 +8,13 @@ import (
 	"github.com/robertobouses/meimporta_unpepino/entity"
 )
 
-func (r *Repository) ExtractCropName(name string) (entity.CalculateResponse, error) {
+func (r *Repository) ExtractCropsName(name string) (entity.CalculateResponse, error) {
 	var response entity.CalculateResponse
 
-	log.Printf("Consulta SQL: %s", ExtractCropNameQuery)
+	log.Printf("Consulta SQL: %s", ExtractCropsNameQuery)
 	log.Printf("Name del crop: %s", name)
 
-	err := r.db.QueryRow(ExtractCropNameQuery, name).
+	err := r.db.QueryRow(ExtractCropsNameQuery, name).
 		Scan(
 			&response.Name,
 			&response.DensidadPlantacion,
