@@ -14,7 +14,7 @@ func (s *Service) ProcessCropsCalculate(newCalculate entity.CalculateRequest) (i
 	}
 
 	log.Println("newCalculate en app", newCalculate)
-	densidad := crop.DensidadPlantacion
+	densidad := crop.PlantingDensity
 	metros := newCalculate.MetrosCuadrados
 	log.Println("densidad en app", densidad)
 	log.Println("metros en app", metros)

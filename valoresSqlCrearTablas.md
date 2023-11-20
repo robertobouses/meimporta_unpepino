@@ -18,7 +18,7 @@ CREATE TABLE meimporta_unpepino.cropinformation  (
     name text,
     color text[],
     family text,
-    densidadplantacion text,
+    plantingdensity text,
     literspottingsoil   integer,
     associations        text[]
     cropid integer,
@@ -29,7 +29,7 @@ CREATE TABLE meimporta_unpepino.cropinformation  (
     name text,
     color text[],
     family text,
-    densidadplantacion text,
+    plantingdensity text,
     literspottingsoil   integer,
     associations        text[],
     cropid integer REFERENCES meimporta_unpepino.crop(idcrop) ON DELETE CASCADE
@@ -46,8 +46,8 @@ CREATE TABLE meimporta_unpepino.CropRequirements  (
     nutrition text,
     salinity text,
     ph real[],
-    clima text[], 
-    profundidad text,
+    climate text[], 
+    depth text,
     cropid integer, 
     FOREIGN KEY (cropid) REFERENCES meimporta_unpepino.crop(idcrop) ON DELETE CASCADE
 );

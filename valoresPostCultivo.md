@@ -3,7 +3,7 @@
       "Name": "Pimiento",
       "Color": ["Verde", "Rojo", "Amarillo"],
       "Family": "Solanáceas",
-      "DensidadPlantacion": "2-4 plantas por metro",
+      "PlantingDensity": "2-4 plantas por metro",
       "LitersPottingSoil  ": 10,
       "Associations       ": ["Umberífelas", "Liliáceas"]
     },
@@ -13,8 +13,8 @@
       "Nutrition": "Alta",
       "Salinity": "Sensible",
       "Ph": [5.5, 6.5],
-      "Clima": ["Templado", "Tropical"],
-      "Profundidad": "Suelos profundos"
+      "Climate": ["Templado", "Tropical"],
+      "Depth": "Suelos profundos"
     },
     "CropDates": {
       "Planting     ": "Desde febrero",

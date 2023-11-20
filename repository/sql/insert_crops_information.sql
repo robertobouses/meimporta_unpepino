@@ -1,10 +1,5 @@
---insert_information_crop.sql
+--insert_crop_information.sql
 
 
-INSERT INTO meimporta_unpepino.cropInformation  (name, color, family, densidadplantacion, literspottingsoil  , associations       , cropid)
+INSERT INTO meimporta_unpepino.cropinformation(name, color, family, plantingdensity, literspottingsoil, associations, cropid)
 VALUES ($1, $2, $3, $4, $5, $6, $7);
-
-
-
--- INSERT INTO meimporta_unpepino.CropInformation  (Name, Color, Family, DensidadPlantacion, LitersPottingSoil  , Associations       , CropId)
--- VALUES ($2, $3, $4, $5, $6, $7, $8);

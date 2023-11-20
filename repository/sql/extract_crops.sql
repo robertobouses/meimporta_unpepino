@@ -1,13 +1,13 @@
 --extract_crops.sql
 
 SELECT
-    C.idcrop,
-    IC.name, IC.color, IC.family, IC.densidadplantacion, IC.literspottingsoil  , IC.associations       ,
-    RC.water, RC.soil, RC.nutrition, RC.salinity, RC.ph, RC.clima, RC.profundidad,
-    FC.planting     , FC.transplant   , FC.harvest      , FC.cycle        ,
-    FUC.production, FUC.nutrients  ,
-    SC.seed, SC.seedsPerGram  , SC.seedLifespan,
-    PC.pests       , PC.difficulties , PC.care, PC.miscellaneous
+    C.idcrop, C.abbreviation,
+    IC.name, IC.color, IC.family, IC.plantingdensity, IC.literspottingsoil, IC.associations,
+    RC.water, RC.soil, RC.nutrition, RC.salinity, RC.ph, RC.climate, RC.depth,
+    FC.planting, FC.transplant, FC.harvest, FC.cycle,
+    FUC.production, FUC.nutrients,
+    SC.seed, SC.seedsPerGram, SC.seedLifespan,
+    PC.pests, PC.difficulties, PC.care, PC.miscellaneous
 FROM
     meimporta_unpepino.crop AS C
     JOIN meimporta_unpepino.cropinformation  AS IC ON C.idcrop = IC.cropid

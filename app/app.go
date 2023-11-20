@@ -10,7 +10,7 @@ type APP interface {
 	PrintCrops() ([]entity.Crop, error)
 	DeleteCropsAll() error
 	DeleteCropsId(id string) error
-	ProcessCropsIssues(nameIntro string) ([]entity.ProblemResponse, error)
+	ProcessCropsIssues(nameIntro string) ([]entity.IssueResponse, error)
 	ProcessCropsCalculate(newCalculate entity.CalculateRequest) (int, error)
 	ProcessCropsSearch(request entity.SearchRequest) ([]entity.Crop, error)
 }

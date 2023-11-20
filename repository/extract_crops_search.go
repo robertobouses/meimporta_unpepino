@@ -1,8 +1,8 @@
 package repository
 
 import (
+	"database/sql"
 	"log"
-	"strings"
 
 	"github.com/lib/pq"
 	"github.com/robertobouses/meimporta_unpepino/entity"
@@ -11,10 +11,14 @@ import (
 func (r *Repository) ExtractCropsSearch(request entity.SearchRequest) ([]entity.Crop, error) {
 	var crops []entity.Crop
 
+	log.Printf("Consulta SQL completa: %s", ExtractCropsSearchQuery)
+	log.Printf("Antes de la ejecución de la consulta: %v", request)
+	log.Printf("Valores de la consulta: name=%s, color=%v, water=%v, ...", request.Name, request.Color, request.Water)
+
 	rows, err := r.db.Query(ExtractCropsSearchQuery,
 		request.Name,
 		pq.Array(request.Color),
-		request.DensidadPlantacion,
+		request.PlantingDensity,
 		request.Water,
 		request.Soil,
 		request.Nutrition,
@@ -32,27 +36,25 @@ func (r *Repository) ExtractCropsSearch(request entity.SearchRequest) ([]entity.
 	defer rows.Close()
 
 	for rows.Next() {
-		log.Print("escaneando query")
 		var crop entity.Crop
-		var associationsCSV string
-		var ph, clima float64
-		var color string
+		var color, associations, climate sql.NullString
+		var ph sql.NullFloat64
 
 		if err := rows.Scan(
 			&crop.IdCrop,
+			&crop.Abbreviation,
 			&crop.CropInformation.Name,
-			&color,
-			&crop.CropInformation.Family,
-			&crop.CropInformation.DensidadPlantacion,
+			&color, &crop.CropInformation.Family,
+			&crop.CropInformation.PlantingDensity,
 			&crop.CropInformation.LitersPottingSoil,
-			&associationsCSV,
+			&associations,
 			&crop.CropRequirements.Water,
 			&crop.CropRequirements.Soil,
 			&crop.CropRequirements.Nutrition,
 			&crop.CropRequirements.Salinity,
 			&ph,
-			&clima,
-			&crop.CropRequirements.Profundidad,
+			&climate,
+			&crop.CropRequirements.Depth,
 			&crop.CropDates.Planting,
 			&crop.CropDates.Transplant,
 			&crop.CropDates.Harvest,
@@ -67,15 +69,30 @@ func (r *Repository) ExtractCropsSearch(request entity.SearchRequest) ([]entity.
 			&crop.CropIssues.Care,
 			&crop.CropIssues.Miscellaneous,
 		); err != nil {
-			log.Printf("Error al escanear filas: %v", err)
+			log.Printf("Error al escanear las filas: %v", err)
 			return nil, err
 		}
 
-		log.Println("Crop en Repo:", crop)
-
-		crop.CropInformation.Associations = strings.Split(associationsCSV, ",")
+		if color.Valid && color.String != "" {
+			crop.CropInformation.Color = append(crop.CropInformation.Color, color.String)
+		}
+		if associations.Valid && associations.String != "" {
+			crop.CropInformation.Associations = append(crop.CropInformation.Associations, associations.String)
+		}
+		if climate.Valid && climate.String != "" {
+			crop.CropRequirements.Climate = append(crop.CropRequirements.Climate, climate.String)
+		}
+		if ph.Valid {
+			phValues := ph.Float64
+			crop.CropRequirements.Ph = append(crop.CropRequirements.Ph, phValues)
+		}
 
 		crops = append(crops, crop)
+	}
+
+	if err := rows.Err(); err != nil {
+		log.Printf("Error al procesar las filas: %v", err)
+		return nil, err
 	}
 
 	return crops, nil

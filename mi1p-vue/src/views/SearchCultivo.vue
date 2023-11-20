@@ -14,8 +14,8 @@
 
 
     <div>
-      <label for="DensidadPlantacion">Densidad de plantacion:</label>
-      <input type="text" id="densidadPlantacion" v-model="densidadPlantacion" />
+      <label for="PlantingDensity">Densidad de plantacion:</label>
+      <input type="text" id="plantingDensity" v-model="plantingDensity" />
     </div>
 
     

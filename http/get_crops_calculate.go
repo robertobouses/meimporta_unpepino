@@ -1,28 +1,38 @@
 package http
 
 import (
-	"log"
+	"fmt"
 	nethttp "net/http"
+	"strconv"
 
 	"github.com/gin-gonic/gin"
 	"github.com/robertobouses/meimporta_unpepino/entity"
 )
 
-func (h *Http) GetCropsCalculate(ctx *gin.Context) {
-	var newCalculate entity.CalculateRequest
-	log.Println("Cuerpo de la solicitud:", ctx.Request.Body)
-	err := ctx.BindJSON(&newCalculate)
-	log.Printf("newCalculate: %+v", newCalculate)
+func printType(v interface{}) {
+	fmt.Printf("Type: %T\n", v)
+}
 
-	log.Println("newCalculate en http", newCalculate)
+func (h *Http) GetCropsCalculate(ctx *gin.Context) {
+	nombre := ctx.Query("nombre")
+	metrosStr := ctx.Query("metros")
+
+	printType(metrosStr)
+
+	metros, err := strconv.Atoi(metrosStr)
+	printType(metros)
 
 	if err != nil {
-		ctx.JSON(nethttp.StatusBadRequest, gin.H{"error al hacer BindJSON": err.Error()})
+		ctx.JSON(nethttp.StatusBadRequest, gin.H{"error al convertir metros a int": err.Error()})
 		return
 	}
 
+	newCalculate := entity.CalculateRequest{
+		Name:            nombre,
+		MetrosCuadrados: metros,
+	}
 	result, err := h.service.ProcessCropsCalculate(newCalculate)
-	log.Println("resultado en http", result)
+
 	if err != nil {
 		ctx.JSON(nethttp.StatusInternalServerError, gin.H{"error al llamar desde http la app": err.Error()})
 		return

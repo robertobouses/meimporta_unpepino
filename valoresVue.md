@@ -14,8 +14,8 @@
         <label for="family">Family:</label>
         <input type="text" id="family" v-model="crop.cropinformation .family" required>
         
-        <label for="densidadplantacion">Densidad de Plantación:</label>
-        <input type="text" id="densidadplantacion" v-model="crop.cropinformation .densidadplantacion" required>
+        <label for="plantingdensity">Densidad de Plantación:</label>
+        <input type="text" id="plantingdensity" v-model="crop.cropinformation .plantingdensity" required>
         
         <label for="literspottingsoil  ">Litros de Soil por Maceta:</label>
         <input type="number" id="literspottingsoil  " v-model="crop.cropinformation .literspottingsoil  " required>
@@ -38,12 +38,12 @@
         <label for="ph">Ph:</label>
         <input type="number" id="ph" v-model="crop.croprequirements .ph" required>
        
-        <label for="clima">Clima:</label>
-        <input type="text" id="clima" v-model="crop.croprequirements .clima" required>
+        <label for="climate">Climate:</label>
+        <input type="text" id="climate" v-model="crop.croprequirements .climate" required>
        
 
-        <label for="profundidad">Profundidad:</label>
-        <input type="text" id="profundidad" v-model="crop.croprequirements .profundidad" required>
+        <label for="depth">Depth:</label>
+        <input type="text" id="depth" v-model="crop.croprequirements .depth" required>
        
         <label for="planting     ">Planting     :</label>
         <input type="text" id="planting     " v-model="crop.cropdates.planting     " required>
@@ -104,7 +104,7 @@
             name: '',
             color: '',
             family: '',
-            densidadplantacion: '',
+            plantingdensity: '',
             literspottingsoil  : 0,
             associations       : [],
               },
@@ -114,8 +114,8 @@
             nutrition: '',
             salinity: '',
             ph: 0,
-            clima: [],
-            profundidad: '',
+            climate: [],
+            depth: '',
                 },
           cropdates: {
             planting     : '',

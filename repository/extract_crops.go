@@ -1,10 +1,8 @@
 package repository
 
 import (
-	"encoding/json"
+	"database/sql"
 	"log"
-	"strconv"
-	"strings"
 
 	"github.com/robertobouses/meimporta_unpepino/entity"
 )
@@ -21,28 +19,24 @@ func (r *Repository) ExtractCrops() ([]entity.Crop, error) {
 
 	for rows.Next() {
 		var crop entity.Crop
+		var color, associations, climate sql.NullString
 		var ph string
-		var requirements entity.CropRequirements
-		var clima string
-		var colorBytes []byte
-		var colorSlice []string
-		var associationsCSV string
 
 		if err := rows.Scan(
 			&crop.IdCrop,
+			&crop.Abbreviation,
 			&crop.CropInformation.Name,
-			&colorBytes,
-			&crop.CropInformation.Family,
-			&crop.CropInformation.DensidadPlantacion,
+			&color, &crop.CropInformation.Family,
+			&crop.CropInformation.PlantingDensity,
 			&crop.CropInformation.LitersPottingSoil,
-			&associationsCSV,
+			&associations,
 			&crop.CropRequirements.Water,
 			&crop.CropRequirements.Soil,
 			&crop.CropRequirements.Nutrition,
 			&crop.CropRequirements.Salinity,
 			&ph,
-			&clima,
-			&crop.CropRequirements.Profundidad,
+			&climate,
+			&crop.CropRequirements.Depth,
 			&crop.CropDates.Planting,
 			&crop.CropDates.Transplant,
 			&crop.CropDates.Harvest,
@@ -57,43 +51,33 @@ func (r *Repository) ExtractCrops() ([]entity.Crop, error) {
 			&crop.CropIssues.Care,
 			&crop.CropIssues.Miscellaneous,
 		); err != nil {
-			log.Printf("Error al escanear filas: %v", err)
+			log.Printf("Error al escanear las filas: %v", err)
 			return nil, err
 		}
 
-		log.Printf("Name del crop: %s", crop.CropInformation.Name) // Agrega esta línea
-
-		ph = strings.Replace(ph, "{", "", -1)
-		ph = strings.Replace(ph, "}", "", -1)
-		phValues := strings.Split(ph, ",")
-		phFloats := make([]float64, len(phValues))
-		for i, phStr := range phValues {
-			phFloat, err := strconv.ParseFloat(phStr, 64)
+		if color.Valid {
+			crop.CropInformation.Color = append(crop.CropInformation.Color, color.String)
+		}
+		if associations.Valid {
+			crop.CropInformation.Associations = append(crop.CropInformation.Associations, associations.String)
+		}
+		if climate.Valid {
+			crop.CropRequirements.Climate = append(crop.CropRequirements.Climate, climate.String)
+		}
+		if ph != "" {
+			phValues, err := ConvertStringToFloatSlice(ph)
 			if err != nil {
-				log.Printf("Error al convertir 'ph' en float64: %v", err)
+				log.Printf("Error al convertir el valor de ph: %v", err)
 				return nil, err
 			}
-			phFloats[i] = phFloat
+			crop.CropRequirements.Ph = append(crop.CropRequirements.Ph, phValues...)
 		}
-
-		requirements.Ph = phFloats
-
-		requirements.Clima = []string{clima}
-
-		err = json.Unmarshal(colorBytes, &colorSlice)
-		if err != nil {
-
-		}
-
-		crop.CropInformation.Color = colorSlice
-		crop.CropInformation.Associations = strings.Split(associationsCSV, ",")
-
-		crop.CropRequirements = requirements
 
 		crops = append(crops, crop)
 	}
+
 	if err := rows.Err(); err != nil {
-		log.Printf("Error al recorrer filas: %v", err)
+		log.Printf("Error al procesar las filas: %v", err)
 		return nil, err
 	}
 

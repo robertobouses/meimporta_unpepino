@@ -18,6 +18,7 @@ func (s *Service) CreateCrops(newCrop entity.Crop) error {
 
 	// 	return fmt.Errorf("El registro con ID %s ya existe", newCrop.IdCrop)
 	// }
+	log.Printf("Valores de newCrop: %+v\n", newCrop)
 	err := s.repo.InsertCrops(newCrop)
 	if err != nil {
 		log.Println("Error en InsertCrop:", err)

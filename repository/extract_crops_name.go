@@ -17,9 +17,9 @@ func (r *Repository) ExtractCropsName(name string) (entity.CalculateResponse, er
 	err := r.db.QueryRow(ExtractCropsNameQuery, name).
 		Scan(
 			&response.Name,
-			&response.DensidadPlantacion,
+			&response.PlantingDensity,
 		)
-	fmt.Println("densidad plantacion repo", response.DensidadPlantacion)
+	fmt.Println("densidad plantacion repo", response.PlantingDensity)
 	if err != nil {
 		if err == sql.ErrNoRows {
 			log.Printf("No se encontraron filas para el crop con name: %s", name)

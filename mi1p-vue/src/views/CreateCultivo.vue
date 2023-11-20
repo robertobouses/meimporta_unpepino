@@ -14,8 +14,8 @@
       <label for="family">Family:</label>
       <input type="text" id="family" v-model="crop.cropinformation .family" required>
 
-      <label for="densidadplantacion">Densidad de Plantación:</label>
-      <input type="text" id="densidadplantacion" v-model="crop.cropinformation .densidadplantacion">
+      <label for="plantingdensity">Densidad de Plantación:</label>
+      <input type="text" id="plantingdensity" v-model="crop.cropinformation .plantingdensity">
 
       <label for="literspottingsoil  ">Litros de Soil por Maceta:</label>
       <input type="number" id="literspottingsoil  " v-model="crop.cropinformation .literspottingsoil  ">
@@ -39,11 +39,11 @@
       <input type="number" id="ph" v-model="crop.croprequirements .ph">
       <!-- step="0.01" -->
 
-      <label for="clima">Clima (separados por comas):</label>
-      <input type="text" id="clima" v-model="crop.croprequirements .clima">
+      <label for="climate">Climate (separados por comas):</label>
+      <input type="text" id="climate" v-model="crop.croprequirements .climate">
 
-      <label for="profundidad">Profundidad:</label>
-      <input type="text" id="profundidad" v-model="crop.croprequirements .profundidad">
+      <label for="depth">Depth:</label>
+      <input type="text" id="depth" v-model="crop.croprequirements .depth">
 
       <label for="planting     ">Planting     :</label>
       <input type="text" id="planting     " v-model="crop.cropdates.planting     ">
@@ -103,7 +103,7 @@ export default {
           name: '',
           color: [],
           family: '',
-          densidadplantacion: '',
+          plantingdensity: '',
           literspottingsoil  : 0,
           associations       : [],
         },
@@ -113,8 +113,8 @@ export default {
           nutrition: '',
           salinity: '',
           ph: [],
-          clima: [],
-          profundidad: '',
+          climate: [],
+          depth: '',
         },
         cropdates: {
           planting     : '',
@@ -178,10 +178,10 @@ export default {
 //   this.crop.croprequirements .ph = this.crop.croprequirements .ph.map(item => parseFloat(item));
 // }
 
-// // Procesamiento de clima
-// if (this.crop.croprequirements .clima) {
-//   console.log("this.crop.croprequirements .clima",  this.crop.croprequirements .clima)
-//   this.crop.croprequirements .clima = this.crop.croprequirements .clima.split(',').map(clima => clima.trim());
+// // Procesamiento de climate
+// if (this.crop.croprequirements .climate) {
+//   console.log("this.crop.croprequirements .climate",  this.crop.croprequirements .climate)
+//   this.crop.croprequirements .climate = this.crop.croprequirements .climate.split(',').map(climate => climate.trim());
 // }
 
 

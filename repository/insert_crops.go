@@ -11,18 +11,23 @@ import (
 func (r *Repository) InsertCrops(crop entity.Crop) error {
 	fmt.Println("InsertCrop - IdCrop:", crop.IdCrop)
 	fmt.Printf("Valor que se pasa a la sentencia SQL: %d\n", crop.IdCrop)
+	fmt.Printf("Cultivo recibido: %+v\n", crop)
 
 	tx, err := r.db.Begin()
 	if err != nil {
 		fmt.Println("Error al iniciar la transacción:", err)
 		return err
 	}
-
+	defer func() {
+		if p := recover(); p != nil {
+			log.Println("Panic recuperado durante la transacción:", p)
+		}
+	}()
 	var cropID int
 	err = tx.Stmt(r.insertCropsStmt).QueryRow(crop.Abbreviation).Scan(&cropID)
-
 	if err != nil {
-		return err
+		log.Println("Error al ejecutar la consulta SQL y escanear cropID:", err)
+		return tx.Rollback()
 	}
 
 	log.Println("el cropid tras hacer el returning", cropID)
@@ -36,14 +41,14 @@ func (r *Repository) InsertCrops(crop entity.Crop) error {
 		crop.CropInformation.Name,
 		pq.Array(crop.CropInformation.Color),
 		crop.CropInformation.Family,
-		crop.CropInformation.DensidadPlantacion,
+		crop.CropInformation.PlantingDensity,
 		crop.CropInformation.LitersPottingSoil,
 		pq.Array(crop.CropInformation.Associations),
 		cropID,
 	)
 	if err != nil {
-
-		return err
+		log.Println("Error al ejecutar la sentencia SQL para insertar CropsInformation:", err)
+		return tx.Rollback()
 	}
 
 	_, err = tx.Stmt(r.insertCropsRequirementsStmt).Exec(
@@ -52,8 +57,8 @@ func (r *Repository) InsertCrops(crop entity.Crop) error {
 		crop.CropRequirements.Nutrition,
 		crop.CropRequirements.Salinity,
 		pq.Array(crop.CropRequirements.Ph),
-		pq.Array(crop.CropRequirements.Clima),
-		crop.CropRequirements.Profundidad,
+		pq.Array(crop.CropRequirements.Climate),
+		crop.CropRequirements.Depth,
 		cropID,
 	)
 	if err != nil {
@@ -97,5 +102,10 @@ func (r *Repository) InsertCrops(crop entity.Crop) error {
 	if err != nil {
 		return tx.Rollback()
 	}
-	return tx.Commit()
+	if err := tx.Commit(); err != nil {
+		log.Println("Error al hacer commit de la transacción:", err)
+		return err
+	}
+
+	return nil
 }
