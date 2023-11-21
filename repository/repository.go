@@ -16,6 +16,7 @@ type REPOSITORY interface {
 	CheckExistCropsId(id int) (bool, error)
 	ExtractCropsName(name string) (entity.CalculateResponse, error)
 	ExtractCropsSearch(request entity.SearchRequest) ([]entity.Crop, error)
+	ExtractCropsCalendary(month, province string) (entity.Crop, error)
 }
 
 type Repository struct {
@@ -32,9 +33,10 @@ type Repository struct {
 
 	checkExistCropsIdStmt *sql.Stmt
 
-	extractCropsStmt       *sql.Stmt
-	extractCropsNameStmt   *sql.Stmt
-	extractCropsSearchStmt *sql.Stmt
+	extractCropsStmt          *sql.Stmt
+	extractCropsNameStmt      *sql.Stmt
+	extractCropsSearchStmt    *sql.Stmt
+	extractCropsCalendaryStmt *sql.Stmt
 }
 
 //go:embed sql/insert_crops.sql
@@ -75,6 +77,9 @@ var DeleteCropsIdQuery string
 
 //go:embed sql/extract_crops_search.sql
 var ExtractCropsSearchQuery string
+
+//go:embed sql/extract_crops_calendary.sql
+var ExtractCropsCalendaryQuery string
 
 func NewRepository(db *sql.DB) (*Repository, error) {
 	insertCropsStmt, err := db.Prepare(InsertCropsQuery)
@@ -136,6 +141,11 @@ func NewRepository(db *sql.DB) (*Repository, error) {
 	if err != nil {
 		return nil, err
 	}
+	extractCropsCalendaryStmt, err := db.Prepare(ExtractCropsCalendaryQuery)
+	if err != nil {
+		return nil, err
+	}
+
 	return &Repository{
 		db:                          db,
 		insertCropsStmt:             insertCropsStmt,
@@ -151,5 +161,6 @@ func NewRepository(db *sql.DB) (*Repository, error) {
 		deleteCropsIdStmt:           deleteCropsIdStmt,
 		checkExistCropsIdStmt:       checkExistCropsIdStmt,
 		extractCropsSearchStmt:      extractCropsSearchStmt,
+		extractCropsCalendaryStmt:   extractCropsCalendaryStmt,
 	}, nil
 }

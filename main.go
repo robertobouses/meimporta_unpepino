@@ -7,9 +7,12 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/robertobouses/meimporta_unpepino/app"
+	provinceApi "github.com/robertobouses/meimporta_unpepino/app/province"
 	"github.com/robertobouses/meimporta_unpepino/http"
+	provinceHandler "github.com/robertobouses/meimporta_unpepino/http/province"
 	"github.com/robertobouses/meimporta_unpepino/internal"
 	"github.com/robertobouses/meimporta_unpepino/repository"
+	provinceRepo "github.com/robertobouses/meimporta_unpepino/repository/province"
 )
 
 func main() {
@@ -45,6 +48,17 @@ func main() {
 	appController = app.NewAPP(repo)
 	httpController = http.NewHTTP(appController)
 
+	var repoProvince provinceRepo.REPOSITORYProvince
+	repoProvince, err = provinceRepo.NewRepository(db)
+	if err != nil {
+		panic(err)
+	}
+	var appProvinceController provinceApi.APPProvince
+	var httpProvinceController provinceHandler.HTTPProvince
+
+	appProvinceController = provinceApi.NewAPP(repoProvince)
+	httpProvinceController = provinceHandler.NewHTTP(appProvinceController)
+
 	server := gin.Default()
 
 	server.Use(internal.CORSMiddleware())
@@ -78,6 +92,15 @@ func main() {
 	server.GET("/crops/search", func(ctx *gin.Context) {
 		httpController.GetCropsSearch(ctx)
 	})
+
+	server.GET("/crops/calendary", func(ctx *gin.Context) {
+		httpController.GetCropsCalendary(ctx)
+	})
+
+	server.POST("/provinces", func(ctx *gin.Context) {
+		httpProvinceController.PostProvinces(ctx)
+	})
+
 	//calendario crop segun mes y espacio soil
 	//delete drop table tal
 	//delete all table

@@ -13,6 +13,7 @@ type HTTP interface {
 	GetCropsIssues(ctx *gin.Context)
 	GetCropsCalculate(ctx *gin.Context)
 	GetCropsSearch(ctx *gin.Context)
+	GetCropsCalendary(ctx *gin.Context)
 }
 
 type Http struct {

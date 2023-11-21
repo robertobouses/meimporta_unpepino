@@ -13,6 +13,7 @@ type APP interface {
 	ProcessCropsIssues(nameIntro string) ([]entity.IssueResponse, error)
 	ProcessCropsCalculate(newCalculate entity.CalculateRequest) (int, error)
 	ProcessCropsSearch(request entity.SearchRequest) ([]entity.Crop, error)
+	ProcessCropsCalendary(month, province string) (entity.Crop, error)
 }
 
 type Service struct {
