@@ -2,6 +2,7 @@ package http
 
 import (
 	"fmt"
+	"log"
 	nethttp "net/http"
 
 	"github.com/gin-gonic/gin"
@@ -9,14 +10,14 @@ import (
 )
 
 func (h *Http) GetCropsIssues(ctx *gin.Context) {
-	var request entity.NameCropRequest
-	err := ctx.ShouldBindJSON(&request)
-	if err != nil {
-		ctx.JSON(nethttp.StatusBadRequest, gin.H{"error ShouldBindJSON PostProblemsCrop": err.Error()})
-		return
+
+	name := ctx.Query("name")
+
+	newrequest := entity.NameCropRequest{
+		Name: name,
 	}
 
-	results, err := h.service.ProcessCropsIssues(request.Name)
+	results, err := h.service.ProcessCropsIssues(newrequest.Name)
 	if err != nil {
 		ctx.JSON(nethttp.StatusBadRequest, gin.H{"error": err.Error()})
 		return
@@ -29,9 +30,10 @@ func (h *Http) GetCropsIssues(ctx *gin.Context) {
 
 	response := "Resultados:\n"
 	for _, result := range results {
-		response += fmt.Sprintf("Crop: %s\nPests       : %s\nDifficulties : %s\nCare: %s\nMiscellaneous: %s\n\n",
+		response += fmt.Sprintf("Crop: %s\nPests: %s\nDifficulties: %s\nCare: %s\nMiscellaneous: %s\n\n",
 			result.Name, result.Pests, result.Difficulties, result.Care, result.Miscellaneous)
 	}
 
 	ctx.JSON(nethttp.StatusOK, response)
+	log.Print("response issues", response)
 }

@@ -1,4 +1,4 @@
-SELECT
+SELECT DISTINCT
     C.idcrop, C.abbreviation,
     IC.name, ARRAY_TO_STRING(IC.color, ',') as color, IC.family, IC.plantingdensity, IC.literspottingsoil, IC.associations,
     RC.water, RC.soil, RC.nutrition, RC.salinity, unnest(RC.ph) as ph, RC.climate, RC.depth,

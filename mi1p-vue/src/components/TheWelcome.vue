@@ -25,7 +25,7 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
     </template>
     <template #heading>Calculador de plantas</template>
 
-    Consigue saber las plantas que necesitas para tu crop, o los metros que necesitas para tus plantines, obtén la distancia de plantación...
+    Consigue saber las plantas que necesitas para tu crop, o los meters que necesitas para tus plantines, obtén la distancia de plantación...
    
   </WelcomeItem>
 

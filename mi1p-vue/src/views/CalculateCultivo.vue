@@ -8,8 +8,8 @@
     </div>
 
     <div>
-      <label for="metrosCuadrados">Metros cuadrados:</label>
-      <input type="number" id="metrosCuadrados" v-model="metrosCuadrados" />
+      <label for="squareMeters">Meters cuadrados:</label>
+      <input type="number" id="squareMeters" v-model="squareMeters" />
     </div>
 
     <button @click="calcularCrop">Calcular</button>
@@ -28,7 +28,7 @@ export default {
   data() {
     return {
       nameCrop: '',
-      metrosCuadrados: 0,
+      squareMeters: 0,
       resultado: null,
     };
   },
@@ -37,12 +37,12 @@ export default {
       
       axios.post(`${apiUrl}/calculateCrop`, {
         name: this.nameCrop,
-        metros: this.metrosCuadrados,
+        meters: this.squareMeters,
       })
         .then(response => {
           
           const result = response.data.result;
-          const frase = `Va a necesitar ${result} plantas de ${this.nameCrop} para plantar sus ${this.metrosCuadrados} metros cuadrados.`;
+          const frase = `Va a necesitar ${result} plantas de ${this.nameCrop} para plantar sus ${this.squareMeters} meters cuadrados.`;
 
          
           this.resultado = { frase };

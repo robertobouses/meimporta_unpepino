@@ -9,27 +9,23 @@ import (
 	"github.com/robertobouses/meimporta_unpepino/entity"
 )
 
-func printType(v interface{}) {
-	fmt.Printf("Type: %T\n", v)
-}
-
 func (h *Http) GetCropsCalculate(ctx *gin.Context) {
-	nombre := ctx.Query("nombre")
-	metrosStr := ctx.Query("metros")
+	name := ctx.Query("name")
+	metersStr := ctx.Query("meters")
 
-	printType(metrosStr)
+	printType(metersStr)
 
-	metros, err := strconv.Atoi(metrosStr)
-	printType(metros)
+	meters, err := strconv.Atoi(metersStr)
+	printType(meters)
 
 	if err != nil {
-		ctx.JSON(nethttp.StatusBadRequest, gin.H{"error al convertir metros a int": err.Error()})
+		ctx.JSON(nethttp.StatusBadRequest, gin.H{"error al convertir meters a int": err.Error()})
 		return
 	}
 
 	newCalculate := entity.CalculateRequest{
-		Name:            nombre,
-		MetrosCuadrados: metros,
+		Name:         name,
+		SquareMeters: meters,
 	}
 	result, err := h.service.ProcessCropsCalculate(newCalculate)
 
@@ -39,4 +35,8 @@ func (h *Http) GetCropsCalculate(ctx *gin.Context) {
 	}
 
 	ctx.JSON(nethttp.StatusOK, gin.H{"mensaje": "Crop insertado correctamente", "result": result})
+}
+
+func printType(v interface{}) {
+	fmt.Printf("Type: %T\n", v)
 }

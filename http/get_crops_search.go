@@ -34,9 +34,20 @@ func (h *Http) GetCropsSearch(ctx *gin.Context) {
 		return
 	}
 
-	if len(results) == 0 {
+	uniqueResults := make(map[int]entity.Crop)
+	for _, result := range results {
+		uniqueResults[result.IdCrop] = result
+	}
+
+	uniqueResultsSlice := make([]entity.Crop, 0, len(uniqueResults))
+	for _, result := range uniqueResults {
+		uniqueResultsSlice = append(uniqueResultsSlice, result)
+	}
+
+	if len(uniqueResultsSlice) == 0 {
 		ctx.JSON(nethttp.StatusOK, "No se encontraron resultados para la búsqueda.")
 		return
 	}
-	ctx.JSON(nethttp.StatusOK, results)
+
+	ctx.JSON(nethttp.StatusOK, uniqueResultsSlice)
 }

@@ -1,6 +1,6 @@
 package entity
 
 type CalculateRequest struct {
-	Name            string `json:"name" form:"nombre" binding:"required"`
-	MetrosCuadrados int    `json:"metros" form:"metros" binding:"required"`
+	Name         string `json:"name" form:"name" binding:"required"`
+	SquareMeters int    `json:"meters" form:"meters" binding:"required"`
 }
