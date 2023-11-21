@@ -3,8 +3,8 @@ package repository
 import (
 	"database/sql"
 	"log"
+	"strings"
 
-	"github.com/lib/pq"
 	"github.com/robertobouses/meimporta_unpepino/entity"
 )
 
@@ -17,7 +17,7 @@ func (r *Repository) ExtractCropsSearch(request entity.SearchRequest) ([]entity.
 
 	rows, err := r.db.Query(ExtractCropsSearchQuery,
 		request.Name,
-		pq.Array(request.Color),
+		strings.Join(request.Color, ","),
 		request.PlantingDensity,
 		request.Water,
 		request.Soil,
