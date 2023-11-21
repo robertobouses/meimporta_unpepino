@@ -1,4 +1,4 @@
-package app
+package province
 
 import (
 	provinceEntity "github.com/robertobouses/meimporta_unpepino/entity/province"

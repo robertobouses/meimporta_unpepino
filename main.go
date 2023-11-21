@@ -49,7 +49,7 @@ func main() {
 	httpController = http.NewHTTP(appController)
 
 	var repoProvince provinceRepo.REPOSITORYProvince
-	repoProvince, err = provinceRepo.NewRepository(db)
+	repoProvince, err = provinceRepo.NewRepositoryProvince(db)
 	if err != nil {
 		panic(err)
 	}

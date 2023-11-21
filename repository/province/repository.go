@@ -1,4 +1,4 @@
-package repository
+package province
 
 import (
 	"database/sql"
@@ -13,14 +13,14 @@ type REPOSITORYProvince interface {
 }
 
 type RepositoryProvince struct {
-	db              *sql.DB
-	insertCropsStmt *sql.Stmt
+	db                  *sql.DB
+	insertProvincesStmt *sql.Stmt
 }
 
 //go:embed sql/insert_provinces.sql
 var InsertProvincesQuery string
 
-func NewRepository(db *sql.DB) (*RepositoryProvince, error) {
+func NewRepositoryProvince(db *sql.DB) (*RepositoryProvince, error) {
 	insertProvincesStmt, err := db.Prepare(InsertProvincesQuery)
 	if err != nil {
 		return nil, err
