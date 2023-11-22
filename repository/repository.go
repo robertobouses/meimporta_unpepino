@@ -16,7 +16,7 @@ type REPOSITORY interface {
 	CheckExistCropsId(id int) (bool, error)
 	ExtractCropsName(name string) (entity.CalculateResponse, error)
 	ExtractCropsSearch(request entity.SearchRequest) ([]entity.Crop, error)
-	ExtractCropsCalendary(month, province string) (entity.Crop, error)
+	ExtractCropsCalendary(month, climate string) ([]entity.Crop, error)
 }
 
 type Repository struct {

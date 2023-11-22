@@ -3,6 +3,8 @@ package app
 import (
 	"github.com/robertobouses/meimporta_unpepino/entity"
 	"github.com/robertobouses/meimporta_unpepino/repository"
+
+	repoProvince "github.com/robertobouses/meimporta_unpepino/repository/province"
 )
 
 type APP interface {
@@ -13,15 +15,17 @@ type APP interface {
 	ProcessCropsIssues(nameIntro string) ([]entity.IssueResponse, error)
 	ProcessCropsCalculate(newCalculate entity.CalculateRequest) (int, error)
 	ProcessCropsSearch(request entity.SearchRequest) ([]entity.Crop, error)
-	ProcessCropsCalendary(month, province string) (entity.Crop, error)
+	ProcessCropsCalendary(month, provinceName string) ([]entity.Crop, error)
 }
 
 type Service struct {
-	repo repository.REPOSITORY
+	repo         repository.REPOSITORY
+	provinceRepo repoProvince.REPOSITORYProvince
 }
 
-func NewAPP(repo repository.REPOSITORY) APP {
+func NewAPP(repo repository.REPOSITORY, provinceRepo repoProvince.REPOSITORYProvince) APP {
 	return &Service{
-		repo: repo,
+		repo:         repo,
+		provinceRepo: provinceRepo,
 	}
 }

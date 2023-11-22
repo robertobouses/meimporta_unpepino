@@ -42,21 +42,23 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	var appController app.APP
-	var httpController http.HTTP
-
-	appController = app.NewAPP(repo)
-	httpController = http.NewHTTP(appController)
 
 	var repoProvince provinceRepo.REPOSITORYProvince
 	repoProvince, err = provinceRepo.NewRepositoryProvince(db)
 	if err != nil {
 		panic(err)
 	}
-	var appProvinceController provinceApi.APPProvince
-	var httpProvinceController provinceHandler.HTTPProvince
 
+	var appController app.APP
+	appController = app.NewAPP(repo, repoProvince)
+
+	var httpController http.HTTP
+	httpController = http.NewHTTP(appController)
+
+	var appProvinceController provinceApi.APPProvince
 	appProvinceController = provinceApi.NewAPP(repoProvince)
+
+	var httpProvinceController provinceHandler.HTTPProvince
 	httpProvinceController = provinceHandler.NewHTTP(appProvinceController)
 
 	server := gin.Default()
