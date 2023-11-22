@@ -3,6 +3,8 @@ package repository
 import (
 	"database/sql"
 	"log"
+	"strconv"
+	"strings"
 
 	"github.com/robertobouses/meimporta_unpepino/entity"
 )
@@ -21,7 +23,7 @@ func (repo *Repository) ExtractCropsCalendary(month, climate string) ([]entity.C
 		var crop entity.Crop
 		var color sql.NullString
 		var associations sql.NullString
-		var ph sql.NullFloat64
+		var phArray string
 		var climate sql.NullString
 
 		err := rows.Scan(
@@ -37,7 +39,7 @@ func (repo *Repository) ExtractCropsCalendary(month, climate string) ([]entity.C
 			&crop.CropRequirements.Soil,
 			&crop.CropRequirements.Nutrition,
 			&crop.CropRequirements.Salinity,
-			&ph,
+			&phArray,
 			&climate,
 			&crop.CropRequirements.Depth,
 			&crop.CropDates.Planting,
@@ -68,18 +70,36 @@ func (repo *Repository) ExtractCropsCalendary(month, climate string) ([]entity.C
 		if climate.Valid && climate.String != "" {
 			crop.CropRequirements.Climate = append(crop.CropRequirements.Climate, climate.String)
 		}
-		if ph.Valid {
-			phValues := ph.Float64
-			crop.CropRequirements.Ph = append(crop.CropRequirements.Ph, phValues)
+		phValues, err := parsePhArray(phArray)
+		if err != nil {
+			log.Printf("Error al procesar el array de pH: %v", err)
+			return nil, err
 		}
+		crop.CropRequirements.Ph = append(crop.CropRequirements.Ph, phValues...)
 
 		crops = append(crops, crop)
+		log.Printf("Fila procesada: %+v", crop)
 	}
 
 	if err := rows.Err(); err != nil {
 		log.Printf("Error al procesar las filas: %v", err)
 		return nil, err
 	}
-
+	log.Println("crops en repository", crops)
 	return crops, nil
+}
+func parsePhArray(phArray string) ([]float64, error) {
+
+	values := strings.Split(strings.Trim(phArray, "{}"), ",")
+	var phValues []float64
+
+	for _, value := range values {
+		ph, err := strconv.ParseFloat(value, 64)
+		if err != nil {
+			return nil, err
+		}
+		phValues = append(phValues, ph)
+	}
+
+	return phValues, nil
 }

@@ -15,5 +15,5 @@ FROM
     JOIN meimporta_unpepino.cropseed AS SC ON C.idcrop = SC.cropid
     JOIN meimporta_unpepino.cropissues AS PC ON C.idcrop = PC.cropid
 WHERE
-    EXTRACT(MONTH FROM TO_DATE(FC.planting, 'Month')) = $1
+    FC.planting = $1
     AND $2 = ANY(RC.climate);

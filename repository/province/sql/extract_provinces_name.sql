@@ -1,3 +1,3 @@
-SELECT PR.nameprovince, PR.climateprovince
-FROM meimporta_unpepino.province AS PR
-WHERE PR.nameprovince=$1;
+SELECT nameprovince, climateprovince
+FROM meimporta_unpepino.province
+WHERE nameprovince = $1;

@@ -4,34 +4,42 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
+	"net/url"
+	"strings"
 )
 
 func GetProvince(city string) (string, error) {
 
-	apiURL := fmt.Sprintf("https://nominatim.openstreetmap.org/search?format=json&q=%s", city)
+	apiURL := fmt.Sprintf("https://nominatim.openstreetmap.org/search?format=json&q=%s", url.QueryEscape(city))
+
 	resp, err := http.Get(apiURL)
 	if err != nil {
 		return "", fmt.Errorf("error al realizar la solicitud: %v", err)
 	}
 	defer resp.Body.Close()
 
-	var results []map[string]interface{}
-	err = json.NewDecoder(resp.Body).Decode(&results)
+	var result []NominatimResponse
+	err = json.NewDecoder(resp.Body).Decode(&result)
 	if err != nil {
 		return "", fmt.Errorf("error al decodificar la respuesta: %v", err)
 	}
 
-	if len(results) > 0 {
-		firstResult := results[0]
-
-		for _, addressPart := range firstResult["address"].(map[string]interface{}) {
-			if addressPart.(string) != city {
-				return fmt.Sprintf("%v", addressPart), nil
-			}
-		}
-	} else {
-		return "", fmt.Errorf("no se encontraron resultados para la ciudad: %s", city)
+	if len(result) > 0 {
+		province := extractProvince(result[0].DisplayName)
+		return province, nil
 	}
 
-	return "", nil
+	return "", fmt.Errorf("no se encontró la ciudad en la respuesta para: %s", city)
+}
+
+func extractProvince(displayName string) string {
+	parts := strings.Split(displayName, ",")
+	if len(parts) > 2 {
+		return strings.TrimSpace(parts[len(parts)-2])
+	}
+	return ""
+}
+
+type NominatimResponse struct {
+	DisplayName string `json:"display_name"`
 }
