@@ -8,18 +8,18 @@ SELECT DISTINCT
     PC.pests, PC.difficulties, PC.care, PC.miscellaneous
 FROM
     meimporta_unpepino.crop AS C
-    JOIN meimporta_unpepino.cropinformation  AS IC ON C.idcrop = IC.cropid
-    JOIN meimporta_unpepino.croprequirements  AS RC ON C.idcrop = RC.cropid
+    JOIN meimporta_unpepino.cropinformation AS IC ON C.idcrop = IC.cropid
+    JOIN meimporta_unpepino.croprequirements AS RC ON C.idcrop = RC.cropid
     JOIN meimporta_unpepino.cropdates AS FC ON C.idcrop = FC.cropid
     JOIN meimporta_unpepino.cropfruit AS FUC ON C.idcrop = FUC.cropid
     JOIN meimporta_unpepino.cropseed AS SC ON C.idcrop = SC.cropid
     JOIN meimporta_unpepino.cropissues AS PC ON C.idcrop = PC.cropid
-WHERE
-    IC.name = $1
-    OR (ARRAY_TO_STRING(IC.color, ',') IS NULL OR ARRAY_TO_STRING(IC.color, ',') = $2)
-    OR (IC.plantingdensity IS NULL OR IC.plantingdensity = $3)
-    OR (RC.water IS NULL OR RC.water = $4)
-    OR (RC.soil IS NULL OR RC.soil = $5)
-    OR (RC.nutrition IS NULL OR RC.nutrition = $6)
-    OR (RC.salinity IS NULL OR RC.salinity = $7)
-    OR (FC.cycle IS NULL OR FC.cycle = $8);
+WHERE    
+    (IC.name=$1 OR $2) AND
+    (ARRAY_TO_STRING(IC.color, ',')=$3 OR $4) AND
+    (IC.plantingdensity=$5 OR $6) AND
+    (RC.water=$7 OR $8) AND
+    (RC.soil=$9 OR $10) AND
+    (RC.nutrition=$11 OR $12) AND
+    (RC.salinity=$13 OR $14) AND
+    (FC.cycle=$15 OR $16);

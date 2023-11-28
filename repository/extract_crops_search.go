@@ -16,14 +16,14 @@ func (r *Repository) ExtractCropsSearch(request entity.SearchRequest) ([]entity.
 	log.Printf("Valores de la consulta: name=%s, color=%v, water=%v, ...", request.Name, request.Color, request.Water)
 
 	rows, err := r.db.Query(ExtractCropsSearchQuery,
-		request.Name,
-		strings.Join(request.Color, ","),
-		request.PlantingDensity,
-		request.Water,
-		request.Soil,
-		request.Nutrition,
-		request.Salinity,
-		request.Cycle,
+		request.Name, request.Name == "",
+		strings.Join(request.Color, ","), strings.Join(request.Color, ",") == "",
+		request.PlantingDensity, request.PlantingDensity == "",
+		request.Water, request.Water == "",
+		request.Soil, request.Soil == "",
+		request.Nutrition, request.Nutrition == "",
+		request.Salinity, request.Salinity == "",
+		request.Cycle, request.Cycle == "",
 	)
 
 	log.Printf("rows tras la Query en extractSearchCrop del repo: %v", rows)
