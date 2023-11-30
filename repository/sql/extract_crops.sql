@@ -2,7 +2,7 @@
 
 SELECT
     C.idcrop, C.abbreviation,
-    IC.name, IC.color, IC.family, IC.plantingdensity, IC.literspottingsoil, IC.associations,
+   DISTINCT IC.name, IC.color, IC.family, IC.plantingdensity, IC.literspottingsoil, IC.associations,
     RC.water, RC.soil, RC.nutrition, RC.salinity, RC.ph, RC.climate, RC.depth,
     FC.planting, FC.transplant, FC.harvest, FC.cycle,
     FUC.production, FUC.nutrients,
