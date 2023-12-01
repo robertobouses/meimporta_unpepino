@@ -2,6 +2,7 @@ package app
 
 import (
 	"github.com/robertobouses/meimporta_unpepino/entity"
+	"github.com/robertobouses/meimporta_unpepino/entity/mycrop"
 	"github.com/robertobouses/meimporta_unpepino/repository"
 
 	repoProvince "github.com/robertobouses/meimporta_unpepino/repository/province"
@@ -16,6 +17,7 @@ type APP interface {
 	ProcessCropsCalculate(newCalculate entity.CalculateRequest) (int, error)
 	ProcessCropsSearch(request entity.SearchRequest) ([]entity.Crop, error)
 	ProcessCropsCalendary(month, provinceName string) ([]entity.Crop, error)
+	CreateFields(field mycrop.MyField) error
 }
 
 type Service struct {

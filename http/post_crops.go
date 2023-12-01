@@ -32,5 +32,5 @@ func (h *Http) PostCrops(ctx *gin.Context) {
 	//cropID := newCrop.IdCrop
 	ctx.JSON(nethttp.StatusOK, newCrop)
 	fmt.Printf("Crop insertado con ID: %d\n", newCrop.IdCrop)
-	ctx.JSON(nethttp.StatusOK, gin.H{"mensaje": "Crop insertado correctamente"})
+	ctx.JSON(nethttp.StatusOK, gin.H{"mensaje": "Cultivo insertado correctamente"})
 }

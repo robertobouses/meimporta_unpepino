@@ -6,6 +6,7 @@ import (
 	_ "embed"
 
 	"github.com/robertobouses/meimporta_unpepino/entity"
+	"github.com/robertobouses/meimporta_unpepino/entity/mycrop"
 )
 
 type REPOSITORY interface {
@@ -17,6 +18,7 @@ type REPOSITORY interface {
 	ExtractCropsName(name string) (entity.CalculateResponse, error)
 	ExtractCropsSearch(request entity.SearchRequest) ([]entity.Crop, error)
 	ExtractCropsCalendary(month, climate string) ([]entity.Crop, error)
+	InsertFields(field mycrop.MyField) error
 }
 
 type Repository struct {
@@ -37,6 +39,7 @@ type Repository struct {
 	extractCropsNameStmt      *sql.Stmt
 	extractCropsSearchStmt    *sql.Stmt
 	extractCropsCalendaryStmt *sql.Stmt
+	insertFieldsStmt          *sql.Stmt
 }
 
 //go:embed sql/insert_crops.sql
@@ -80,6 +83,9 @@ var ExtractCropsSearchQuery string
 
 //go:embed sql/extract_crops_calendary.sql
 var ExtractCropsCalendaryQuery string
+
+//go:embed sql/insert_fields.sql
+var insertFieldsQuery string
 
 func NewRepository(db *sql.DB) (*Repository, error) {
 	insertCropsStmt, err := db.Prepare(InsertCropsQuery)
@@ -146,6 +152,11 @@ func NewRepository(db *sql.DB) (*Repository, error) {
 		return nil, err
 	}
 
+	insertFieldsStmt, err := db.Prepare(insertFieldsQuery)
+	if err != nil {
+		return nil, err
+	}
+
 	return &Repository{
 		db:                          db,
 		insertCropsStmt:             insertCropsStmt,
@@ -162,5 +173,6 @@ func NewRepository(db *sql.DB) (*Repository, error) {
 		checkExistCropsIdStmt:       checkExistCropsIdStmt,
 		extractCropsSearchStmt:      extractCropsSearchStmt,
 		extractCropsCalendaryStmt:   extractCropsCalendaryStmt,
+		insertFieldsStmt:            insertFieldsStmt,
 	}, nil
 }
