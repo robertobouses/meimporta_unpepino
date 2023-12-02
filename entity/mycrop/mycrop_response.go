@@ -3,13 +3,10 @@ package mycrop
 import "time"
 
 type MyCropResponse struct {
-	Planting   time.Time
-	Transplant time.Time
-	Harvest    time.Time
-	Water      []time.Time
-	Production int
-	Price      int
-	Amount     int
+	IdMyCrop     int
+	Name         string
+	Planting     time.Time
+	SquareMeters int
+	Soil         string
+	Climate      string
 }
-
-//date of care

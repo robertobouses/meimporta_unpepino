@@ -111,8 +111,9 @@ func main() {
 		httpController.PostMyCropsDefine(ctx)
 	})
 
-	server.GET("mycrops", func(ctx *gin.Context) {
-		httpController.GetMyCrops(ctx)
+	server.GET("mycrops/:name", func(ctx *gin.Context) {
+		name := ctx.Param("name")
+		httpController.GetMyCrops(ctx, name)
 	})
 
 	//calendario crop segun mes y espacio soil

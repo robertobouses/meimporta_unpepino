@@ -8,7 +8,7 @@ import (
 )
 
 func (s *Service) ProcessCropsCalculate(newCalculate entity.CalculateRequest) (int, error) {
-	crop, err := s.repo.ExtractCropsName(newCalculate.Name)
+	crop, err := s.repo.ExtractCropsNameCalculate(newCalculate.Name)
 	if err != nil {
 		return 0, err
 	}
