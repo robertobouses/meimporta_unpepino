@@ -19,6 +19,7 @@ type REPOSITORY interface {
 	ExtractCropsSearch(request entity.SearchRequest) ([]entity.Crop, error)
 	ExtractCropsCalendary(month, climate string) ([]entity.Crop, error)
 	InsertFields(field mycrop.MyField) error
+	InsertMyCrops(mycrop mycrop.MyCrop) error
 }
 
 type Repository struct {
@@ -40,6 +41,7 @@ type Repository struct {
 	extractCropsSearchStmt    *sql.Stmt
 	extractCropsCalendaryStmt *sql.Stmt
 	insertFieldsStmt          *sql.Stmt
+	insertMyCropsStmt         *sql.Stmt
 }
 
 //go:embed sql/insert_crops.sql
@@ -86,6 +88,9 @@ var ExtractCropsCalendaryQuery string
 
 //go:embed sql/insert_fields.sql
 var insertFieldsQuery string
+
+//go:embed sql/insert_mycrops.sql
+var insertMyCropsQuery string
 
 func NewRepository(db *sql.DB) (*Repository, error) {
 	insertCropsStmt, err := db.Prepare(InsertCropsQuery)
@@ -157,6 +162,11 @@ func NewRepository(db *sql.DB) (*Repository, error) {
 		return nil, err
 	}
 
+	insertMyCropsStmt, err := db.Prepare(insertMyCropsQuery)
+	if err != nil {
+		return nil, err
+	}
+
 	return &Repository{
 		db:                          db,
 		insertCropsStmt:             insertCropsStmt,
@@ -174,5 +184,6 @@ func NewRepository(db *sql.DB) (*Repository, error) {
 		extractCropsSearchStmt:      extractCropsSearchStmt,
 		extractCropsCalendaryStmt:   extractCropsCalendaryStmt,
 		insertFieldsStmt:            insertFieldsStmt,
+		insertMyCropsStmt:           insertMyCropsStmt,
 	}, nil
 }

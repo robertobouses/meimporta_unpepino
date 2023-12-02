@@ -107,9 +107,13 @@ func main() {
 		httpController.PostMyCropsFields(ctx)
 	})
 
-	// server.POST("/mycrops/define", func(ctx *gin.Context) {
-	// 	httpController.PostCropsDefine(ctx)
-	// })
+	server.POST("/mycrops/define", func(ctx *gin.Context) {
+		httpController.PostMyCropsDefine(ctx)
+	})
+
+	server.GET("mycrops", func(ctx *gin.Context) {
+		httpController.GetMyCrops(ctx)
+	})
 
 	//calendario crop segun mes y espacio soil
 	//delete drop table tal

@@ -15,6 +15,7 @@ type HTTP interface {
 	GetCropsSearch(ctx *gin.Context)
 	GetCropsCalendary(ctx *gin.Context)
 	PostMyCropsFields(ctx *gin.Context)
+	PostMyCropsDefine(ctx *gin.Context)
 }
 
 type Http struct {

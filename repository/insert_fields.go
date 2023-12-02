@@ -19,7 +19,7 @@ func (r *Repository) InsertFields(field mycrop.MyField) error {
 	)
 
 	if err != nil {
-		log.Print("Error en InsertProvinces repo", err)
+		log.Print("Error en InsertFields repo", err)
 		return err
 	}
 	log.Println("Después de ejecutar la consulta preparada")

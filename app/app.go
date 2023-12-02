@@ -18,6 +18,7 @@ type APP interface {
 	ProcessCropsSearch(request entity.SearchRequest) ([]entity.Crop, error)
 	ProcessCropsCalendary(month, provinceName string) ([]entity.Crop, error)
 	CreateFields(field mycrop.MyField) error
+	CreateMyCrops(mycrop mycrop.MyCrop) error
 }
 
 type Service struct {
