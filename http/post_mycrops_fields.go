@@ -18,6 +18,15 @@ func (h *Http) PostMyCropsFields(ctx *gin.Context) {
 	}
 	log.Print(field)
 
+	provinceName, err := GetProvince(field.City)
+	if err != nil {
+		log.Println("Error al obtener la provincia:", err)
+		ctx.JSON(nethttp.StatusInternalServerError, gin.H{"error al obtener la provincia": err.Error()})
+		return
+	}
+
+	field.Province = provinceName
+
 	err = h.service.CreateFields(field)
 	if err != nil {
 		log.Println("Error al llamar desde HTTP al servicio:", err)

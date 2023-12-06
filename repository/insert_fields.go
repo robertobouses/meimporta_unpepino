@@ -6,7 +6,7 @@ import (
 	"github.com/robertobouses/meimporta_unpepino/entity/mycrop"
 )
 
-func (r *Repository) InsertFields(field mycrop.MyField) error {
+func (r *Repository) InsertFields(field mycrop.MyField, climate string) error {
 	log.Println("Antes de ejecutar la consulta preparada")
 	_, err := r.insertFieldsStmt.Exec(
 		field.CatastralCode,
@@ -15,7 +15,7 @@ func (r *Repository) InsertFields(field mycrop.MyField) error {
 		field.Soil,
 		field.City,
 		field.Province,
-		field.Climate,
+		climate,
 	)
 
 	if err != nil {

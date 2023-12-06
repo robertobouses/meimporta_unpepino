@@ -13,3 +13,4 @@ type MyCropResult struct {
 }
 
 //date of care?
+//son los datos que obtendrá el usuario como resultado a su consulta

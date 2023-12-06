@@ -22,10 +22,10 @@ func (s *Service) ProcessMyCrops(name string) (mycropresponse mycrop.MyCropRespo
 		distance := LevenshteinDistance(name, crop.CropInformation.Name)
 		if distance <= threshold {
 			result := mycrop.CropResponse{
-				Name:          crop.CropInformation.Name,
-				Family:         crop.CropInformation.Family,
-				Water:  crop.CropRequirements.Water.water,
-				Soil:          crop.CropRequirements.Soil,
+				Name: crop.CropInformation.Name,
+				Family: crop.CropInformation.Family,
+				Water: crop.CropRequirements.Water.water,
+				Soil: crop.CropRequirements.Soil,
 				Nutrition: crop.CropRequirements.Nutrition,
 				Climate: crop.CropRequirements.Climate,
 				Planting: crop.CropDates.Planting,

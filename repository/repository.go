@@ -18,7 +18,7 @@ type REPOSITORY interface {
 	ExtractCropsNameCalculate(name string) (entity.CalculateResponse, error)
 	ExtractCropsSearch(request entity.SearchRequest) ([]entity.Crop, error)
 	ExtractCropsCalendary(month, climate string) ([]entity.Crop, error)
-	InsertFields(field mycrop.MyField) error
+	InsertFields(field mycrop.MyField, climate string) error
 	InsertMyCrops(mycrop mycrop.MyCrop) error
 	ExtractCropsId(id int) ([]entity.Crop, error)
 }
