@@ -6,6 +6,7 @@ import (
 	"strconv"
 	"strings"
 
+	"github.com/lib/pq"
 	"github.com/robertobouses/meimporta_unpepino/entity"
 )
 
@@ -23,7 +24,7 @@ func (repo *Repository) ExtractCropsCalendary(month, climate string) ([]entity.C
 		var crop entity.Crop
 		var color sql.NullString
 		var associations sql.NullString
-		var phArray string
+		//var phArray string
 		var climate sql.NullString
 
 		err := rows.Scan(
@@ -39,7 +40,7 @@ func (repo *Repository) ExtractCropsCalendary(month, climate string) ([]entity.C
 			&crop.CropRequirements.Soil,
 			&crop.CropRequirements.Nutrition,
 			&crop.CropRequirements.Salinity,
-			&phArray,
+			pq.Array(&crop.CropRequirements.Ph),
 			&climate,
 			&crop.CropRequirements.Depth,
 			&crop.CropDates.Planting,
@@ -70,12 +71,6 @@ func (repo *Repository) ExtractCropsCalendary(month, climate string) ([]entity.C
 		if climate.Valid && climate.String != "" {
 			crop.CropRequirements.Climate = append(crop.CropRequirements.Climate, climate.String)
 		}
-		phValues, err := parsePhArray(phArray)
-		if err != nil {
-			log.Printf("Error al procesar el array de pH: %v", err)
-			return nil, err
-		}
-		crop.CropRequirements.Ph = append(crop.CropRequirements.Ph, phValues...)
 
 		crops = append(crops, crop)
 		log.Printf("Fila procesada: %+v", crop)

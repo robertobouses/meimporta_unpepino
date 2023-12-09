@@ -105,11 +105,11 @@ func main() {
 
 	server.POST("/mycrops/fields", func(ctx *gin.Context) {
 		httpController.PostMyCropsFields(ctx)
-	})
+	}) //ya integra provinces y climate automaticamente, hacer prueba
 
 	server.POST("/mycrops/define", func(ctx *gin.Context) {
 		httpController.PostMyCropsDefine(ctx)
-	})
+	}) //no tiene mayor dificultad, solo inserta los datos basicos de tu cultivo
 
 	server.GET("mycrops/:name", func(ctx *gin.Context) {
 		name := ctx.Param("name")
@@ -126,3 +126,5 @@ func main() {
 		log.Fatal(err)
 	}
 }
+
+//definir constantes para datos introduce administrador

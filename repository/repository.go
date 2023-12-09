@@ -20,7 +20,7 @@ type REPOSITORY interface {
 	ExtractCropsCalendary(month, climate string) ([]entity.Crop, error)
 	InsertFields(field mycrop.MyField, climate string) error
 	InsertMyCrops(mycrop mycrop.MyCrop) error
-	ExtractCropsId(id int) ([]entity.Crop, error)
+	//ExtractCropsId(id int) ([]entity.Crop, error)
 }
 
 type Repository struct {
@@ -71,7 +71,7 @@ var InsertCropsIssuesQuery string
 //go:embed sql/extract_crops.sql
 var ExtractCropsQuery string
 
-//go:embed sql/extract_crops_name.sql
+//go:embed sql/extract_crops_name_calculate.sql
 var ExtractCropsNameCalculateQuery string
 
 //go:embed sql/delete_crops_all.sql
