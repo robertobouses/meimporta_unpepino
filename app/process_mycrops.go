@@ -1,8 +1,7 @@
 package app
 
 import (
-	"time"
-
+	"github.com/robertobouses/meimporta_unpepino/app/calculate"
 	"github.com/robertobouses/meimporta_unpepino/entity/mycrop"
 )
 
@@ -22,12 +21,16 @@ func (s *Service) ProcessMyCrops(name string) (mycrop.MyCropResult, error) {
 	}
 
 	result.Planting = mycrops.Planting
-	result.Transplant = time.Now()
-	result.Harvest = time.Now()
-	result.Water = []time.Time{time.Now(), time.Now()} // Example water data
-	result.Production = 10
-	result.Price = 5
-	result.Amount = 100
+	plantingDate := result.Planting
+	family := crops.CropInformation.Family
+	climate := crops.CropInformation.Climate
+	soil := crops.CropInformation.Soil
+	result.Transplant = calculate.CalculateTransplant(plantingDate, family, climate)
+	result.Harvest = calculate.CalculateHarvest(result.Transplant, family, climate)
+	result.Water = calculate.CalculateWater(plantingDate, family, climate, soil)
+	result.Production = calculate.CalculateProduction()
+	result.Price = CalculatePrice()
+	result.Amount = CalculateAmount()
 
 	return result, nil
 }
