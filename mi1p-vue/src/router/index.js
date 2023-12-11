@@ -8,9 +8,18 @@ import DeleteCrop from '../views/DeleteCrop.vue';
 import DeleteAllCrops from '../views/DeleteAllCrops.vue';
 import SearchCrop from '../views/SearchCrop.vue';
 import CalculateCrop from '../views/CalculateCrop.vue';
-import DefineCrop from '../views/DefineCrop.vue';
-import ProblemsCrop from '../views/ProblemsCrop.vue';
+import DefineMyCrop from '../views/DefineMyCrop.vue';
+import IssuesCrop from '../views/IssuesCrop.vue';
+
+
+import GetCalendary from '../views/GetCalendary.vue';
+import CreateProvinces from '../views/CreateProvinces.vue';
+import DefineMyFields from '../views/DefineMyFields.vue';
+import GetMyCrop from '../views/GetMyCrop.vue';
 import ReadCrop from '../views/ReadCrop.vue';
+
+
+
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -47,25 +56,57 @@ const router = createRouter({
     },
 
     {
-      path: '/searchCrop',
-      name: 'searchcrop',
-      component: SearchCrop
-    },
+      path: '/issuesCrop',
+      name: 'issuescrop',
+      component: IssuesCrop
+   },
+   
     {
       path: '/calculateCrop',
       name: 'calculatecrop',
       component: CalculateCrop
     },
-    {
-      path: '/defineCrop',
-      name: 'definecrop',
-      component: DefineCrop
+   
+    
+ {
+      path: '/searchCrop',
+      name: 'searchcrop',
+      component: SearchCrop
     },
     {
-      path: '/problemsCrop',
-      name: 'problemscrop',
-      component: ProblemsCrop
+      path: '/getCalendary',
+      name: 'getcalendary',
+      component: GetCalendary
     },
+
+
+    {
+      path: '/createProvinces',
+      name: 'createprovinces',
+      component: CreateProvinces
+    },
+
+
+    {
+      path: '/defineMyFields',
+      name: 'definemyfields',
+      component: DefineMyFields
+    },
+ {
+      path: '/defineMyCrop',
+      name: 'definemycrop',
+      component: DefineMyCrop
+    },
+
+    {
+      path: '/getMyCrop',
+      name: 'getmycrop',
+      component: GetMyCrop
+    },
+
+
+
+
     {
       path: '/readCrop',
       name: 'readcrop',

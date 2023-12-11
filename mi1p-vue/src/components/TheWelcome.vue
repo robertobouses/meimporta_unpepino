@@ -3,7 +3,7 @@ import WelcomeItem from './WelcomeItem.vue'
 import BusquedasIcon from './icons/IconBusquedas.vue'
 import CalculadorIcon from './icons/IconCalculador.vue'
 import DefineTuCropIcon from './icons/IconDefineTuCrop.vue'
-import Pests       Icon from './icons/IconPests       .vue'
+import PestsIcon from './icons/IconPests.vue';
 import LecturasIcon from './icons/IconLecturas.vue'
 import 'bootstrap-icons/font/bootstrap-icons.css';
 </script>
@@ -41,7 +41,7 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 
   <WelcomeItem>
     <template #icon>
-      <Pests       Icon />
+      <PestsIcon />
     </template>
     <template #heading>Pests        y problemas</template>
 

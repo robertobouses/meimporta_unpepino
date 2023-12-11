@@ -38,14 +38,14 @@
     </div>
 
     <div>
-      <label for="cycle        ">Cycle        :</label>
-      <input type="text" id="cycle        " v-model="cycle        " />
+      <label for="cycle">Cycle:</label>
+      <input type="text" id="cycle" v-model="cycle" />
     </div>
 
 
 
 
-    <button @click="buscarCrop">Buscar</button>
+    <button @click="buscar Cultivo">Buscar</button>
 
     <div v-if="resultados.length > 0">
       <h2>Resultados de la búsqueda:</h2>
@@ -75,7 +75,7 @@ export default {
       // Realiza la solicitud al backend para buscar crops
       // Aquí puedes utilizar la biblioteca axios o la función fetch
       // Ajusta la URL según la configuración de tu servidor
-      const url = "`${apiUrl}/searchCrop`;
+      const url = `${apiUrl}/searchCrop`;
       const data = {
         Name: this.nameCrop,
         // Agrega más campos según tus necesidades

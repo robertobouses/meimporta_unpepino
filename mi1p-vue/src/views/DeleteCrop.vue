@@ -30,17 +30,17 @@ export default {
         return;
       }
       axios
-        .delete(`${apiUrl}/deleteCrop/${this.cropId}`)
+        .delete(`${apiUrl}/crops/${this.cropId}`)
         .then(response => {
           if (response.status === 200 || response.status === 204) {
-            // Success message
+            
             Swal.fire({
               icon: 'success',
               title: 'Éxito',
               text: 'Crop eliminado con éxito.',
             });
           } else {
-            // Error message
+            
             Swal.fire({
               icon: 'error',
               title: 'Error',

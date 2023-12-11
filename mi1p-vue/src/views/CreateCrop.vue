@@ -208,7 +208,7 @@ export default {
         console.log('Crop antes de enviar:', JSON.stringify(this.crop));
 
         // Enviar datos a la API
-        const response = await axios.post(`${apiUrl}/createCrop`, this.crop);
+        const response = await axios.post(`${apiUrl}/crops`, this.crop);
         console.log('Respuesta del servidor:', response);
 
         this.mensaje = 'Crop creado exitosamente';

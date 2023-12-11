@@ -81,8 +81,8 @@ CREATE TABLE meimporta_unpepino.cropseed (
 
 -- Tabla 'cropissues'
 CREATE TABLE meimporta_unpepino.cropissues (
-    pests        text,
-    difficulties  text,
+    pests text,
+    difficulties text,
     care text,
     miscellaneous text,
     cropid integer, 

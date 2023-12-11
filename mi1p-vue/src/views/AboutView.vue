@@ -19,26 +19,57 @@
         <button type="button" class="btn btn-outline-success">Eliminar todos los Crops</button>
       </router-link>
     </div>
+   
+
     <div>
+      <router-link to="/issuesCrop">
+        <button type="button" class="btn btn-outline-success">Pests y problemas</button>
+      </router-link>
+    </div>
+ <div>
+      <router-link to="/calculateCrop">
+        <button type="button" class="btn btn-outline-success">Calculador de Plantas</button>
+      </router-link>
+    </div>
+ <div>
       <router-link to="/searchCrop">
         <button type="button" class="btn btn-outline-success">Buscar un Crop</button>
       </router-link>
     </div>
     <div>
-      <router-link to="/calculateCrop">
-        <button type="button" class="btn btn-outline-success">Calculador de Plantas</button>
+      <router-link to="/getCalendary">
+        <button type="button" class="btn btn-outline-success">Obtener un Calendario de cultivo</button>
       </router-link>
     </div>
+
+
     <div>
-      <router-link to="/defineCrop">
-        <button type="button" class="btn btn-outline-success">Define tu propio Crop</button>
+      <router-link to="/createProvinces">
+        <button type="button" class="btn btn-outline-success">Define tu propio Cultivo</button>
       </router-link>
     </div>
+
     <div>
-      <router-link to="/problemsCrop">
-        <button type="button" class="btn btn-outline-success">Pests y problemas</button>
+      <router-link to="/defineMyFields">
+        <button type="button" class="btn btn-outline-success">Define tus Fincas</button>
       </router-link>
     </div>
+
+    <div>
+      <router-link to="/defineMyCrop">
+        <button type="button" class="btn btn-outline-success">Define tu propio Cultivo</button>
+      </router-link>
+    </div>
+
+
+
+    <div>
+      <router-link to="/getMyCrop">
+        <button type="button" class="btn btn-outline-success">Obtén los consejos para tu Cultivo</button>
+      </router-link>
+    </div>
+
+
     <div>
       <router-link to="/readCrop">
         <button type="button" class="btn btn-outline-success">Lecturas</button>

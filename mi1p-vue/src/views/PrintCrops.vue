@@ -26,7 +26,7 @@ export default {
   },
   created() {
     console.log('created se ejecutó');
-    axios.get(`${apiUrl}/printCrops`)
+    axios.get(`${apiUrl}/crops`)
       .then(response => {
         console.log('Respuesta de Axios:', response);
         this.crops = response.data;

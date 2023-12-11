@@ -28,7 +28,7 @@ export default {
       this.isLoading = true;
 
       axios
-        .delete(`${apiUrl}/deleteAllCrops`)
+        .delete(`${apiUrl}/crops/all`)
         .then(response => {
           if (response.status === 200 || response.status === 204) {
             alert('Crops eliminados con éxito.');

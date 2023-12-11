@@ -67,15 +67,15 @@
         <label for="seed">Seed:</label>
         <input type="text" id="seed" v-model="crop.cropseed.seed" required>
        
-        <label for="seedspergram  ">SeedsPerGram  :</label>
+        <label for="seedspergram">SeedsPerGram  :</label>
         <input type="text" id="seedgramo" v-model="crop.cropseed.seedspergram  " required>
         
 
         <label for="seedlifespan">SeedLifespan:</label>
         <input type="text" id="seedlifespan" v-model="crop.cropseed.seedlifespan" required>
         
-        <label for="pests       ">Pests       :</label>
-        <input type="text" id="pests       " v-model="crop.cropissues.pests       " required>
+        <label for="pests">Pests:</label>
+        <input type="text" id="pests" v-model="crop.cropissues.pests" required>
 
         <label for="difficulties ">Difficulties :</label>
         <input type="text" id="difficulties " v-model="crop.cropissues.difficulties " required>

@@ -35,7 +35,7 @@ export default {
   methods: {
     calcularCrop() {
       
-      axios.post(`${apiUrl}/calculateCrop`, {
+      axios.post(`${apiUrl}/crops/calculate`, {
         name: this.nameCrop,
         meters: this.squareMeters,
       })
