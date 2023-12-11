@@ -37,7 +37,7 @@ type CropDates struct {
 	Cycle      string `json:"cycle"`
 }
 type CropFruit struct {
-	Production string `json:"production"`
+	Production int    `json:"production"`
 	Nutrients  string `json:"nutrients"`
 }
 

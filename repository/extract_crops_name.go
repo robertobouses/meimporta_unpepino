@@ -7,7 +7,7 @@ import (
 	"github.com/robertobouses/meimporta_unpepino/entity"
 )
 
-func (r *Repository) ExtractCropsId(name string) ([]entity.Crop, error) {
+func (r *Repository) ExtractCropsName(name string) ([]entity.Crop, error) {
 	var crops []entity.Crop
 
 	log.Printf("Consulta SQL: %s", ExtractCropsNameQuery)

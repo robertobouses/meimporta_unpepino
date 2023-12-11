@@ -15,4 +15,4 @@ FROM
     JOIN meimporta_unpepino.cropseed AS SC ON C.idcrop = SC.cropid
     JOIN meimporta_unpepino.cropissues AS PC ON C.idcrop = PC.cropid
 WHERE    
-    IC.name=$1
+    IC.name=$1;

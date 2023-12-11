@@ -1,12 +1,17 @@
 package calculate
 
 import (
+	"log"
 	"time"
 )
 
 func CalculateWater(plantingDate time.Time, family, climate, soil string) []time.Time {
 	result := make([]time.Time, 13)
 
+	if plantingDate.IsZero() {
+		log.Print("Fecha de siembra no válida")
+		return nil
+	}
 	switch family {
 	case "liliaceas":
 		result[0] = plantingDate
@@ -47,6 +52,8 @@ func CalculateWater(plantingDate time.Time, family, climate, soil string) []time
 		result[12] = plantingDate.Add(7 * 24 * time.Hour)
 	}
 
+	log.Print("result tras family", result)
+
 	if climate == "mediterraneo" || climate == "tropical" {
 		for i := range result {
 			result[i] = result[i].Add(-1 * 24 * time.Hour)
@@ -77,5 +84,10 @@ func CalculateWater(plantingDate time.Time, family, climate, soil string) []time
 		}
 	}
 
-	return result
+	log.Print("result tras family, climate, month, soil", result)
+
+	adjustedResult := make([]time.Time, len(result))
+	copy(adjustedResult, result)
+	log.Print("result antes del return final", adjustedResult)
+	return adjustedResult
 }

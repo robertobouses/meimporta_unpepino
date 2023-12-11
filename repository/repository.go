@@ -20,7 +20,9 @@ type REPOSITORY interface {
 	ExtractCropsCalendary(month, climate string) ([]entity.Crop, error)
 	InsertFields(field mycrop.MyField, climate string) error
 	InsertMyCrops(mycrop mycrop.MyCrop) error
-	//ExtractCropsId(id int) ([]entity.Crop, error)
+	ExtractCropsName(name string) ([]entity.Crop, error)
+	ExtractMyCropsName(name string) (mycrop.MyCrop, error)
+	ExtractMyFieldsId(id int) (mycrop.MyField, error)
 }
 
 type Repository struct {
@@ -37,14 +39,16 @@ type Repository struct {
 
 	checkExistCropsIdStmt *sql.Stmt
 
-	extractCropsStmt          *sql.Stmt
-	extractCropsNameStmt      *sql.Stmt
-	extractCropsSearchStmt    *sql.Stmt
-	extractCropsCalendaryStmt *sql.Stmt
+	extractCropsStmt              *sql.Stmt
+	extractCropsNameCalculateStmt *sql.Stmt
+	extractCropsSearchStmt        *sql.Stmt
+	extractCropsCalendaryStmt     *sql.Stmt
 
-	insertFieldsStmt   *sql.Stmt
-	insertMyCropsStmt  *sql.Stmt
-	extractCropsIdStmt *sql.Stmt
+	insertFieldsStmt       *sql.Stmt
+	insertMyCropsStmt      *sql.Stmt
+	extractCropsNameStmt   *sql.Stmt
+	extractMyCropsNameStmt *sql.Stmt
+	extractMyFieldsIdStmt  *sql.Stmt
 }
 
 //go:embed sql/insert_crops.sql
@@ -95,8 +99,14 @@ var InsertFieldsQuery string
 //go:embed sql/insert_mycrops.sql
 var InsertMyCropsQuery string
 
-//go:embed sql/extract_crops_id.sql
+//go:embed sql/extract_crops_name.sql
 var ExtractCropsNameQuery string
+
+//go:embed sql/extract_mycrops_name.sql
+var ExtractMyCropsNameQuery string
+
+//go:embed sql/extract_myfields_id.sql
+var ExtractMyFieldsIdQuery string
 
 func NewRepository(db *sql.DB) (*Repository, error) {
 	insertCropsStmt, err := db.Prepare(InsertCropsQuery)
@@ -138,7 +148,7 @@ func NewRepository(db *sql.DB) (*Repository, error) {
 	if err != nil {
 		return nil, err
 	}
-	extractCropsNameStmt, err := db.Prepare(ExtractCropsNameCalculateQuery)
+	extractCropsNameCalculateStmt, err := db.Prepare(ExtractCropsNameCalculateQuery)
 	if err != nil {
 		return nil, err
 	}
@@ -172,29 +182,39 @@ func NewRepository(db *sql.DB) (*Repository, error) {
 	if err != nil {
 		return nil, err
 	}
-	extractCropsIdStmt, err := db.Prepare(ExtractCropsNameQuery)
+	extractCropsNameStmt, err := db.Prepare(ExtractCropsNameQuery)
+	if err != nil {
+		return nil, err
+	}
+	extractMyCropsNameStmt, err := db.Prepare(ExtractMyCropsNameQuery)
+	if err != nil {
+		return nil, err
+	}
+	extractMyFieldsIdStmt, err := db.Prepare(ExtractMyFieldsIdQuery)
 	if err != nil {
 		return nil, err
 	}
 
 	return &Repository{
-		db:                          db,
-		insertCropsStmt:             insertCropsStmt,
-		insertCropsInformationStmt:  insertCropsInformationStmt,
-		insertCropsRequirementsStmt: insertCropsRequirementsStmt,
-		insertCropsDatesStmt:        insertCropsDatesStmt,
-		insertCropsFruitStmt:        insertCropsFruitStmt,
-		insertCropsSeedStmt:         insertCropsSeedStmt,
-		insertCropsIssuesStmt:       insertCropsIssuesStmt,
-		extractCropsStmt:            extractCropsStmt,
-		extractCropsNameStmt:        extractCropsNameStmt,
-		deleteCropsAllStmt:          deleteCropsAllStmt,
-		deleteCropsIdStmt:           deleteCropsIdStmt,
-		checkExistCropsIdStmt:       checkExistCropsIdStmt,
-		extractCropsSearchStmt:      extractCropsSearchStmt,
-		extractCropsCalendaryStmt:   extractCropsCalendaryStmt,
-		insertFieldsStmt:            insertFieldsStmt,
-		insertMyCropsStmt:           insertMyCropsStmt,
-		extractCropsIdStmt:          extractCropsIdStmt,
+		db:                            db,
+		insertCropsStmt:               insertCropsStmt,
+		insertCropsInformationStmt:    insertCropsInformationStmt,
+		insertCropsRequirementsStmt:   insertCropsRequirementsStmt,
+		insertCropsDatesStmt:          insertCropsDatesStmt,
+		insertCropsFruitStmt:          insertCropsFruitStmt,
+		insertCropsSeedStmt:           insertCropsSeedStmt,
+		insertCropsIssuesStmt:         insertCropsIssuesStmt,
+		extractCropsStmt:              extractCropsStmt,
+		extractCropsNameCalculateStmt: extractCropsNameCalculateStmt,
+		deleteCropsAllStmt:            deleteCropsAllStmt,
+		deleteCropsIdStmt:             deleteCropsIdStmt,
+		checkExistCropsIdStmt:         checkExistCropsIdStmt,
+		extractCropsSearchStmt:        extractCropsSearchStmt,
+		extractCropsCalendaryStmt:     extractCropsCalendaryStmt,
+		insertFieldsStmt:              insertFieldsStmt,
+		insertMyCropsStmt:             insertMyCropsStmt,
+		extractCropsNameStmt:          extractCropsNameStmt,
+		extractMyCropsNameStmt:        extractMyCropsNameStmt,
+		extractMyFieldsIdStmt:         extractMyFieldsIdStmt,
 	}, nil
 }

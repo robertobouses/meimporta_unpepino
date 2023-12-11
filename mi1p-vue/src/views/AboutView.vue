@@ -36,7 +36,7 @@
     </div>
     <div>
       <router-link to="/problemsCrop">
-        <button type="button" class="btn btn-outline-success">Pests        y problemas</button>
+        <button type="button" class="btn btn-outline-success">Pests y problemas</button>
       </router-link>
     </div>
     <div>
