@@ -45,7 +45,7 @@
 
 
 
-    <button @click="buscar Cultivo">Buscar</button>
+    <button @click="buscarCrop">Buscar</button>
 
     <div v-if="resultados.length > 0">
       <h2>Resultados de la búsqueda:</h2>

@@ -1,1 +1,1 @@
-INSERT INTO meimporta_unpepino.province (nameprovince, climateprovince) VALUES ($1, $2);
+    INSERT INTO meimporta_unpepino.province (nameprovince, climateprovince) VALUES ($1, $2);

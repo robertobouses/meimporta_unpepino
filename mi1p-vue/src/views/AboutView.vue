@@ -69,6 +69,13 @@
       </router-link>
     </div>
 
+    <div>
+      <router-link to="/createProvinces">
+        <button type="button" class="btn btn-outline-success">Crear Provincias</button>
+      </router-link>
+    </div>
+
+
 
     <div>
       <router-link to="/readCrop">
