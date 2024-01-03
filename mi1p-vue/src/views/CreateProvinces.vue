@@ -39,15 +39,9 @@ export default {
     if (response.status === 200) {
       console.log('Provincia creada exitosamente');
 
-      // Parsea la respuesta JSON
-      const responseData = JSON.parse(response.data);
-
-      // Accede a los datos específicos de la provincia creada
-      const provinciaCreada = responseData.province;
-      console.log('Provincia creada:', provinciaCreada);
-
-      // Accede al mensaje
-      const mensaje = responseData.mensaje;
+      // Accede a los datos específicos de la provincia creada y al mensaje
+      const { province, mensaje } = response.data;
+      console.log('Provincia creada:', province);
       console.log('Mensaje:', mensaje);
     } else {
       console.error('Error al crear la provincia:', response.statusText);
@@ -55,7 +49,10 @@ export default {
   } catch (error) {
     console.error('Error al enviar la solicitud:', error);
   }
-},
+}
+,
+
+
 
   },
 };

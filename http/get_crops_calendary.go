@@ -14,6 +14,8 @@ func (h *Http) GetCropsCalendary(ctx *gin.Context) {
 	log.Printf("Mes: %s, Ciudad: %s\n", month, city)
 
 	provinceName, err := GetProvince(city)
+	log.Println("city", city)
+	log.Println("provinceName", provinceName)
 	if err != nil {
 		log.Printf("Error al obtener la provincia: %v\n", err)
 		ctx.JSON(http.StatusInternalServerError, gin.H{"error": "Error interno del servidor"})

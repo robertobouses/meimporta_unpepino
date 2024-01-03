@@ -22,6 +22,10 @@ func (h *Http) PostProvinces(ctx *gin.Context) {
 		return
 	}
 
-	ctx.JSON(nethttp.StatusOK, newProvince)
-	ctx.JSON(nethttp.StatusOK, gin.H{"mensaje": "Province insertada correctamente"})
+	response := gin.H{
+		"province": newProvince,
+		"mensaje":  "Province insertada correctamente",
+	}
+
+	ctx.JSON(nethttp.StatusOK, response)
 }

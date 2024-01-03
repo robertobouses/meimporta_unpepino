@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	nethttp "net/http"
+	"strings"
 
 	"github.com/gin-gonic/gin"
 	"github.com/robertobouses/meimporta_unpepino/entity"
@@ -17,7 +18,8 @@ func (h *Http) GetCropsIssues(ctx *gin.Context) {
 		Name: name,
 	}
 
-	results, err := h.service.ProcessCropsIssues(newrequest.Name)
+	results, err := h.service.ProcessCropsIssues(strings.ToLower(newrequest.Name))
+
 	if err != nil {
 		ctx.JSON(nethttp.StatusBadRequest, gin.H{"error": err.Error()})
 		return

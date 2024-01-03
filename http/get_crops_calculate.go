@@ -34,7 +34,7 @@ func (h *Http) GetCropsCalculate(ctx *gin.Context) {
 		return
 	}
 
-	ctx.JSON(nethttp.StatusOK, gin.H{"mensaje": "Crop insertado correctamente", "result": result})
+	ctx.JSON(nethttp.StatusOK, gin.H{"mensaje": "Las plantas totales para tu cultivo son:", "result": result})
 }
 
 func printType(v interface{}) {
