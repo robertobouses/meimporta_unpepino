@@ -95,7 +95,7 @@ func main() {
 		httpController.GetCropsSearch(ctx)
 	})
 
-	server.GET("/crops/calendary", func(ctx *gin.Context) {
+	server.GET("/crops/calendary", func(ctx *gin.Context) { ///TODO MATHEUS NO FUNCIONA, CREO QUE ES POR LOS ARRAY, PERO LA CONSULTA NO OBTIENE CULTIVO
 		httpController.GetCropsCalendary(ctx)
 	})
 

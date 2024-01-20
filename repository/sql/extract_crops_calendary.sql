@@ -15,5 +15,5 @@ FROM
     JOIN meimporta_unpepino.cropseed AS SC ON C.idcrop = SC.cropid
     JOIN meimporta_unpepino.cropissues AS PC ON C.idcrop = PC.cropid
 WHERE
-    FC.planting = $1
+   LOWER(FC.planting) = LOWER($1)
     AND $2 = ANY(RC.climate);

@@ -5,6 +5,7 @@ go 1.20
 require (
 	github.com/gin-gonic/gin v1.9.1
 	github.com/lib/pq v1.10.9
+	github.com/rainycape/unidecode v0.0.0-20150907023854-cb7f23ec59be
 )
 
 require (

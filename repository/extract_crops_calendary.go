@@ -13,7 +13,11 @@ import (
 func (repo *Repository) ExtractCropsCalendary(month, climate string) ([]entity.Crop, error) {
 	var crops []entity.Crop
 
+	log.Println("month y climate dentro de ExtractCropsCalendary", month, climate)
+
 	rows, err := repo.db.Query(ExtractCropsCalendaryQuery, month, climate)
+	log.Printf("Consulta SQL generada: %v", ExtractCropsCalendaryQuery)
+
 	if err != nil {
 		log.Printf("Error al ejecutar la consulta: %v", err)
 		return nil, err
