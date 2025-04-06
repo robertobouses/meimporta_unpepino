@@ -75,8 +75,7 @@ APIs externas para datos agronómicos y precios
 🚀 **Cómo levantar el proyecto**
 
 ***Clona el repositorio:***
-git clone https://github.com/tuusuario/me-importa-un-pepino.git
-Copia y configura .env.config.
+git clone git clone https://github.com/robertobouses/meimporta_unpepino.git
 
 ***Usa Docker para levantar la base de datos:***
 docker-compose up -d
